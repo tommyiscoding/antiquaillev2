@@ -1,0 +1,155 @@
+/* FONTS */
+@font-face {
+  font-family: "Gotham Bold";
+  src: url(../assets/fonts/Gotham-Bold.otf);
+}
+
+@font-face {
+  font-family: "Gotham Book";
+  src: url(../assets/fonts/Gotham-Book.otf) format("opentype");
+}
+
+/* Main */
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  --header-height: 100vh;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+}
+
+.header {
+  background-color: #9ea0ff;
+  position: fixed;
+  height: calc(var(--header-height));
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #fff;
+  left: 0;
+  top: 0;
+  -webkit-transition: ease 0.4s;
+  transition: ease 0.4s;
+  z-index: 99;
+  /*&--scrolled {
+    height: 100px;
+    --header-height: 100px;
+  }*/
+}
+
+.header--scrolled {
+  position: fixed;
+}
+
+.header-reduced {
+  position: fixed;
+  background-color: #9effc6;
+  top: 0;
+  left: 0;
+  height: 0px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #fff;
+  -webkit-transition: ease 0.4s;
+  transition: ease 0.4s;
+  z-index: 99;
+  opacity: 0;
+}
+
+.main-nav {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+}
+
+.main-nav a {
+  display: inline-block;
+}
+
+.video-section {
+  position: relative;
+  /*top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;*/
+}
+
+.video-section video {
+  top: 0;
+  left: 0;
+  z-index: -1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-size: cover;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.main {
+  position: relative;
+}
+
+.panel {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.main-section {
+  display: block;
+  height: 100vh;
+  width: 100%;
+}
+
+/* .first-section {
+  position: fixed;
+  top: 100px;
+}
+
+.next {
+  position: relative;
+  top: 100vh;
+
+  .panel {
+    position: relative;
+  }
+} */
+.dark {
+  background-color: #161616;
+}
+
+.white {
+  background-color: #e0dbd2;
+}
+
+h1 {
+  font-family: "Gotham Bold";
+}
+/*# sourceMappingURL=main.css.map */

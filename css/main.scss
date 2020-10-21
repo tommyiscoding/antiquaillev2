@@ -1,0 +1,154 @@
+/* FONTS */
+
+@font-face {
+  font-family: "Gotham Bold";
+  src: url(../assets/fonts/Gotham-Bold.otf);
+}
+
+@font-face {
+  font-family: "Gotham Book";
+  src: url(../assets/fonts/Gotham-Book.otf) format("opentype");
+}
+
+/* Main */
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  --header-height: 100vh;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+}
+
+.header {
+  background-color: #9ea0ff;
+  position: fixed;
+  // height: 100vh;
+  // --header-height: 100vh;
+  height: calc(var(--header-height));
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  left: 0;
+  top: 0;
+  transition: ease 0.4s;
+  z-index: 99;
+
+  &--scrolled {
+    position: fixed;
+    //--header-height: 100px;
+    //height: calc(var(--header-height));
+  }
+
+  /*&--scrolled {
+    height: 100px;
+    --header-height: 100px;
+  }*/
+}
+
+.header-reduced {
+  position: fixed;
+  background-color: #9effc6;
+  top: 0;
+  left: 0;
+  height: 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: ease 0.4s;
+  z-index: 99;
+  opacity: 0;
+}
+
+.main-nav {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+}
+
+.main-nav a {
+  display: inline-block;
+}
+
+.video-section {
+  position: relative;
+
+  video {
+    //position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    object-fit: cover;
+    background-size: cover;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+  }
+
+  /*top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;*/
+  // height: calc(100vh - 100px);
+}
+
+.main {
+  position: relative;
+  //top: 100vh;
+  //top: calc(var(--header-height));
+  //top: calc(100vh + 100px);
+}
+
+.panel {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.main-section {
+  display: block;
+  height: 100vh;
+  //height: calc(100vh - 100px);
+  // top: 100vh;
+  width: 100%;
+}
+
+/* .first-section {
+  position: fixed;
+  top: 100px;
+}
+
+.next {
+  position: relative;
+  top: 100vh;
+
+  .panel {
+    position: relative;
+  }
+} */
+
+.dark {
+  background-color: rgb(22, 22, 22);
+}
+
+.white {
+  background-color: #e0dbd2;
+}
+
+h1 {
+  font-family: "Gotham Bold";
+}
