@@ -11,13 +11,57 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/main.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="../assets/fonts/Avenir.ttc" rel="application/x-font-ttf" />
+    <link rel="stylesheet" href="https://use.typekit.net/fgy7gmd.css" />
   </head>
   <body>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <header class="header" id="header">
-      <h1>Header</h1>
+
+      <nav class="navbar">
+        <a href="#projet" class="menu-link nav-space" data-aos="fade-down"
+        data-aos-duration="1000"
+        data-aos-delay="1000"
+        data-aos-once="true"
+        id="projet_link">Le projet</a>
+        <a href="#produit" class="menu-link nav-space" data-aos="fade-down"
+        data-aos-duration="1000"
+        data-aos-delay="1200"
+        data-aos-once="true"
+        id="produit_link">Le produit</a>
+        <a id="logo-box" href="" class="menu-logo-img nav-space"
+          ><img
+            id="logo-nav"
+            src="../assets/images/logos_ldla/LDLA_couleur.png"
+            alt="Logo
+          Antiquaille"
+            class=""
+            data-aos="zoom-out"
+            data-aos-duration="1000"
+            data-aos-once="true"
+        />
+        <img id="logo-nav-contract"
+        src="../assets/images/logos_ldla/LDLA_couleur_contracté.png"
+        alt="Logo Antiquaille" />
+      </a>
+        <a href="#equipe" class="menu-link nav-space" data-aos="fade-down"
+        data-aos-duration="1000"
+        data-aos-delay="1400"
+        data-aos-once="true"
+        id="equipe_link">L'équipe</a>
+        <a href="#timing" class="menu-link nav-space" data-aos="fade-down"
+        data-aos-duration="1000"
+        data-aos-delay="1600"
+        data-aos-once="true"
+        id="timing_link">Le timing</a>
+        <div class="lang">
+          <a href="" class="lang-link" >FR</a>
+          <a href=""  class="lang-link" >EN</a>
+        </div> 
+      </nav>
       <!-- <nav class="navbar">
         <ul class="nav-links">
           <li><a href="">Le projet</a></li>
@@ -27,10 +71,10 @@
         </ul>
       </nav> -->
     </header>
-
+<!-- 
     <div class="header-reduced">
       <h1>Header Reduced</h1>
-    </div>
+    </div> -->
 
     
 <!-- 
@@ -45,27 +89,54 @@
 
     <main class="main">
 
-      <section class="main-section video-section panel" id="section1">
-        <video class="video-bg" autoplay muted loop>
-          <source
-            src="../assets/video/Montage_lantiquaille_4.mp4"
-            type="video/mp4"
-          />
-        </video>
+      <section class="main-section video-section panel" id="home">
+        <div class="container">
+          <article class="video-article spacing">
+            <h2 class="video-title">
+              Participez à la création de l’une des meilleures crèmes de soin
+              anti-âge global Bio et Vegan du marché.
+            </h2>
+            <p>
+              Que vous soyez une consommatrice avisée ou un(e) professionnel(le) spécialiste de la dermatologie ou de la dermo-cosmétique, <b>donnez-nous votre avis</b> afin de nous aider à développer ce futur produit d’exception.
+            </p>
+            <h3 class="video-title">Parce que votre avis compte</h3>
+            <a href="" class="btn">Répondez à notre questionnaire</a>
+            <!-- <a
+              href="#"
+              id="btn_disabled_pro"
+              class="btn disabled"
+              onmouseover="this.innerHTML = 'Bientôt disponible';"
+              onmouseout="this.innerHTML = 'Professionnel';"
+              onclick="return false;"
+              >Professionnel
+            </a> -->
+          </article>
+          <video class="video-bg" autoplay muted loop>
+            <source
+              src="../assets/video/Montage_lantiquaille_4.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
       </section>
 
-      <section class="main-section panel dark" id="section2"></section>
+      <section class="main-section panel dark" id="projet"></section>
 
-      <section class="main-section panel white" id="section3"></section>
+      <section class="main-section panel white" id="produit"></section>
 
-      <section class="main-section panel dark" id="section4"></section>
+      <section class="main-section panel dark" id="equipe"></section>
 
-      <section class="main-section panel white" id="section5"></section>
+      <section class="main-section panel white" id="timing"></section>
 
     </main>
 
     <footer></footer>
     
     <script src="../index.js"></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>

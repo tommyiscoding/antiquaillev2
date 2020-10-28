@@ -1,0 +1,16 @@
+{
+  "name": "ldlav2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thomas Freger",
+  "license": "ISC",
+  "dependencies": {
+    "gsap": "^3.5.1",
+    "jquery": "^3.5.1",
+    "scrollmagic": "^2.0.7"
+  }
+}
