@@ -227,6 +227,21 @@ document
     gsap.to(".container-projet", { marginLeft: -100 + "%", duration: 0.8 });
   });
 
+/*
+document
+  .getElementById("projet-page2")
+  .addEventListener("mouseenter", function (event) {
+    console.log("hover page");
+    gsap.to(".container-projet", {
+      marginLeft: -10 + "%",
+      duration: 0.3,
+      onComplete: gsap.to(".container-projet", {
+        marginLeft: 0,
+        duration: 0.3,
+      }),
+    });
+  });*/
+
 document
   .getElementById("origine-page1")
   .addEventListener("click", function (event) {

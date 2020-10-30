@@ -523,7 +523,6 @@ h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 85%;
   overflow: hidden;
   padding: 0 calc(max(10%, 100px));
   text-align: justify;
@@ -555,7 +554,6 @@ h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 85%;
   overflow: hidden;
   padding: 0 calc(max(10%, 100px));
   text-align: justify;
@@ -570,8 +568,6 @@ h1 {
 }
 
 .titre {
-  height: 20%;
-  min-height: 100px;
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
