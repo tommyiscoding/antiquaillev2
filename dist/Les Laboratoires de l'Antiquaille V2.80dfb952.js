@@ -10454,6 +10454,8 @@ var define;
 
 var _gsap = require("gsap");
 
+var _gsapCore = require("gsap/gsap-core");
+
 var _ScrollToPlugin = require("gsap/ScrollToPlugin");
 
 var _ScrollTrigger = require("gsap/ScrollTrigger");
@@ -10471,15 +10473,16 @@ Navigation
 ************/
 
 var scrolling = 0;
+var target = "";
 
 function scrollingOff() {
   scrolling = 0;
 }
 
-var target = "";
 window.addEventListener("load", function () {
   var links = document.querySelectorAll(".menu-link");
   var ctrl = new _scrollmagic.default.Controller({});
+  console.log("Link 0 : " + links[0]);
 
   for (var i = 0; i < links.length; i++) {
     links[i].addEventListener("click", function (event) {
@@ -10497,14 +10500,77 @@ window.addEventListener("load", function () {
       });
       ctrl.scrollTo(linkId);
     });
-  }
+  } // Arrow
+
+
+  var arrowLink = document.querySelector(".arrow-scroll");
+  console.log("Arrow : " + arrowLink);
+  arrowLink.addEventListener("click", function (e) {
+    scrolling = 1;
+    e.preventDefault();
+
+    _gsap.gsap.to(".menu-logo-img", {
+      width: 100
+    });
+
+    _gsap.gsap.set("#logo-nav", {
+      display: "none"
+    });
+
+    _gsap.gsap.set("#logo-nav-contract", {
+      display: "block"
+    });
+
+    _gsap.gsap.set(".arrow-container", {
+      display: "none"
+    }); //.to("#logo-nav", { opacity: 0 })
+
+
+    _gsap.gsap.to("#logo-nav-contract", {
+      opacity: 1
+    });
+
+    _gsap.gsap.to("#logo-nav-contract", {
+      marginTop: 25
+    });
+
+    _gsap.gsap.to(".header", {
+      height: 75,
+      duration: 0.3
+    });
+
+    var video = document.querySelector("video");
+    video.currentTime = 0;
+    video.play();
+    var ctrl = new _scrollmagic.default.Controller({});
+    scrolling = 1;
+    ctrl.scrollTo(function (newpos) {
+      _gsap.TweenMax.to(window, 1, {
+        scrollTo: {
+          y: newpos
+        },
+        onComplete: scrollingOff
+      });
+    });
+    ctrl.scrollTo("#home");
+    initScrollTrig();
+    /*const linkId = e.target.getAttribute("href");
+      console.log("target : " + linkId);
+    ctrl.scrollTo(function (newpos) {
+      TweenMax.to(window, 1, {
+        scrollTo: { y: newpos },
+        onComplete: scrollingOff,
+      });
+    });
+      ctrl.scrollTo(linkId);*/
+  });
 }); // Header
 
 var timeline = _gsap.gsap.timeline({
   scrollTrigger: {
     trigger: "header",
     start: "top -80",
-    endTrigger: "video-section"
+    endTrigger: "home"
   }
 });
 
@@ -10514,6 +10580,8 @@ timeline.to(".menu-logo-img", {
   display: "none"
 }).set("#logo-nav-contract", {
   display: "block"
+}).set(".arrow-container", {
+  display: "none"
 }) //.to("#logo-nav", { opacity: 0 })
 .to("#logo-nav-contract", {
   opacity: 1
@@ -10534,7 +10602,7 @@ timeline.to(".menu-logo-img", {
     });
   });
 
-  if (target == "" || target == "#video-section") {
+  if (target == "" || target == "#home") {
     ctrl.scrollTo(0);
   } else {
     ctrl.scrollTo(target);
@@ -10544,6 +10612,10 @@ timeline.then(initScrollTrig);
 
 function initScrollTrig() {
   console.log("passe ici");
+  console.log("produit top " + document.getElementById("produit").offsetTop);
+  console.log("produit top " + document.getElementById("equipe").offsetTop);
+  var arrayOffsetTop = [];
+  var panels = document.querySelectorAll(".panel");
 
   _gsap.gsap.utils.toArray(".panel").forEach(function (panel, i) {
     //if (i != 0) {
@@ -10551,9 +10623,10 @@ function initScrollTrig() {
       trigger: panel,
       onEnter: function onEnter() {
         console.log("scrolling : " + scrolling);
+        console.log("panel : " + panels[i].offsetTop);
 
         if (scrolling === 0) {
-          goToSection(i);
+          goToOffsetY(panels[i].offsetTop);
         }
       },
       invalidateOnRefresh: true
@@ -10565,16 +10638,36 @@ function initScrollTrig() {
       start: "bottom bottom",
       onEnterBack: function onEnterBack() {
         if (scrolling === 0) {
-          goToSection(i);
+          goToOffsetY(panels[i].offsetTop);
         }
       },
       invalidateOnRefresh: true
     });
   });
 } // Scroll to sections
+// Scroll to sections
 
+
+function goToOffsetY(offsetY, anim) {
+  console.log(offsetY);
+
+  _gsap.gsap.to(window, {
+    scrollTo: {
+      y: offsetY,
+      autoKill: false
+    },
+    duration: 1,
+    ease: _gsap.Power3.easeOut
+  });
+
+  if (anim) {
+    anim.restart();
+  }
+}
 
 function goToSection(i, anim) {
+  console.log(i);
+
   _gsap.gsap.to(window, {
     scrollTo: {
       y: i * innerHeight,
@@ -10587,8 +10680,78 @@ function goToSection(i, anim) {
   if (anim) {
     anim.restart();
   }
-}
-},{"gsap":"../node_modules/gsap/index.js","gsap/ScrollToPlugin":"../node_modules/gsap/ScrollToPlugin.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js","scrollmagic":"../node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"}],"C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+} // Redémarrage au début de la vidéo quand on arrive sur la section
+
+
+_ScrollTrigger.ScrollTrigger.create({
+  trigger: ".video-section",
+  start: "top top",
+  onEnter: function onEnter() {
+    var video = document.querySelector("video");
+    video.currentTime = 0;
+    video.play();
+  }
+});
+/* ScrollTrigger.create({
+  trigger: ".projet-section",
+  start: "top top",
+  horizontal: true,
+  onEnter: () => {},
+}); */
+
+/* Slider projet */
+
+
+document.getElementById("projet-page2").addEventListener("click", function (event) {
+  _gsap.gsap.to(".container-projet", {
+    marginLeft: -100 + "%",
+    duration: 0.8
+  });
+});
+document.getElementById("origine-page1").addEventListener("click", function (event) {
+  _gsap.gsap.to(".container-projet", {
+    marginLeft: 0,
+    duration: 0.8
+  });
+});
+/* Slider equipe */
+
+document.getElementById("equipe-page2").addEventListener("click", function (event) {
+  _gsap.gsap.to(".container-equipe", {
+    marginLeft: -100 + "%",
+    duration: 0.8
+  });
+});
+document.getElementById("florent-page1").addEventListener("click", function (event) {
+  _gsap.gsap.to(".container-equipe", {
+    marginLeft: 0,
+    duration: 0.8
+  });
+});
+/*
+let ctrl = new ScrollMagic.Controller();
+
+let horizontalSlide = new Timeline().to(".container-projet", 1, {
+  left: 2 * -80 + "%",
+  ease: Power0.easeNone,
+});
+
+new ScrollMagic.Scene({
+  triggerElement: ".projet-section",
+  triggerHook: "onLeave",
+  duration: "600%",
+})
+  .setPin(".projet-section")
+  .setTween(horizontalSlide)
+  .addTo(ctrl);*/
+
+/* ScrollTrigger.create({
+  trigger: ".projet-section",
+  start: "top top",
+  pin: true,
+  horizontal: true,
+}); */
+},{"gsap":"../node_modules/gsap/index.js","gsap/gsap-core":"../node_modules/gsap/gsap-core.js","gsap/ScrollToPlugin":"../node_modules/gsap/ScrollToPlugin.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js","scrollmagic":"../node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"}],"C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -10616,7 +10779,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11420" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2819" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

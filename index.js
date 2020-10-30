@@ -1,4 +1,5 @@
-import { gsap, Power3, TweenMax } from "gsap";
+import { gsap, Power3, TweenMax, TimelineMax, Power0 } from "gsap";
+import { Timeline } from "gsap/gsap-core";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollMagic from "scrollmagic";
@@ -13,17 +14,17 @@ Navigation
 ************/
 
 let scrolling = 0;
+let target = "";
 
 function scrollingOff() {
   scrolling = 0;
 }
 
-let target = "";
-
 window.addEventListener("load", function () {
   const links = document.querySelectorAll(".menu-link");
   let ctrl = new ScrollMagic.Controller({});
 
+  console.log("Link 0 : " + links[0]);
   for (let i = 0; i < links.length; i++) {
     links[i].addEventListener("click", function (event) {
       scrolling = 1;
@@ -40,6 +41,57 @@ window.addEventListener("load", function () {
       ctrl.scrollTo(linkId);
     });
   }
+
+  // Arrow
+  const arrowLink = document.querySelector(".arrow-scroll");
+  console.log("Arrow : " + arrowLink);
+
+  arrowLink.addEventListener("click", function (e) {
+    scrolling = 1;
+    e.preventDefault();
+
+    gsap.to(".menu-logo-img", { width: 100 });
+    gsap.set("#logo-nav", {
+      display: "none",
+    });
+
+    gsap.set("#logo-nav-contract", {
+      display: "block",
+    });
+    gsap.set(".arrow-container", { display: "none" });
+    //.to("#logo-nav", { opacity: 0 })
+    gsap.to("#logo-nav-contract", { opacity: 1 });
+    gsap.to("#logo-nav-contract", { marginTop: 25 });
+    gsap.to(".header", { height: 75, duration: 0.3 });
+
+    let video = document.querySelector("video");
+    video.currentTime = 0;
+    video.play();
+
+    let ctrl = new ScrollMagic.Controller({});
+    scrolling = 1;
+    ctrl.scrollTo(function (newpos) {
+      TweenMax.to(window, 1, {
+        scrollTo: { y: newpos },
+        onComplete: scrollingOff,
+      });
+    });
+    ctrl.scrollTo("#home");
+
+    initScrollTrig();
+
+    /*const linkId = e.target.getAttribute("href");
+
+    console.log("target : " + linkId);
+    ctrl.scrollTo(function (newpos) {
+      TweenMax.to(window, 1, {
+        scrollTo: { y: newpos },
+        onComplete: scrollingOff,
+      });
+    });
+
+    ctrl.scrollTo(linkId);*/
+  });
 });
 
 // Header
@@ -48,7 +100,7 @@ let timeline = gsap.timeline({
   scrollTrigger: {
     trigger: "header",
     start: "top -80",
-    endTrigger: "video-section",
+    endTrigger: "home",
   },
 });
 
@@ -60,6 +112,7 @@ timeline
   .set("#logo-nav-contract", {
     display: "block",
   })
+  .set(".arrow-container", { display: "none" })
   //.to("#logo-nav", { opacity: 0 })
   .to("#logo-nav-contract", { opacity: 1 })
   .to("#logo-nav-contract", { marginTop: 25 })
@@ -73,7 +126,7 @@ timeline
         onComplete: scrollingOff,
       });
     });
-    if (target == "" || target == "#video-section") {
+    if (target == "" || target == "#home") {
       ctrl.scrollTo(0);
     } else {
       ctrl.scrollTo(target);
@@ -85,14 +138,22 @@ timeline.then(initScrollTrig);
 function initScrollTrig() {
   console.log("passe ici");
 
+  console.log("produit top " + document.getElementById("produit").offsetTop);
+  console.log("produit top " + document.getElementById("equipe").offsetTop);
+
+  let arrayOffsetTop = [];
+  let panels = document.querySelectorAll(".panel");
+
   gsap.utils.toArray(".panel").forEach((panel, i) => {
     //if (i != 0) {
     ScrollTrigger.create({
       trigger: panel,
       onEnter: () => {
         console.log("scrolling : " + scrolling);
+        console.log("panel : " + panels[i].offsetTop);
+
         if (scrolling === 0) {
-          goToSection(i);
+          goToOffsetY(panels[i].offsetTop);
         }
       },
       invalidateOnRefresh: true,
@@ -103,7 +164,7 @@ function initScrollTrig() {
       start: "bottom bottom",
       onEnterBack: () => {
         if (scrolling === 0) {
-          goToSection(i);
+          goToOffsetY(panels[i].offsetTop);
         }
       },
       invalidateOnRefresh: true,
@@ -112,7 +173,23 @@ function initScrollTrig() {
 }
 
 // Scroll to sections
+
+// Scroll to sections
+function goToOffsetY(offsetY, anim) {
+  console.log(offsetY);
+  gsap.to(window, {
+    scrollTo: { y: offsetY, autoKill: false },
+    duration: 1,
+    ease: Power3.easeOut,
+  });
+
+  if (anim) {
+    anim.restart();
+  }
+}
+
 function goToSection(i, anim) {
+  console.log(i);
   gsap.to(window, {
     scrollTo: { y: i * innerHeight, autoKill: false },
     duration: 1,
@@ -123,3 +200,72 @@ function goToSection(i, anim) {
     anim.restart();
   }
 }
+
+// Redémarrage au début de la vidéo quand on arrive sur la section
+ScrollTrigger.create({
+  trigger: ".video-section",
+  start: "top top",
+  onEnter: () => {
+    let video = document.querySelector("video");
+    video.currentTime = 0;
+    video.play();
+  },
+});
+
+/* ScrollTrigger.create({
+  trigger: ".projet-section",
+  start: "top top",
+  horizontal: true,
+  onEnter: () => {},
+}); */
+
+/* Slider projet */
+
+document
+  .getElementById("projet-page2")
+  .addEventListener("click", function (event) {
+    gsap.to(".container-projet", { marginLeft: -100 + "%", duration: 0.8 });
+  });
+
+document
+  .getElementById("origine-page1")
+  .addEventListener("click", function (event) {
+    gsap.to(".container-projet", { marginLeft: 0, duration: 0.8 });
+  });
+
+/* Slider equipe */
+document
+  .getElementById("equipe-page2")
+  .addEventListener("click", function (event) {
+    gsap.to(".container-equipe", { marginLeft: -100 + "%", duration: 0.8 });
+  });
+
+document
+  .getElementById("florent-page1")
+  .addEventListener("click", function (event) {
+    gsap.to(".container-equipe", { marginLeft: 0, duration: 0.8 });
+  });
+
+/*
+let ctrl = new ScrollMagic.Controller();
+
+let horizontalSlide = new Timeline().to(".container-projet", 1, {
+  left: 2 * -80 + "%",
+  ease: Power0.easeNone,
+});
+
+new ScrollMagic.Scene({
+  triggerElement: ".projet-section",
+  triggerHook: "onLeave",
+  duration: "600%",
+})
+  .setPin(".projet-section")
+  .setTween(horizontalSlide)
+  .addTo(ctrl);*/
+
+/* ScrollTrigger.create({
+  trigger: ".projet-section",
+  start: "top top",
+  pin: true,
+  horizontal: true,
+}); */

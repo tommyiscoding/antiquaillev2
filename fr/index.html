@@ -44,7 +44,7 @@
             data-aos-once="true"
         />
         <img id="logo-nav-contract"
-        src="../assets/images/logos_ldla/LDLA_couleur_contracté.png"
+        src="../assets/images/logos_ldla/LDLA_couleur_condensé_fond.png"
         alt="Logo Antiquaille" />
       </a>
         <a href="#equipe" class="menu-link nav-space" data-aos="fade-down"
@@ -62,6 +62,10 @@
           <a href=""  class="lang-link" >EN</a>
         </div> 
       </nav>
+
+      <div class="arrow-container">
+        <a href="#home" class="arrow-scroll" id=""><i class="arrow" ></i></a>
+      </div>
       <!-- <nav class="navbar">
         <ul class="nav-links">
           <li><a href="">Le projet</a></li>
@@ -111,7 +115,7 @@
               >Professionnel
             </a> -->
           </article>
-          <video class="video-bg" autoplay muted loop>
+          <video id="video" class="video-bg" autoplay muted loop preload="auto">
             <source
               src="../assets/video/Montage_lantiquaille_4.mp4"
               type="video/mp4"
@@ -120,17 +124,538 @@
         </div>
       </section>
 
-      <section class="main-section panel dark" id="projet"></section>
+      <section class="main-section panel projet-section" id="projet">
 
-      <section class="main-section panel white" id="produit"></section>
+        <div class="container-projet">
 
-      <section class="main-section panel dark" id="equipe"></section>
+          <div class="projet-slide">
 
-      <section class="main-section panel white" id="timing"></section>
+            <div class="projet-image">
+              <picture class="image">
+                <source srcset="../assets/images/creme_sm.webp" type="image/webp" class="image">
+                <source srcset="../assets/images/creme_sm.jpg" type="image/jpeg" class="image"> 
+                <img src="../assets/images/creme_sm.jpg" class="image" alt="Crème">
+              </picture>
+            </div>
+
+            <div class="projet-content">
+              <div class="projet-article">
+                <div class="titre">
+                  <h1 class="projet-title">Le projet</h1>
+                </div>
+
+                <div class="article">
+                  <article class="projet-article-paragraphe spacing">
+                    <p class="">
+                      Le projet vise à
+                      <b
+                        >créer l’une des meilleures crèmes de soin anti-âge
+                        global Bio et Vegan du marché</b
+                      >. Prévue pour un lancement au début de l’année 2022,
+                      cette <b>crème nouvelle génération</b> sera vendue
+                      exclusivement en <b>E-Commerce</b>.
+                    </p>
+                      <p class="">
+                      <b>Conçue et fabriquée à Lyon</b> dans des laboratoires
+                      de renom, elle symbolisera le mariage parfait entre la
+                      recherche avancée en <b>dermatologie</b>, le
+                      <b>confort d’utilisation</b> des plus grands soins
+                      dermo-cosmétiques, le meilleur des
+                      <b>ingrédients</b> naturels et la volonté de
+                      <b>respecter la planète dans son ensemble</b>.
+                    </p>
+                  </article>
+                </div>
+              </div>
+              
+              <div class="pagination">
+                <ul class="projet-pagination">
+                  <li class="projet-page-btn active" id="projet-page1">
+                    1
+                  </li>
+                  <li class="projet-page-btn" id="projet-page2">2</li>
+                </ul>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="origine-slide">
+
+            <div class="origine-image">
+              <picture class="image">
+                <source srcset="../assets/images/antiquaille_white.webp" type="image/webp">
+                <source srcset="../assets/images/antiquaille_white.jpg" type="image/jpeg"> 
+                <img src="../assets/images/antiquaille_white.jpg" class="image" alt="Antiquaille">
+              </picture>
+            </div>
+
+            <div class="projet-content">
+              <div class="projet-article">
+                <div class="titre">
+                  <h1 class="projet-title">Le projet</h1>
+                </div>
+
+                <div class="article">
+                  <article class="origine-article spacing">
+                    <p class="">
+                      La marque déposée « Les Laboratoires de L’Antiquaille »
+                      et le nom de domaine « lantiquaille.com » sont un
+                      <b
+                        >hommage à l’ancien hôpital de L’antiquaille à Lyon</b
+                      >
+                      qui, durant des décennies, a symbolisé l’excellence de
+                      la recherche lyonnaise en matière de
+                      <b>dermatologie</b>.
+                    </p>
+                      <p class="">
+                        Aujourd’hui encore,
+                      <b>Lyon est une place de référence</b> dans ce domaine
+                      avec des laboratoires et des organismes scientifiques de
+                      renommée internationale. L’ambition du projet est de
+                      mobiliser et de
+                      <b>s’appuyer sur ce savoir-faire unique</b> pour créer
+                      un
+                      <b
+                        >produit d’excellence alliant le meilleur de la
+                        science et le meilleur de la nature, le tout avec un
+                        soucis permanent de respecter l’environnement</b
+                      >.
+                    </p>
+                  </article>
+                </div>
+              </div>
+              
+              
+              <div class="pagination">
+                <ul class="projet-pagination">
+                  <li class="projet-page-btn" id="origine-page1">1</li>
+                  <li class="projet-page-btn active" id="origine-page2">
+                    2
+                  </li>
+                </ul>
+              </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <section class="produit-section panel" id="produit">
+        <div class="a-propos">
+          <div class="a-propos-both">
+            <h1 class="produit-title">à propos de notre futur produit</h1>
+            <p class="produit-apropos-text">
+              Il s'agira de l'une des
+              <b>meilleures crèmes anti-âge global Bio et Vegan</b> du marché.
+            </p>
+          </div>
+        </div>
+
+        <div class="produit-1">
+          <div class="col produit-square right">
+            <div class="number">1</div>
+            <div class="produit-article">
+              <h2 class="produit-article-title" data-aos="fade-up" data-aos-offset="200"
+              data-aos-delay=""
+              data-aos-duration="1000">
+                Un produit d'exception<br />à l'efficacité prouvée
+              </h2>
+              <p class="produit-article-text" data-aos="fade-up" data-aos-offset="100"
+              data-aos-delay="250"
+              data-aos-duration="1000">
+                Il sera le fruit de l’excellence de la recherche lyonnaise en dermatologie et dermo-cosmétique. 
+                Ce futur soin unique combinera l’efficacité prouvée des soins dermatologiques et le confort d’utilisation des produits dermo-cosmétiques.
+              </p>
+            </div>
+          </div>
+          <div class="col produit-image-box left">
+            <div class="produit-image image1"></div>
+          </div>
+        </div>
+
+        <div class="produit-2">
+          <div class="col produit-square left">
+            <div class="number">2</div>
+            <div class="produit-article">
+              <h2 class="produit-article-title" data-aos="fade-up" data-aos-offset="200"
+              data-aos-delay=""
+              data-aos-duration="1000">
+                La mariage parfait<br />entre la recherche<br />avancée et la
+                nature
+              </h2>
+              <p class="produit-article-text" data-aos="fade-up" data-aos-offset="100"
+              data-aos-delay="250"
+              data-aos-duration="1000">
+              Il s’agira d’un soin labellisé Bio mais basé sur un socle technologique majeur, 
+              pas juste quelques ingrédients naturels mélangés entre eux. La recherche d’une 
+              performance réelle et visible sur les principaux facteurs de vieillissement de la peau sera au cœur du développement de ce produit.
+              </p>
+            </div>
+          </div>
+          <div class="col produit-image-box right">
+            <div class="produit-image image2"></div>
+          </div>
+        </div>
+
+        <div class="produit-3">
+          <div class="col produit-square right">
+            <div class="number">3</div>
+            <div class="produit-article">
+              <h2 class="produit-article-title" data-aos="fade-up" data-aos-offset="200"
+              data-aos-delay=""
+              data-aos-duration="1000">
+                Une crème d’exception<br />Bio et Vegan<br />qui respecte la
+                planète<br />dans son ensemble
+              </h2>
+              <p class="produit-article-text" data-aos="fade-up" data-aos-offset="100"
+              data-aos-delay="250"
+              data-aos-duration="1000">
+              Le développement de se produit bannira tout test sur des animaux ou tout ingrédient d’origine animale. Sa production visera un impact environnemental le plus neutre possible. Les packaging et suremballages utilisés seront constitués de matériaux très qualitatifs mais tous recyclables.
+              </p>
+            </div>
+          </div>
+          <div class="col produit-image-box left">
+            <div class="produit-image image3"></div>
+          </div>
+        </div>
+
+        <div class="produit-4">
+          <div class="col produit-square left">
+            <div class="number">4</div>
+            <div class="produit-article">
+              <h2 class="produit-article-title" data-aos="fade-up" data-aos-offset="200"
+              data-aos-delay=""
+              data-aos-duration="1000">
+                Un produit local aux<br />
+                origines lyonnaises<br />
+                revendiquées
+              </h2>
+              <p class="produit-article-text" data-aos="fade-up" data-aos-offset="100"
+              data-aos-delay="250"
+              data-aos-duration="1000">
+                Le produit sera développé et produit à Lyon dans des
+                laboratoires de renom. De la même façon, le projet compte
+                recourir au maximum à des principales actifs et des technologies
+                développés localement. Il sera le premier soin bio et Vegan
+                haute performance à revendiquer clairement ses origines
+                lyonnaises.
+              </p>
+            </div>
+          </div>
+          <div class="col produit-image-box right">
+            <div class="produit-image image4"></div>
+          </div>
+        </div>
+
+        <div class="produit-5">
+          <div class="col produit-square right">
+            <div class="number">5</div>
+            <div class="produit-article">
+              <h2 class="produit-article-title" data-aos="fade-up" data-aos-offset="200"
+              data-aos-delay=""
+              data-aos-duration="1000">
+                Vendu exclusivement <br />
+                en ligne
+              </h2>
+              <p class="produit-article-text" data-aos="fade-up" data-aos-offset="100"
+              data-aos-delay="250"
+              data-aos-duration="1000">
+                Ce produit d’exception sera commercialisé exclusivement en ligne à partir du début de l’année 2022 sous la marque « Les Laboratoires de <nobr>l’Antiquaille ».</nobr> <br /> Ce mode de distribution permettra de réduire le nombre d’intermédiaires et de pouvoir le proposer à son juste prix.
+              </p>
+            </div>
+          </div>
+          <div class="col produit-image-box left">
+            <div class="produit-image image5"></div>
+          </div>
+        </div>
+
+        <div class="separator"></div>
+
+      </section>
+
+      <section class="main-section panel equipe-section" id="equipe">
+
+        <div class="container-equipe">
+
+          <div class="equipe-slide">
+
+            <div class="equipe-image">
+              <picture class="image">
+                <source srcset="../assets/images/equipe.webp" type="image/webp" class="image">
+                <source srcset="../assets/images/equipe.jpeg" type="image/jpeg" class="image"> 
+                <img src="../assets/images/equipe.jpeg" class="image" alt="Equipe">
+              </picture>
+            </div>
+
+            <div class="equipe-content">
+              <div class="equipe-article">
+                <div class="titre">
+                  <h1 class="equipe-title">L'équipe</h1>
+                </div>
+
+                <div class="article">
+                  <article class="equipe-article-paragraphe spacing">
+                    <p class="">
+                      « Les Laboratoires de L’Antiquaille » est un
+                      <b>projet collaboratif</b>. Bien que porté par un
+                      spécialiste du développement et de la commercialisation
+                      de produits cosmétiques haut de gamme, il compte
+                      <b
+                        >s’appuyer non seulement sur la communauté
+                        scientifique</b
+                      >
+                      en lien avec la dermatologie et la dermo-cosmétique sur
+                      Lyon et sa région
+                      <b>mais également impliquer les futurs consommateurs</b>
+                      de soins dans la conception et le développement des
+                      futurs produits de la marque.
+                    </p>
+                      <p class="">
+                        C’est l’une des raisons pour lesquelles
+                      <b>ce site</b> a été conçu. Car, au-delà d’être un outil
+                      de communication sur le projet, il
+                      <b>a pour fonction</b> de vous permettre, que vous soyez
+                      un(e)
+                      <b
+                        >futur(e) consommateur(trice) ou un(e) scientifique ou
+                        industriel(le) spécialiste</b
+                      >
+                      de la dermatologie et de la dermo-cosmétique, de vous
+                      exprimer, de nous donner votre avis, de tester de futurs
+                      échantillons
+                      <b
+                        >produits et ainsi de participer directement au
+                        développement du projet</b
+                      >.
+                    </p>
+                  </article>
+                </div>
+              </div>
+              
+              <div class="pagination">
+                <ul class="equipe-pagination">
+                  <li class="equipe-page-btn active" id="equipe-page1">
+                    1
+                  </li>
+                  <li class="equipe-page-btn" id="equipe-page2">2</li>
+                </ul>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="florent-slide">
+
+            <div class="florent-image">
+              <picture class="image">
+                <source srcset="../assets/images/equipe_papier.webp" type="image/webp">
+                <source srcset="../assets/images/equipe_papier.jpeg" type="image/jpeg"> 
+                <img src="../assets/images/equipe_papier.jpeg" class="image" alt="Antiquaille">
+              </picture>
+            </div>
+
+            <div class="equipe-content">
+              <div class="equipe-article">
+                <div class="titre">
+                  <h1 class="equipe-title">L'équipe</h1>
+                </div>
+
+                <div class="article">
+                  <article class="florent-article spacing">
+                    <p class="">
+                      Florent Gerphagnon,
+                      <b
+                        >le porteur de ce projet, possède plus de 15 années
+                        d’expérience dans l’industrie cosmétique</b
+                      >
+                      pour avoir travaillé, en France comme à l’étranger, dans
+                      des groupes de référence de ce secteur.</p>
+                      <p class=""> Membre de
+                      l’association <b>Cosmet’in Lyon</b>, il connait bien les
+                      intervenants du secteur de la dermatologie et de la
+                      dermo-cosmétique en France et notamment sur la région
+                      lyonnaise. En plus d’<b
+                        >une première expérience entrepreneuriale</b
+                      >, il a également travaillé dans le domaine de l’<b
+                        >E-Commerce</b
+                      >
+                      et maîtrise les dernières techniques de la du
+                      <b>marketing et de la communication digitale</b>.
+                    </p>
+                  </article>
+                </div>
+              </div>
+              
+              
+              <div class="pagination">
+                <ul class="equipe-pagination">
+                  <li class="equipe-page-btn" id="florent-page1">1</li>
+                  <li class="equipe-page-btn active" id="florent-page2">
+                    2
+                  </li>
+                </ul>
+              </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section class="main-section panel" id="timing">
+
+        <div class="timing-bg">
+          <article class="timing-article" data-aos="fade-up" data-aos-offset="200"
+          data-aos-delay=""
+          data-aos-duration="1000">
+            <h1 class="timing-title">Le timing</h1>
+            <p class="timing-text">
+              Le projet en est à son démarrage. Il est en phase d’ante-création.
+              <b
+                >En juillet 2020, le projet « Les Laboratoires de L’Antiquaille
+                » a été sélectionné pour intégrer le Programme Lyon Start-Up</b
+              >. Il s’agit d’un programme d’accompagnement de 4 mois proposé par
+              La Fondation de L’Université de Lyon et rassemblant les acteurs majeurs de l’entrepreneuriat sur Lyon et sa région.
+            </p>
+            <p class="timing-text">
+              L’objectif est de démarrer les 12 mois de travail de développement
+              et tests de la future crème anti-âge globale début 2021 pour un
+              <b>lancement début 2022</b>.
+            </p>
+          </article>
+        </div>
+
+      </section>
+
+      <section class="avis-section">
+        <div class="avis-bg">
+          <article class="avis-article">
+            <h1 class="avis-title">Parce que votre avis compte</h1>
+            <p class="avis-text">
+              Ne partez pas avant d'avoir répondu à notre questionnaire (5 min)
+              afin de nous aider à développer ce futur produit d'exception
+            </p>
+            <a href="" class="btn-avis">Répondez à notre questionnaire</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="partenaires-section">
+        <div class="container partenaires-container">
+          <h2 class="partenaires-title">Ils nous accompagnent</h2>
+          <div class="split">
+            <a href="" class="featured__item" >
+              <img
+                src="../assets/images/partenaires/fondation université Lyon.png"
+                alt="Fondation Université Lyon"
+                class="featured__img" 
+                data-aos="fade-up"
+              data-aos-delay=""
+              data-aos-duration="1000"
+              />
+            </a>
+            
+            <a href="" class="featured__item">
+              <img
+                src="../assets/images/partenaires/lyon_startup.png"
+                alt="Lyon Start-Up"
+                class="featured__img"
+                data-aos="fade-up"
+              data-aos-delay="100"
+              data-aos-duration="1000"
+              />
+            </a>
+            <a href="" class="featured__item">
+              <img
+                src="../assets/images/partenaires/cosmet_in_lyon.jpg"
+                alt="Cosmet'in Lyon"
+                class="featured__img"
+                data-aos="fade-up"
+              data-aos-delay="200"
+              data-aos-duration="1000"
+              />
+            </a>
+          </div>
+        </div>
+      </section>
 
     </main>
 
-    <footer></footer>
+    <footer>
+
+      <div class="footer-container">
+
+        <div class="col footer-logo">
+          <a href="" class="footer-logo-link">
+            <img
+              src="../assets/images/logos_ldla/LDLA_couleur.png"
+              alt="Logo Antiquaille"
+              class="footer-logo-img"
+            />
+          </a>
+        </div>
+
+        <div class="col footer-contact">
+          <div class="mailchimp-block">
+            <div class="mailchimp-btn">
+              <a href="/" class="btn btn-contact">Pour rester informé(e)</a>
+            </div>
+            <div class="mentions-links-block">
+              <a href="./mentions-legales.html" class="mentions-link">Mentions légales, cookies et politique de protection des données</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col footer-social">
+          <div class="social-block">
+          <h3 class="contact-us">Nous contacter</h3>
+          <a href="mailto:contact@lantiquaille.com" class="footer-social-email"
+            >contact@lantiquaille.com</a
+          >
+          <div class="social">
+            <a href="" class="social__link">
+              <img
+                src="../assets/images/social_medias/linkedin.svg"
+                alt="linkedin"
+                class="social__image"
+              />
+            </a>
+            <a href="" class="social__link">
+              <img
+                src="../assets/images/social_medias/instagram.svg"
+                alt="instagram"
+                class="social__image"
+              />
+            </a>
+            <a href="" class="social__link">
+              <img
+                src="../assets/images/social_medias/facebook.svg"
+                alt="facebook"
+                class="social__image"
+              />
+            </a>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <div class="copyright-text">
+          © 2020 Les laboratoires de l’Antiquaille | Site web réalisé par Emilie Roquet et Thomas Freger
+          <!-- <div class="copyright-links">
+            <a href="#" class="copyright-link">Mentions légales</a>
+            
+            <a href="#" class="copyright-link">Politique de protection des données</a>
+            
+            <a href="#" class="copyright-link">Cookies</a>
+          </div> -->
+        </div>
+      </div>
+
+    </footer>
     
     <script src="../index.js"></script>
 
