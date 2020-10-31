@@ -10470,7 +10470,7 @@ _gsap.gsap.registerPlugin(_ScrollToPlugin.ScrollToPlugin, _ScrollTrigger.ScrollT
 var header = document.querySelector(".header");
 
 window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
+  window.scrollTo(0);
 };
 /***********
 Navigation

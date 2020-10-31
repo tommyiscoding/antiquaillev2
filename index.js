@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 const header = document.querySelector(".header");
 
 window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
+  window.scrollTo(0);
 };
 
 /***********
