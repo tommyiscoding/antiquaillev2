@@ -10468,9 +10468,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _gsap.gsap.registerPlugin(_ScrollToPlugin.ScrollToPlugin, _ScrollTrigger.ScrollTrigger);
 
 var header = document.querySelector(".header");
+
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
 /***********
 Navigation
 ************/
+
 
 var scrolling = 0;
 var target = "";
