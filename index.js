@@ -218,48 +218,96 @@ ScrollTrigger.create({
   horizontal: true,
   onEnter: () => {},
 }); */
+let intervalProjet;
+let intervalEquipe;
+
+// Redémarrage du slide projet quand on arrive sur la section
+ScrollTrigger.create({
+  trigger: ".projet-section",
+  onEnterBack: () => {
+    console.log("démarrage slide projet");
+    clearInterval(intervalProjet);
+    intervalProjet = setInterval(slideProjet, 15000);
+  },
+  onEnter: () => {
+    console.log("démarrage slide projet");
+    clearInterval(intervalProjet);
+    intervalProjet = setInterval(slideProjet, 15000);
+  },
+});
+
+// Redémarrage du slide équipe quand on arrive sur la section
+ScrollTrigger.create({
+  trigger: ".equipe-section",
+  onEnterBack: () => {
+    console.log("démarrage slide equipe");
+    clearInterval(intervalEquipe);
+    intervalEquipe = setInterval(slideEquipe, 15000);
+  },
+  onEnter: () => {
+    console.log("démarrage slide equipe");
+    clearInterval(intervalEquipe);
+    intervalEquipe = setInterval(slideEquipe, 15000);
+  },
+});
 
 /* Slider projet */
+
+let projetNumPage = 1;
+let equipeNumPage = 1;
 
 document
   .getElementById("projet-page2")
   .addEventListener("click", function (event) {
+    projetNumPage = 2;
     gsap.to(".container-projet", { marginLeft: -100 + "%", duration: 0.8 });
+    clearInterval(intervalProjet);
   });
-
-/*
-document
-  .getElementById("projet-page2")
-  .addEventListener("mouseenter", function (event) {
-    console.log("hover page");
-    gsap.to(".container-projet", {
-      marginLeft: -10 + "%",
-      duration: 0.3,
-      onComplete: gsap.to(".container-projet", {
-        marginLeft: 0,
-        duration: 0.3,
-      }),
-    });
-  });*/
 
 document
   .getElementById("origine-page1")
   .addEventListener("click", function (event) {
+    projetNumPage = 1;
     gsap.to(".container-projet", { marginLeft: 0, duration: 0.8 });
+    clearInterval(intervalProjet);
   });
 
 /* Slider equipe */
 document
   .getElementById("equipe-page2")
   .addEventListener("click", function (event) {
+    equipeNumPage = 2;
     gsap.to(".container-equipe", { marginLeft: -100 + "%", duration: 0.8 });
+    clearInterval(intervalEquipe);
   });
 
 document
   .getElementById("florent-page1")
   .addEventListener("click", function (event) {
+    equipeNumPage = 1;
     gsap.to(".container-equipe", { marginLeft: 0, duration: 0.8 });
+    clearInterval(intervalEquipe);
   });
+
+function slideProjet() {
+  if (projetNumPage === 1) {
+    projetNumPage = 2;
+    gsap.to(".container-projet", { marginLeft: -100 + "%", duration: 0.8 });
+  } else {
+    projetNumPage = 1;
+    gsap.to(".container-projet", { marginLeft: 0, duration: 0.8 });
+  }
+}
+
+function slideEquipe() {
+  if (equipeNumPage === 1) {
+    equipeNumPage = 2;
+    gsap.to(".container-equipe", { marginLeft: -100 + "%", duration: 0.8 });
+  } else {
+    equipeNumPage = 1;
+    gsap.to(".container-equipe", { marginLeft: 0, duration: 0.8 });
+  }
+}
 
 /*
 let ctrl = new ScrollMagic.Controller();

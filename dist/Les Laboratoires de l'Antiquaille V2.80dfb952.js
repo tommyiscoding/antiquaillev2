@@ -10699,50 +10699,121 @@ _ScrollTrigger.ScrollTrigger.create({
   onEnter: () => {},
 }); */
 
+
+var intervalProjet;
+var intervalEquipe; // Redémarrage du slide projet quand on arrive sur la section
+
+_ScrollTrigger.ScrollTrigger.create({
+  trigger: ".projet-section",
+  onEnterBack: function onEnterBack() {
+    console.log("démarrage slide projet");
+    clearInterval(intervalProjet);
+    intervalProjet = setInterval(slideProjet, 15000);
+  },
+  onEnter: function onEnter() {
+    console.log("démarrage slide projet");
+    clearInterval(intervalProjet);
+    intervalProjet = setInterval(slideProjet, 15000);
+  }
+}); // Redémarrage du slide équipe quand on arrive sur la section
+
+
+_ScrollTrigger.ScrollTrigger.create({
+  trigger: ".equipe-section",
+  onEnterBack: function onEnterBack() {
+    console.log("démarrage slide equipe");
+    clearInterval(intervalEquipe);
+    intervalEquipe = setInterval(slideEquipe, 15000);
+  },
+  onEnter: function onEnter() {
+    console.log("démarrage slide equipe");
+    clearInterval(intervalEquipe);
+    intervalEquipe = setInterval(slideEquipe, 15000);
+  }
+});
 /* Slider projet */
 
 
+var projetNumPage = 1;
+var equipeNumPage = 1;
 document.getElementById("projet-page2").addEventListener("click", function (event) {
+  projetNumPage = 2;
+
   _gsap.gsap.to(".container-projet", {
     marginLeft: -100 + "%",
     duration: 0.8
   });
-});
-/*
-document
-  .getElementById("projet-page2")
-  .addEventListener("mouseenter", function (event) {
-    console.log("hover page");
-    gsap.to(".container-projet", {
-      marginLeft: -10 + "%",
-      duration: 0.3,
-      onComplete: gsap.to(".container-projet", {
-        marginLeft: 0,
-        duration: 0.3,
-      }),
-    });
-  });*/
 
+  clearInterval(intervalProjet);
+});
 document.getElementById("origine-page1").addEventListener("click", function (event) {
+  projetNumPage = 1;
+
   _gsap.gsap.to(".container-projet", {
     marginLeft: 0,
     duration: 0.8
   });
+
+  clearInterval(intervalProjet);
 });
 /* Slider equipe */
 
 document.getElementById("equipe-page2").addEventListener("click", function (event) {
+  equipeNumPage = 2;
+
   _gsap.gsap.to(".container-equipe", {
     marginLeft: -100 + "%",
     duration: 0.8
   });
+
+  clearInterval(intervalEquipe);
 });
 document.getElementById("florent-page1").addEventListener("click", function (event) {
+  equipeNumPage = 1;
+
   _gsap.gsap.to(".container-equipe", {
     marginLeft: 0,
     duration: 0.8
   });
+
+  clearInterval(intervalEquipe);
 });
+
+function slideProjet() {
+  if (projetNumPage === 1) {
+    projetNumPage = 2;
+
+    _gsap.gsap.to(".container-projet", {
+      marginLeft: -100 + "%",
+      duration: 0.8
+    });
+  } else {
+    projetNumPage = 1;
+
+    _gsap.gsap.to(".container-projet", {
+      marginLeft: 0,
+      duration: 0.8
+    });
+  }
+}
+
+function slideEquipe() {
+  if (equipeNumPage === 1) {
+    equipeNumPage = 2;
+
+    _gsap.gsap.to(".container-equipe", {
+      marginLeft: -100 + "%",
+      duration: 0.8
+    });
+  } else {
+    equipeNumPage = 1;
+
+    _gsap.gsap.to(".container-equipe", {
+      marginLeft: 0,
+      duration: 0.8
+    });
+  }
+}
 /*
 let ctrl = new ScrollMagic.Controller();
 
@@ -10794,7 +10865,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2819" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "9225" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

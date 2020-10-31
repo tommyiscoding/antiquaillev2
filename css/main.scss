@@ -436,12 +436,14 @@ h1 {
 .projet-slide,
 .origine-slide {
   height: 100%;
-  width: 100vw;
+  //width: 100vw;
+  width: 100%;
 
   .projet-image,
   .origine-image {
     height: 100vh;
-    width: 49.6vw;
+    //width: 49.6vw;
+    width: 50%;
     object-fit: cover;
   }
 
@@ -456,12 +458,12 @@ h1 {
 .equipe-slide,
 .florent-slide {
   height: 100%;
-  width: 100vw;
+  width: 100%;
 
   .equipe-image,
   .florent-image {
     height: 100vh;
-    width: 49.6vw;
+    width: 50%;
     object-fit: cover;
   }
 
@@ -563,11 +565,12 @@ h1 {
 
 .pagination {
   height: 25%;
-  padding: 0 10%;
+  //padding: 0 10%;
   display: flex;
   align-items: flex-start;
   position: relative;
   width: 100%;
+  padding: 0 calc(max(10%, 100px));
 }
 
 .projet-pagination,
@@ -1099,7 +1102,7 @@ h1 {
 .footer-social-email {
   margin-top: 50px;
   color: #111;
-  text-decoration: none;
+  //text-decoration: none;
 }
 
 .footer-social-email:hover {
@@ -1178,9 +1181,9 @@ h1 {
     color: #fff;
   }
 
-  a + a {
+  /* a + a {
     padding-left: 10px;
-  }
+  } */
 
   a:hover {
     color: #d6d6d6;
@@ -1190,7 +1193,8 @@ h1 {
 .mentions-links-block {
   a {
     color: #222;
-    text-decoration: none;
+    font-size: 0.8rem;
+    //text-decoration: none;
   }
 
   a:hover {
@@ -1248,7 +1252,8 @@ h1 {
 
   a {
     color: #888888;
-    text-decoration: none;
+
+    //text-decoration: none;
   }
 
   b {
@@ -1257,7 +1262,7 @@ h1 {
 
   a:hover {
     color: #636363;
-    text-decoration: none;
+    // text-decoration: none;
   }
 
   li {
