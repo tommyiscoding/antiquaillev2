@@ -142,6 +142,21 @@ p {
   position: fixed;
 }
 
+@media only screen and (min-width: 769px) {
+  .header {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-link {
+    font-size: 0.75rem;
+  }
+}
+
 button {
   border: 0px;
   cursor: pointer;
@@ -302,6 +317,99 @@ button {
   top: -10px;
 }
 
+@media screen and (max-width: 768px) {
+  * {
+    overflow-x: hidden;
+  }
+  .line {
+    width: 30px;
+    height: 3px;
+    background: #80705a;
+    margin: 5px;
+  }
+  .mobile-navbar {
+    position: relative;
+    height: 100%;
+    max-height: 10vh;
+    border: 1px solid red;
+    width: 100%;
+    max-width: 100vw;
+  }
+  .header {
+    height: 10vh;
+    max-height: 10vh;
+    position: fixed;
+  }
+  .mobile-nav-logo {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    width: 60px;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    z-index: 3;
+  }
+  .hamburger {
+    position: absolute;
+    cursor: pointer;
+    right: 5%;
+    top: 50%;
+    -webkit-transform: translate(-5%, -50%);
+            transform: translate(-5%, -50%);
+    z-index: 2;
+  }
+  .navbar {
+    display: none;
+  }
+  .nav-links {
+    position: fixed;
+    background: #fff;
+    height: 100vh;
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-left: auto;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    list-style: none;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    display: none;
+    -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+    pointer-events: all;
+    padding: 50% 0;
+  }
+  .nav-links.open {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .nav-links li {
+    overflow: hidden;
+  }
+  .nav-links li a {
+    color: #80705a;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-family: beloved-sans, sans-serif;
+  }
+  .arrow-container,
+  .arrow {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .mobile-navbar,
+  .nav-links {
+    display: none;
+  }
+}
+
 .video-section {
   position: relative;
   overflow: hidden;
@@ -423,20 +531,36 @@ h1 {
 }
 
 /* PROJET & EQUIPE*/
+@media (max-width: 768px) {
+  .container-projet {
+    display: none;
+  }
+  .container-equipe {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .container-projet {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .container-equipe {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
 .container-projet {
   height: 100vh;
   width: 200%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .container-equipe {
   height: 100vh;
   width: 200%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .projet-slide,
@@ -524,16 +648,25 @@ h1 {
       -ms-flex-direction: column;
           flex-direction: column;
   overflow: hidden;
-  padding: 0 calc(max(10%, 100px));
+  font-family: "Gotham Book", sans-serif;
   text-align: justify;
+}
+
+.projet-content .projet-article article {
+  width: 80%;
+  min-width: 400px;
+  padding-left: 100px;
 }
 
 .projet-content .projet-article p {
   line-height: 2em;
+  font-size: clamp(0.8rem, 1vw, 1rem);
 }
 
 .projet-content .projet-title {
   color: #80705a;
+  padding-left: 100px;
+  font-family: "Gotham Book", sans-serif;
 }
 
 .equipe-content {
@@ -555,16 +688,24 @@ h1 {
       -ms-flex-direction: column;
           flex-direction: column;
   overflow: hidden;
-  padding: 0 calc(max(10%, 100px));
   text-align: justify;
+}
+
+.equipe-content .equipe-article article {
+  width: 80%;
+  min-width: 400px;
+  padding-left: 100px;
 }
 
 .equipe-content .equipe-article p {
   line-height: 2em;
+  font-size: clamp(0.8rem, 1vw, 1rem);
 }
 
 .equipe-content .equipe-title {
   color: #80705a;
+  padding-left: 100px;
+  font-family: "Gotham Book", sans-serif;
 }
 
 .titre {
@@ -731,7 +872,7 @@ h1 {
 }
 
 .produit-article-title {
-  color: #80705a;
+  color: #868481;
   text-align: left;
   font-family: "Gotham Bold";
   padding-bottom: 25px;
@@ -892,6 +1033,10 @@ h1 {
       -ms-flex-pack: center;
           justify-content: center;
   background-color: #80705a;
+}
+
+.avis-title {
+  font-family: "Gotham Book", sans-serif;
 }
 
 .avis-article {
@@ -1095,7 +1240,8 @@ h1 {
     transition: transform 250ms ease-in-out, opacity 250ms linear;*/
   margin-bottom: 40px;
   padding: 0.5em 1em;
-  font-size: clamp(0.8rem, 2vw, 1.2rem);
+  font-size: clamp(0.7rem, 1vw, 1.2rem);
+  white-space: nowrap;
 }
 
 .footer-conditions {
@@ -1392,5 +1538,222 @@ h1 {
   margin-top: -20px;
   margin-bottom: 20px;
   font-size: 0.8rem;
+}
+
+/* Modal form */
+.bg-modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: none;
+}
+
+.modal-content {
+  width: 600px;
+  min-height: 600px;
+  height: 80%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #fff;
+  border-radius: 4px;
+  text-align: center;
+  padding: 40px;
+  position: relative;
+}
+
+.modal-logo {
+  margin: 0 auto;
+  width: 30%;
+  min-width: 64px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 20px;
+}
+
+.modal-title {
+  color: #80705a;
+  font-size: clamp(1.1rem, 1vw, 1.2rem);
+  font-weight: 400;
+  font-family: "Gotham Book", sans-serif;
+  white-space: nowrap;
+}
+
+.modal-description {
+  text-align: justify;
+  font-size: 12px;
+  padding: 10px;
+  margin: 10px auto;
+  font-weight: 400;
+  color: #222;
+  width: 90%;
+}
+
+.indicates-req {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Gotham Book", sans-serif;
+  color: #666;
+  padding-bottom: 10px;
+}
+
+/* #mc_embed_signup div.mce_inline_error {
+  margin: 0 0 1em 0;
+  padding: 5px 10px;
+  //background-color: #6B0505;
+  font-weight: bold;
+  z-index: 1;
+  color: #6b0505;
+} */
+/* .modal-logo-img {
+} */
+input {
+  width: 90%;
+  display: block;
+  margin: 15px auto;
+  height: 40px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #7b7b7b;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 14px;
+  font-size: 42px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  cursor: pointer;
+  color: #222;
+}
+
+.close:hover {
+  color: #777;
+}
+
+.btn-mailchimp {
+  margin-top: 40px;
+  margin-bottom: 100px;
+  width: 40%;
+  display: inline-block;
+  text-decoration: none;
+  color: #80705a;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  padding: 0.5em 1.25em;
+  border: 2px solid #80705a;
+  border-radius: 2em;
+  -webkit-transition: opacity 250ms linear, -webkit-transform 250ms ease-in-out;
+  transition: opacity 250ms linear, -webkit-transform 250ms ease-in-out;
+  transition: transform 250ms ease-in-out, opacity 250ms linear;
+  transition: transform 250ms ease-in-out, opacity 250ms linear, -webkit-transform 250ms ease-in-out;
+  cursor: pointer;
+}
+
+.btn-mailchimp:hover {
+  background-color: #80705a;
+  color: #fff;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
+
+.unselectable {
+  -moz-user-select: none;
+  /* Firefox */
+  -webkit-user-select: none;
+  /* Chrome, Safari, Opéra depuis la version 15 */
+  -ms-user-select: none;
+  /* Internet explorer depuis la version 10 et Edge */
+  user-select: none;
+  /* Propriété standard */
+}
+
+/* checkbox */
+.checkbox-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  width: 90%;
+  margin: 20px auto 0 auto;
+}
+
+.checkbox-container label {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #222;
+  padding: 0.5em;
+  margin-left: 25px;
+  font-size: 12px;
+  text-align: left;
+}
+
+.checkbox-container input[type="checkbox"] {
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox-container label::before {
+  content: "";
+  background-color: #fff;
+  border: 1px solid #666;
+  display: inline-block;
+  position: absolute;
+  left: 0px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.label {
+  margin-left: 20px;
+}
+
+.label:after {
+  content: "\2713";
+  font-size: 1.1rem;
+  display: inline-block;
+  position: absolute;
+  top: 6px;
+  left: 4px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: -webkit-transform 0.2s linear;
+  transition: -webkit-transform 0.2s linear;
+  transition: transform 0.2s linear;
+  transition: transform 0.2s linear, -webkit-transform 0.2s linear;
+}
+
+.checkbox:checked + .label:after {
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 /*# sourceMappingURL=main.css.map */

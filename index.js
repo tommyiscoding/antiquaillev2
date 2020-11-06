@@ -1,17 +1,38 @@
-import { gsap, Power3, TweenMax, TimelineMax, Power0 } from "gsap";
-import { Timeline } from "gsap/gsap-core";
+import { gsap, Power3, TweenMax } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollMagic from "scrollmagic";
+
+/* const gsap = require("gsap");
+require("gsap/ScrollToPlugin");
+ */
+/* const express = require("express");
+const request = require("request");
+const bodyParser = require("body-parser");
+const path = require("path");
+
+const app = express(); */
+
+/* const port = process.env.PORT || 5000;
+app.listen(port, console.log("Server started on " + port)); */
+
+/* let sidebar = document.querySelector(".sidebar");
+
+let top = localStorage.getItem("sidebar-scroll");
+if (top !== null) {
+  sidebar.scrollTop = parseInt(top, 10);
+} */
+
+window.addEventListener("beforeunload", () => {
+  console.log("iiiiii");
+  /* localStorage.setItem("sidebar-scroll", sidebar.scrollTop); */
+  window.scrollTo(0, 0);
+});
 
 // Enregistrement des plugins GSAP
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 const header = document.querySelector(".header");
-
-window.onbeforeunload = function () {
-  window.scrollTo(0);
-};
 
 /***********
 Navigation
@@ -313,26 +334,47 @@ function slideEquipe() {
   }
 }
 
-/*
-let ctrl = new ScrollMagic.Controller();
+document
+  .getElementById("open-modal-button")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    document.querySelector("body").style.overflowY = "hidden";
+    document.querySelector(".bg-modal").style.display = "flex";
 
-let horizontalSlide = new Timeline().to(".container-projet", 1, {
-  left: 2 * -80 + "%",
-  ease: Power0.easeNone,
+    document.addEventListener("click", function (e) {
+      console.log("click");
+      console.log(e.target.id);
+      // If user clicks inside the element, do nothing
+      if (
+        e.target.closest(".modal-content") ||
+        e.target.id == "open-modal-button"
+      ) {
+        console.log("detewt");
+        return;
+      }
+
+      // If user clicks outside the element, hide it!
+      document.querySelector(".bg-modal").style.display = "none";
+      document.querySelector("body").style.overflowY = "visible";
+
+      document.querySelector("#checkbox").checked = false;
+      document
+        .querySelector("#mc-embedded-subscribe")
+        .classList.add("disabled");
+    });
+  });
+
+document.querySelector(".close").addEventListener("click", function () {
+  document.querySelector(".bg-modal").style.display = "none";
+  document.querySelector("body").style.overflowY = "visible";
+
+  document.querySelector("#checkbox").checked = false;
+  document.querySelector("#mc-embedded-subscribe").classList.add("disabled");
 });
 
-new ScrollMagic.Scene({
-  triggerElement: ".projet-section",
-  triggerHook: "onLeave",
-  duration: "600%",
-})
-  .setPin(".projet-section")
-  .setTween(horizontalSlide)
-  .addTo(ctrl);*/
-
-/* ScrollTrigger.create({
-  trigger: ".projet-section",
-  start: "top top",
-  pin: true,
-  horizontal: true,
-}); */
+// Hamburger menu
+const hamburger = document.querySelector(".hamburger");
+const navLinks = document.querySelector(".nav-links");
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});

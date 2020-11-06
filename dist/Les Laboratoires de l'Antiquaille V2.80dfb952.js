@@ -10454,8 +10454,6 @@ var define;
 
 var _gsap = require("gsap");
 
-var _gsapCore = require("gsap/gsap-core");
-
 var _ScrollToPlugin = require("gsap/ScrollToPlugin");
 
 var _ScrollTrigger = require("gsap/ScrollTrigger");
@@ -10464,18 +10462,39 @@ var _scrollmagic = _interopRequireDefault(require("scrollmagic"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Enregistrement des plugins GSAP
+/* const gsap = require("gsap");
+require("gsap/ScrollToPlugin");
+ */
+
+/* const express = require("express");
+const request = require("request");
+const bodyParser = require("body-parser");
+const path = require("path");
+
+const app = express(); */
+
+/* const port = process.env.PORT || 5000;
+app.listen(port, console.log("Server started on " + port)); */
+
+/* let sidebar = document.querySelector(".sidebar");
+
+let top = localStorage.getItem("sidebar-scroll");
+if (top !== null) {
+  sidebar.scrollTop = parseInt(top, 10);
+} */
+window.addEventListener("beforeunload", function () {
+  console.log("iiiiii");
+  /* localStorage.setItem("sidebar-scroll", sidebar.scrollTop); */
+
+  window.scrollTo(0, 0);
+}); // Enregistrement des plugins GSAP
+
 _gsap.gsap.registerPlugin(_ScrollToPlugin.ScrollToPlugin, _ScrollTrigger.ScrollTrigger);
 
 var header = document.querySelector(".header");
-
-window.onbeforeunload = function () {
-  window.scrollTo(0);
-};
 /***********
 Navigation
 ************/
-
 
 var scrolling = 0;
 var target = "";
@@ -10819,30 +10838,40 @@ function slideEquipe() {
     });
   }
 }
-/*
-let ctrl = new ScrollMagic.Controller();
 
-let horizontalSlide = new Timeline().to(".container-projet", 1, {
-  left: 2 * -80 + "%",
-  ease: Power0.easeNone,
+document.getElementById("open-modal-button").addEventListener("click", function (event) {
+  event.preventDefault();
+  document.querySelector("body").style.overflowY = "hidden";
+  document.querySelector(".bg-modal").style.display = "flex";
+  document.addEventListener("click", function (e) {
+    console.log("click");
+    console.log(e.target.id); // If user clicks inside the element, do nothing
+
+    if (e.target.closest(".modal-content") || e.target.id == "open-modal-button") {
+      console.log("detewt");
+      return;
+    } // If user clicks outside the element, hide it!
+
+
+    document.querySelector(".bg-modal").style.display = "none";
+    document.querySelector("body").style.overflowY = "visible";
+    document.querySelector("#checkbox").checked = false;
+    document.querySelector("#mc-embedded-subscribe").classList.add("disabled");
+  });
 });
+document.querySelector(".close").addEventListener("click", function () {
+  document.querySelector(".bg-modal").style.display = "none";
+  document.querySelector("body").style.overflowY = "visible";
+  document.querySelector("#checkbox").checked = false;
+  document.querySelector("#mc-embedded-subscribe").classList.add("disabled");
+}); // Hamburger menu
 
-new ScrollMagic.Scene({
-  triggerElement: ".projet-section",
-  triggerHook: "onLeave",
-  duration: "600%",
-})
-  .setPin(".projet-section")
-  .setTween(horizontalSlide)
-  .addTo(ctrl);*/
-
-/* ScrollTrigger.create({
-  trigger: ".projet-section",
-  start: "top top",
-  pin: true,
-  horizontal: true,
-}); */
-},{"gsap":"../node_modules/gsap/index.js","gsap/gsap-core":"../node_modules/gsap/gsap-core.js","gsap/ScrollToPlugin":"../node_modules/gsap/ScrollToPlugin.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js","scrollmagic":"../node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"}],"C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var hamburger = document.querySelector(".hamburger");
+var navLinks = document.querySelector(".nav-links");
+hamburger.addEventListener("click", function () {
+  navLinks.classList.toggle("open");
+});
+},{"gsap":"../node_modules/gsap/index.js","gsap/ScrollToPlugin":"../node_modules/gsap/ScrollToPlugin.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js","scrollmagic":"../node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"}],"C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -10870,7 +10899,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "9225" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "4788" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
