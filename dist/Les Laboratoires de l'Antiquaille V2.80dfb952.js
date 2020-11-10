@@ -10462,6 +10462,7 @@ var _scrollmagic = _interopRequireDefault(require("scrollmagic"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var cookiesConsent = false;
 /* const gsap = require("gsap");
 require("gsap/ScrollToPlugin");
  */
@@ -10482,6 +10483,7 @@ let top = localStorage.getItem("sidebar-scroll");
 if (top !== null) {
   sidebar.scrollTop = parseInt(top, 10);
 } */
+
 window.addEventListener("beforeunload", function () {
   console.log("iiiiii");
   /* localStorage.setItem("sidebar-scroll", sidebar.scrollTop); */
@@ -10563,11 +10565,13 @@ window.addEventListener("load", function () {
       duration: 0.3
     });
 
-    _gsap.gsap.to(".cookies-consent", {
-      height: 60,
-      duration: 0.3,
-      delay: 1.5
-    });
+    if (cookiesConsent == false) {
+      _gsap.gsap.to(".cookies-consent", {
+        height: 60,
+        duration: 0.3,
+        delay: 1.5
+      });
+    }
 
     var video = document.querySelector("video");
     video.currentTime = 0;
@@ -10637,11 +10641,16 @@ timeline.to(".menu-logo-img", {
   } else {
     ctrl.scrollTo(target);
   }
-}).to(".cookies-consent", {
-  height: 60,
-  duration: 0.3,
-  delay: 1.5
-});
+
+  if (cookiesConsent == false) {
+    _gsap.gsap.to(".cookies-consent", {
+      height: 60,
+      duration: 0.3,
+      delay: 1.5
+    });
+  }
+}); //.to(".cookies-consent", { height: 60, duration: 0.3, delay: 1.5 });
+
 timeline.then(initScrollTrig);
 
 function initScrollTrig() {
@@ -10889,7 +10898,8 @@ hamburgerClose.addEventListener("click", function () {
 });
 var consentOK = document.getElementById("consent-btn");
 consentOK.addEventListener("click", function (event) {
-  event.preventDefault(); // document.querySelector(".cookies-consent").style.display = "none";
+  event.preventDefault();
+  cookiesConsent = true; // document.querySelector(".cookies-consent").style.display = "none";
 
   _gsap.gsap.to(".cookies-consent", {
     height: 0,

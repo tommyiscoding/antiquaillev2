@@ -3,6 +3,8 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollMagic from "scrollmagic";
 
+let cookiesConsent = false;
+
 /* const gsap = require("gsap");
 require("gsap/ScrollToPlugin");
  */
@@ -89,11 +91,13 @@ window.addEventListener("load", function () {
     gsap.to("#logo-nav-contract", { marginTop: 25 });
     gsap.to(".header", { height: 75, duration: 0.3 });
 
-    gsap.to(".cookies-consent", {
-      height: 60,
-      duration: 0.3,
-      delay: 1.5,
-    });
+    if (cookiesConsent == false) {
+      gsap.to(".cookies-consent", {
+        height: 60,
+        duration: 0.3,
+        delay: 1.5,
+      });
+    }
 
     let video = document.querySelector("video");
     video.currentTime = 0;
@@ -162,8 +166,15 @@ timeline
     } else {
       ctrl.scrollTo(target);
     }
-  })
-  .to(".cookies-consent", { height: 60, duration: 0.3, delay: 1.5 });
+    if (cookiesConsent == false) {
+      gsap.to(".cookies-consent", {
+        height: 60,
+        duration: 0.3,
+        delay: 1.5,
+      });
+    }
+  });
+//.to(".cookies-consent", { height: 60, duration: 0.3, delay: 1.5 });
 
 timeline.then(initScrollTrig);
 
@@ -398,6 +409,7 @@ hamburgerClose.addEventListener("click", () => {
 const consentOK = document.getElementById("consent-btn");
 consentOK.addEventListener("click", function (event) {
   event.preventDefault();
+  cookiesConsent = true;
   // document.querySelector(".cookies-consent").style.display = "none";
   gsap.to(".cookies-consent", { height: 0, duration: 0.5 });
 });
