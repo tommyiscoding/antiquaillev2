@@ -184,12 +184,7 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../css/main.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"./..\\assets\\fonts\\Gotham-Bold.otf":[["Gotham-Bold.17dafc5d.otf","../assets/fonts/Gotham-Bold.otf"],"../assets/fonts/Gotham-Bold.otf"],"./..\\assets\\fonts\\Gotham-Book.otf":[["Gotham-Book.f7e76a72.otf","../assets/fonts/Gotham-Book.otf"],"../assets/fonts/Gotham-Book.otf"],"./..\\assets\\images\\chimie.jpg":[["chimie.8056422a.jpg","../assets/images/chimie.jpg"],"../assets/images/chimie.jpg"],"./..\\assets\\images\\creme_mains.jpeg":[["creme_mains.5efa11be.jpeg","../assets/images/creme_mains.jpeg"],"../assets/images/creme_mains.jpeg"],"./..\\assets\\images\\water_drops.jpeg":[["water_drops.b87edf16.jpeg","../assets/images/water_drops.jpeg"],"../assets/images/water_drops.jpeg"],"./..\\assets\\images\\rue_lyon.jpg":[["rue_lyon.53a264fb.jpg","../assets/images/rue_lyon.jpg"],"../assets/images/rue_lyon.jpg"],"./..\\assets\\images\\carte_paiement.jpeg":[["carte_paiement.0c01caaf.jpeg","../assets/images/carte_paiement.jpeg"],"../assets/images/carte_paiement.jpeg"],"./..\\assets\\images\\timing_office.jpeg":[["timing_office.a42eb5d1.jpeg","../assets/images/timing_office.jpeg"],"../assets/images/timing_office.jpeg"],"_css_loader":"C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./bundle-url":"C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -394,4 +389,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/main.70edf2ca.js.map
+//# sourceMappingURL=/inscription-newsletter.js.map

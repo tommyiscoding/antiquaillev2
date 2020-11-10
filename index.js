@@ -89,6 +89,12 @@ window.addEventListener("load", function () {
     gsap.to("#logo-nav-contract", { marginTop: 25 });
     gsap.to(".header", { height: 75, duration: 0.3 });
 
+    gsap.to(".cookies-consent", {
+      height: 60,
+      duration: 0.3,
+      delay: 1.5,
+    });
+
     let video = document.querySelector("video");
     video.currentTime = 0;
     video.play();
@@ -156,7 +162,8 @@ timeline
     } else {
       ctrl.scrollTo(target);
     }
-  });
+  })
+  .to(".cookies-consent", { height: 60, duration: 0.3, delay: 1.5 });
 
 timeline.then(initScrollTrig);
 
@@ -377,4 +384,20 @@ const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
 hamburger.addEventListener("click", () => {
   navLinks.classList.toggle("open");
+  document.querySelector(".hamburger").style.display = "none";
+  //document.querySelector(".relative-close-hamburger").style.display = "block";
+});
+
+const hamburgerClose = document.querySelector(".close-hamburger");
+hamburgerClose.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+  document.querySelector(".hamburger").style.display = "block";
+  //document.querySelector(".relative-close-hamburger").style.display = "block";
+});
+
+const consentOK = document.getElementById("consent-btn");
+consentOK.addEventListener("click", function (event) {
+  event.preventDefault();
+  // document.querySelector(".cookies-consent").style.display = "none";
+  gsap.to(".cookies-consent", { height: 0, duration: 0.5 });
 });

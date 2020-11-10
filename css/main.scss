@@ -61,7 +61,7 @@ h1 {
 
 h2 {
   //font-size: 2rem;
-  font-size: clamp(1.25rem, 4vw, 1.8rem);
+  font-size: clamp(1.2rem, 4vw, 1.7rem);
   line-height: 1.2;
 }
 
@@ -75,6 +75,10 @@ p {
   //font-size: 1rem;
   font-size: clamp(0.8rem, 1vw, 1rem);
   font-weight: 400;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .spacing > * + * {
@@ -92,6 +96,7 @@ p {
   border: 2px solid #80705a;
   border-radius: 2em;
   transition: transform 250ms ease-in-out, opacity 250ms linear;
+  white-space: nowrap;
 }
 
 .disabled {
@@ -147,6 +152,16 @@ p {
     --header-height: 100px;
   }*/
 }
+
+/*
+
+320px — 480px: Mobile devices
+481px — 768px: iPads, Tablets
+769px — 1024px: Small screens, laptops
+1025px — 1200px: Desktops, large screens
+1201px and more —  Extra large screens, TV
+
+*/
 
 @media only screen and (min-width: 769px) {
   .header {
@@ -213,20 +228,42 @@ button {
     color: #80705a;
     font-family: beloved-sans, sans-serif;
     font-weight: 700;
-    letter-spacing: 0.25rem;
+    letter-spacing: 0.22rem;
     font-style: normal;
     text-transform: uppercase;
     white-space: nowrap;
-    font-size: clamp(0.6rem, 1vw, 1rem);
+    font-size: clamp(0.6em, 1vw, 1em);
     //font-size: 14px;
-    width: 150px;
     text-align: center;
+  }
+
+  .lang-link {
+    width: 150px;
+  }
+
+  @media screen and (min-width: 1201px) {
+    .menu-link {
+      width: 150px;
+      // padding: 0 2em;
+    }
+  }
+
+  @media screen and (min-width: 1025px) and (max-width: 1200px) {
+    .menu-link {
+      width: 120px;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .menu-link {
+      width: 100px;
+    }
   }
 
   .nav-space {
   }
   .nav-space + *.nav-space {
-    margin-left: clamp(1em, 4vw, 4em);
+    margin-left: clamp(1em, 3vw, 4em);
   }
 
   .menu-link::after {
@@ -248,12 +285,18 @@ button {
     font-size: 0.6em;
   }
 
-  .lang-link + .lang-link {
+  /* .lang-link + .lang-link {
     border-left: 1px solid #80705a;
+  } */
+  .lang-separator {
+    height: 12px;
+    margin-top: -2px;
+    width: 1px;
+    background-color: #80705a;
   }
 
   .menu-logo-img {
-    width: 50%;
+    width: 40%;
     max-width: 400px;
     min-width: 100px;
     height: auto;
@@ -270,7 +313,8 @@ button {
     position: fixed;
     top: 0;
     right: 0;
-    width: 100px;
+    margin-top: -1px;
+    width: 75px;
     height: 75px;
     align-items: center;
   }
@@ -308,9 +352,9 @@ button {
 }
 
 @media screen and (max-width: 768px) {
-  * {
+  /* * {
     overflow-x: hidden;
-  }
+  } */
 
   .line {
     width: 30px;
@@ -319,38 +363,78 @@ button {
     margin: 5px;
   }
 
+  .menu-logo-img {
+    width: 50%;
+    max-width: 400px;
+    min-width: 100px;
+    height: auto;
+    transition: all 500ms ease-in-out;
+  }
+
   .mobile-navbar {
     position: relative;
-    height: 100%;
-    max-height: 10vh;
-    border: 1px solid red;
+    height: 125px;
+    // max-height: 10vh;
     width: 100%;
     max-width: 100vw;
+    overflow: hidden;
   }
 
   .header {
     height: 10vh;
     max-height: 10vh;
     position: fixed;
+    top: 0;
+
     //border: 1px solid red;
   }
 
   .mobile-nav-logo {
     position: absolute;
-    left: 5%;
+    width: 100px;
+    left: 50%;
     top: 50%;
-    width: 60px;
-    transform: translateY(-50%);
-    z-index: 3;
+    transform: translate(-50%, -50%);
+    margin-top: 14px;
+    //border: 1px solid blue;
+    //z-index: 3;
+    display: block;
+  }
+
+  .mobile-nav-logo-img {
+    display: block;
+    opacity: 1;
   }
 
   .hamburger {
     position: absolute;
     cursor: pointer;
-    right: 5%;
+    right: 10px;
     top: 50%;
-    transform: translate(-5%, -50%);
+    transform: translate(-5px, -50%);
     z-index: 2;
+  }
+
+  .relative-close-hamburger {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    height: 42px;
+    width: 42px;
+    text-align: center;
+  }
+
+  .close-hamburger {
+    position: fixed;
+    font-size: 50px;
+    // border: 1px solid red;
+    transform: rotate(45deg);
+    cursor: pointer;
+    color: #80705a;
+  }
+
+  .close-hamburger:hover {
+    color: #777;
   }
 
   .navbar {
@@ -359,20 +443,25 @@ button {
 
   .nav-links {
     position: fixed;
+    top: 0;
     background: #fff;
     height: 100vh;
     width: 100%;
     flex-direction: column;
     margin-left: auto;
     align-items: center;
-    list-style: none;
-    justify-content: space-around;
+    justify-content: center;
     display: none;
     transition: all 1s ease-in-out;
     //clip-path: circle(100px at 90% -10%);
     //-webkit-clip-path: circle(100px at 90% -10%);
     pointer-events: all;
-    padding: 50% 0;
+    // padding: 50% 0;
+  }
+
+  .nav-links ul {
+    text-align: center;
+    list-style: none;
   }
 
   .nav-links.open {
@@ -384,13 +473,71 @@ button {
   .nav-links li {
     //border: 1px solid red;
     overflow: hidden;
+    padding: 2em;
+    //border: 1px solid green;
   }
 
   .nav-links li a {
     color: #80705a;
     text-decoration: none;
-    font-size: 1.2em;
+    font-size: 1em;
     font-family: beloved-sans, sans-serif;
+
+    //font-weight: 700;
+    letter-spacing: 0.1rem;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  .nav-links li a::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 1px;
+    background: #80705a;
+    transition: width 0.5s;
+  }
+
+  .nav-links li a:hover::after {
+    width: 100%;
+    //color: #80705a;
+    transition: width 0.5s;
+  }
+
+  .lang-link {
+    color: #80705a;
+    text-decoration: none;
+    font-size: 0.8em;
+    font-family: beloved-sans, sans-serif;
+    letter-spacing: 0.1rem;
+    font-style: normal;
+    text-transform: uppercase;
+    padding: 0 8px;
+    font-weight: 400;
+  }
+
+  .lang-link:hover {
+    text-decoration: underline;
+  }
+
+  .mobile-lang {
+    color: #80705a;
+    display: flex;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    //width: 75px;
+    height: 75px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lang-separator {
+    height: 12px;
+    margin-top: -2px;
+    width: 1px;
+    background-color: #80705a;
   }
 
   .arrow-container,
@@ -450,20 +597,33 @@ button {
 
 .video-article {
   background-color: rgba(#fff, 0.8);
-  padding: 4em;
   border-radius: 3em;
-  text-align: left;
+  text-align: justify;
   /* width: 40%;
     min-width: 500px; */
-  width: calc(min(800px, 60%));
   min-width: 300px;
-  margin: 5em;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 .video-title {
   color: #80705a;
+}
+
+@media screen and (min-width: 769px) {
+  .video-article {
+    padding: 4em;
+    margin: 5em;
+    width: calc(min(800px, 60%));
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .video-article {
+    padding: 2em;
+    margin: 0 auto;
+    width: 80%;
+  }
 }
 
 .main {
@@ -586,6 +746,10 @@ h1 {
     object-fit: cover;
     z-index: 0;
   }
+
+  .image-antiquaille {
+    margin-top: 60px;
+  }
 }
 
 .equipe-slide,
@@ -642,26 +806,79 @@ h1 {
     //padding: 0 calc(max(10%, 100px));
     text-align: justify;
 
-    article {
+    .projet-title {
+      color: #80705a;
+      font-size: clamp(1.6em, 2vw, 2em);
+      font-family: "Gotham Book", sans-serif;
+    }
+
+    @media screen and (min-width: 1201px) {
+      article {
+        width: 80%;
+        min-width: 400px;
+        padding-left: 100px;
+        // font-size: clamp(0.6rem, 1vw, 0.8rem);
+      }
+
+      .projet-title {
+        padding-left: 100px;
+      }
+
+      p {
+        line-height: 2em;
+        //line-height: clamp(1.5rem, 1vw, 2rem);
+        font-size: clamp(0.8rem, 1vw, 1rem);
+      }
+    }
+
+    @media screen and (min-width: 1025px) and (max-width: 1200px) {
+      article {
+        width: 85%;
+        min-width: 400px;
+        padding-left: 75px;
+        // font-size: clamp(0.6rem, 1vw, 0.8rem);
+      }
+
+      .projet-title {
+        color: #80705a;
+        padding-left: 75px;
+        font-family: "Gotham Book", sans-serif;
+      }
+
+      p {
+        line-height: 2em;
+        //line-height: clamp(1.5rem, 1vw, 2rem);
+        font-size: clamp(0.8rem, 1vw, 1rem);
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      article {
+        width: 90%;
+        //min-width: 400px;
+        padding-left: 50px;
+        // font-size: clamp(0.6rem, 1vw, 0.8rem);
+      }
+
+      .projet-title {
+        color: #80705a;
+        padding-left: 50px;
+        font-family: "Gotham Book", sans-serif;
+      }
+
+      p {
+        line-height: 1.8em;
+        //line-height: clamp(1.5rem, 1vw, 2rem);
+        font-size: clamp(0.8rem, 1vw, 1rem);
+      }
+    }
+
+    /* article {
       width: 80%;
       min-width: 400px;
       padding-left: 100px;
       // font-size: clamp(0.6rem, 1vw, 0.8rem);
-    }
-
-    p {
-      line-height: 2em;
-
-      //line-height: clamp(1.5rem, 1vw, 2rem);
-      font-size: clamp(0.8rem, 1vw, 1rem);
-    }
-  }
-
-  .projet-title {
-    color: #80705a;
-
-    padding-left: 100px;
-    font-family: "Gotham Book", sans-serif;
+    } */
   }
 }
 
@@ -682,24 +899,72 @@ h1 {
     //padding: 0 calc(max(10%, 100px));
     text-align: justify;
 
-    article {
-      width: 80%;
-      min-width: 400px;
-      padding-left: 100px;
-      // font-size: clamp(0.6rem, 1vw, 0.8rem);
+    .equipe-title {
+      color: #80705a;
+      font-size: clamp(1.6em, 2vw, 2em);
+      font-family: "Gotham Book", sans-serif;
     }
 
-    p {
-      line-height: 2em;
-      font-size: clamp(0.8rem, 1vw, 1rem);
+    @media screen and (min-width: 1201px) {
+      article {
+        width: 80%;
+        min-width: 400px;
+        padding-left: 100px;
+        // font-size: clamp(0.6rem, 1vw, 0.8rem);
+      }
+
+      .equipe-title {
+        padding-left: 100px;
+      }
+
+      p {
+        line-height: 2em;
+        //line-height: clamp(1.5rem, 1vw, 2rem);
+        font-size: clamp(0.8rem, 1vw, 1rem);
+      }
     }
-  }
 
-  .equipe-title {
-    color: #80705a;
+    @media screen and (min-width: 1025px) and (max-width: 1200px) {
+      article {
+        width: 85%;
+        min-width: 400px;
+        padding-left: 75px;
+        // font-size: clamp(0.6rem, 1vw, 0.8rem);
+      }
 
-    padding-left: 100px;
-    font-family: "Gotham Book", sans-serif;
+      .equipe-title {
+        color: #80705a;
+        padding-left: 75px;
+        font-family: "Gotham Book", sans-serif;
+      }
+
+      p {
+        line-height: 2em;
+        //line-height: clamp(1.5rem, 1vw, 2rem);
+        font-size: clamp(0.8rem, 1vw, 1rem);
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      article {
+        width: 90%;
+        //min-width: 400px;
+        padding-left: 50px;
+        // font-size: clamp(0.6rem, 1vw, 0.8rem);
+      }
+
+      .equipe-title {
+        color: #80705a;
+        padding-left: 50px;
+        font-family: "Gotham Book", sans-serif;
+      }
+
+      p {
+        line-height: 1.8em;
+        //line-height: clamp(1.5rem, 1vw, 2rem);
+        font-size: clamp(0.8rem, 1vw, 1rem);
+      }
+    }
   }
 }
 
@@ -723,6 +988,24 @@ h1 {
   font-size: 1em;
 }
 
+@media screen and (min-width: 1201px) {
+  .pagination {
+    padding: 0 calc(max(10%, 100px));
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .pagination {
+    padding: 0 calc(max(10%, 75px));
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .pagination {
+    padding: 0 calc(max(10%, 50px));
+  }
+}
+
 .pagination {
   height: 25%;
   //padding: 0 10%;
@@ -730,7 +1013,6 @@ h1 {
   align-items: flex-start;
   position: relative;
   width: 100%;
-  padding: 0 calc(max(10%, 100px));
 }
 
 .projet-pagination,
@@ -746,7 +1028,7 @@ h1 {
 .equipe-page-btn {
   display: inline-block;
   text-decoration: none;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-size: clamp(1.8em, 2vw, 2.2em);
   color: #525252;
   padding: 0 10px;
   cursor: pointer;
@@ -814,14 +1096,17 @@ h1 {
   margin-bottom: 0;
   color: #80705a;
   font-family: "Gotham Book";
+  font-size: clamp(1.4em, 2vw, 2em);
+  padding: 0 4em;
 }
 
 .produit-apropos-text {
   text-align: center;
-  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-size: clamp(0.9em, 1.5vw, 1.4em);
   font-family: "Gotham Book";
-  line-height: 2.4em;
+  line-height: 2.2em;
   font-weight: 500;
+  padding: 1em 4em 0 4em;
 }
 
 .produit-1,
@@ -829,8 +1114,8 @@ h1 {
 .produit-3,
 .produit-4,
 .produit-5 {
-  height: 75%;
-  min-height: 75vh;
+  height: 60%;
+  min-height: 60vh;
   margin-bottom: 10px;
 }
 
@@ -844,7 +1129,7 @@ h1 {
   display: flex;
   align-items: center;
   height: 100%;
-  min-height: 75vh;
+  min-height: 60vh;
   background-color: #e7e4e0;
   position: relative;
 }
@@ -858,10 +1143,33 @@ h1 {
 }
 
 .produit-article {
-  padding: 0 calc(max(10%, 50px)) 0 calc(max(20%, 100px));
   text-align: justify;
-  p {
-    line-height: 2em;
+}
+
+@media screen and (min-width: 1201px) {
+  .produit-article {
+    padding: 0 calc(max(10%, 50px)) 0 calc(max(20%, 100px));
+    p {
+      line-height: 2em;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .produit-article {
+    padding: 0 calc(max(10%, 50px)) 0 calc(max(20%, 100px));
+    p {
+      line-height: 1.8em;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .produit-article {
+    padding: 0 calc(max(5%, 25px)) 0 calc(max(10%, 50px));
+    p {
+      line-height: 1.8em;
+    }
   }
 }
 
@@ -872,8 +1180,8 @@ h1 {
 .produit-image-box {
   height: 50%;
   width: 50%;
-  min-height: 75vh;
-  min-width: 50vh;
+  min-height: 60vh;
+  //min-width: 50vh;
   display: inline-block;
   position: relative;
   overflow: hidden;
@@ -882,7 +1190,7 @@ h1 {
 .produit-image {
   height: 100%;
   width: 100%;
-  min-height: 75vh;
+  min-height: 60vh;
   min-width: 50vh;
   background-position: center center;
   background-size: cover;
@@ -964,6 +1272,7 @@ h1 {
 .timing-title {
   color: #80705a;
   font-family: "Gotham Book", sans-serif;
+  font-size: clamp(1.6em, 2.5vw, 2.4em);
 }
 
 .timing-article {
@@ -972,10 +1281,28 @@ h1 {
   width: 60%;
   min-width: 60vw;
   background-color: #fff;
-  padding: 5em;
+  // padding: 5em;
 
   * + * {
     padding-top: 2em;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .timing-article {
+    padding: 5em;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .timing-article {
+    padding: 2.5em;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .timing-article {
+    padding: 2em;
   }
 }
 
@@ -1001,6 +1328,7 @@ h1 {
 
 .avis-title {
   font-family: "Gotham Book", sans-serif;
+  font-size: clamp(1.6em, 2.5vw, 2.4em);
 }
 
 .avis-article {
@@ -1133,10 +1461,41 @@ h1 {
   width: 100%;
   max-width: 100vw;
   height: 50%;
-  min-height: 50vh;
   align-items: center;
-  height: 100%;
   box-shadow: rgba(0, 0, 0, 0.2) 0px -25px 55px;
+}
+
+.split-footer {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 100px;
+
+  & > * {
+    flex-basis: 30%;
+    min-width: 15em;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .footer-container {
+    min-height: 50vh;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .footer-container {
+    min-height: 40vh;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .footer-container {
+    min-height: 30vh;
+  }
 }
 
 .footer-social {
@@ -1159,15 +1518,23 @@ h1 {
   }
 }
 
+.col {
+  display: flex;
+  align-items: center;
+  // border: 1px solid red;
+  height: 100%;
+}
+
 .mailchimp-block,
 .social-block {
-  height: 60%;
-  min-height: 200px;
+  /*  height: 60%;
+  min-height: 200px; */
+  position: relative;
 }
 
 .footer-contact {
   width: 40%;
-  min-width: 40vw;
+  //min-width: 40vw;
 
   .btn-contact {
     /*display: inline-block;
@@ -1269,6 +1636,7 @@ h1 {
 .footer-social-email {
   margin-top: 50px;
   color: #111;
+  font-size: clamp(0.8em, 1.5vw, 1em);
   //text-decoration: none;
 }
 
@@ -1281,7 +1649,7 @@ h1 {
   min-width: 30vw;
   display: flex;
   align-items: center;
-  height: 100%;
+  //height: 100%;
   //min-height: 100vh;
   position: relative;
   justify-content: center;
@@ -1338,7 +1706,7 @@ h1 {
 }
 
 .copyright-text {
-  font-size: clamp(0.5rem, 1vw, 1rem);
+  font-size: clamp(0.7em, 1vw, 1em);
   font-weight: 400;
   color: #fff;
   text-align: center;
@@ -1360,7 +1728,8 @@ h1 {
 .mentions-links-block {
   a {
     color: #222;
-    font-size: 0.8rem;
+    font-size: clamp(0.6em, 1vw, 1em);
+    padding-right: 20px;
     //text-decoration: none;
   }
 
@@ -1519,9 +1888,22 @@ h1 {
   width: 90%;
 }
 
+.modal-description-ita {
+  text-align: justify;
+  font-size: 12px;
+  // border: 1px solid red;
+  padding: 10px;
+  margin: 10px auto 50px auto;
+  font-weight: 400;
+  color: #222;
+  width: 90%;
+  font-style: italic;
+}
+
 .indicates-req {
   font-size: 12px;
   font-weight: 400;
+  margin: 0 auto;
   font-family: "Gotham Book", sans-serif;
   color: #666;
   padding-bottom: 10px;
@@ -1549,11 +1931,19 @@ input {
   border: 1px solid #7b7b7b;
 }
 
-.close {
+.relative-close {
   position: absolute;
   top: 0;
-  right: 14px;
+  right: 0;
+  height: 42px;
+  width: 42px;
+  text-align: center;
+}
+
+.close {
+  position: fixed;
   font-size: 42px;
+  // border: 1px solid red;
   transform: rotate(45deg);
   cursor: pointer;
 
@@ -1566,8 +1956,9 @@ input {
 
 .btn-mailchimp {
   margin-top: 40px;
-  margin-bottom: 100px;
+  margin-bottom: 40px;
   width: 40%;
+  max-width: 150px;
 
   display: inline-block;
   text-decoration: none;
@@ -1662,4 +2053,70 @@ input {
 
 .checkbox:checked + .label:after {
   transform: scale(1);
+}
+
+.inscription-newsletter-content {
+  margin: 0 auto;
+  width: 60%;
+  text-align: center;
+  max-width: 800px;
+}
+
+.in-logo {
+  margin: 0 auto;
+  padding-top: 60px;
+  width: 40%;
+  min-width: 64px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.cookies-consent {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  //display: none;
+  height: 0px;
+  background-color: #262626;
+  color: white;
+
+  .box {
+    align-items: center;
+    position: relative;
+    display: flex;
+    padding: 10px 10px;
+  }
+
+  p {
+    text-align: center;
+    width: 100%;
+    font-size: clamp(0.7em, 1vw, 1em);
+  }
+
+  /* a + a {
+    padding-left: 10px;
+  } */
+
+  a {
+    color: white;
+  }
+
+  a:hover {
+    color: #d6d6d6;
+  }
+
+  .btn-cookies-consent {
+    margin: 0 10px;
+    background-color: #80705a;
+    font-size: clamp(0.8em, 1vw, 1em);
+  }
+
+  .btn-cookies-consent:hover {
+    background-color: white;
+    color: #80705a;
+    border-color: white;
+  }
 }
