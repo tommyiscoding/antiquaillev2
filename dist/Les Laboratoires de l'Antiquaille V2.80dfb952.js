@@ -10463,6 +10463,7 @@ var _scrollmagic = _interopRequireDefault(require("scrollmagic"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var cookiesConsent = false;
+var arrowScroll = false;
 /* const gsap = require("gsap");
 require("gsap/ScrollToPlugin");
  */
@@ -10485,9 +10486,7 @@ if (top !== null) {
 } */
 
 window.addEventListener("beforeunload", function () {
-  console.log("iiiiii");
   /* localStorage.setItem("sidebar-scroll", sidebar.scrollTop); */
-
   window.scrollTo(0, 0);
 }); // Enregistrement des plugins GSAP
 
@@ -10507,8 +10506,7 @@ function scrollingOff() {
 
 window.addEventListener("load", function () {
   var links = document.querySelectorAll(".menu-link");
-  var ctrl = new _scrollmagic.default.Controller({});
-  console.log("Link 0 : " + links[0]);
+  var ctrl = new _scrollmagic.default.Controller({}); // console.log("Link 0 : " + links[0]);
 
   for (var i = 0; i < links.length; i++) {
     links[i].addEventListener("click", function (event) {
@@ -10529,10 +10527,11 @@ window.addEventListener("load", function () {
   } // Arrow
 
 
-  var arrowLink = document.querySelector(".arrow-scroll");
-  console.log("Arrow : " + arrowLink);
+  var arrowLink = document.querySelector(".arrow-scroll"); // console.log("Arrow : " + arrowLink);
+
   arrowLink.addEventListener("click", function (e) {
     scrolling = 1;
+    arrowScroll = true;
     e.preventDefault();
 
     _gsap.gsap.to(".menu-logo-img", {
@@ -10608,40 +10607,66 @@ var timeline = _gsap.gsap.timeline({
   }
 });
 
-timeline.to(".menu-logo-img", {
-  width: 100
-}).set("#logo-nav", {
-  display: "none"
-}).set("#logo-nav-contract", {
-  display: "block"
-}).set(".arrow-container", {
-  display: "none"
-}) //.to("#logo-nav", { opacity: 0 })
-.to("#logo-nav-contract", {
-  opacity: 1
-}).to("#logo-nav-contract", {
-  marginTop: 25
-}).to(".header", {
-  height: 75,
-  duration: 0.3
-}).add(function () {
-  var ctrl = new _scrollmagic.default.Controller({});
-  scrolling = 1;
-  ctrl.scrollTo(function (newpos) {
-    _gsap.TweenMax.to(window, 1, {
-      scrollTo: {
-        y: newpos
-      },
-      onComplete: scrollingOff
-    });
+if (arrowScroll == false) {
+  console.log("arrow scroll est false mais");
+  timeline.to(".menu-logo-img", {
+    width: 100
+  }).set("#logo-nav", {
+    display: "none"
+  }).set("#logo-nav-contract", {
+    display: "block"
+  }).set(".arrow-container", {
+    display: "none"
+  }) //.to("#logo-nav", { opacity: 0 })
+  .to("#logo-nav-contract", {
+    opacity: 1
+  }).to("#logo-nav-contract", {
+    marginTop: 25
+  }).to(".header", {
+    height: 75,
+    duration: 0.3
+  }).add(function () {
+    console.log("give me arrow " + (arrowScroll == false));
+
+    if (arrowScroll) {
+      console.log("do noting");
+    } else {
+      console.log("timeline");
+      var ctrl = new _scrollmagic.default.Controller({});
+      scrolling = 1;
+      ctrl.scrollTo(function (newpos) {
+        console.log("newpos : " + newpos);
+
+        _gsap.TweenMax.to(window, 1, {
+          scrollTo: {
+            y: newpos
+          },
+          onComplete: scrollingOff
+        });
+      });
+      console.log("target : " + target);
+
+      if (target == "" || target == "#home") {
+        ctrl.scrollTo(0);
+      } else {
+        ctrl.scrollTo(target);
+      }
+    }
+  }); //.to(".cookies-consent", { height: 60, duration: 0.3, delay: 1.5 });
+
+  timeline.then(function () {
+    console.log("timeline then");
+    console.log("arrow scroll " + arrowScroll);
+
+    if (!arrowScroll) {
+      initScrollTrig();
+    }
+
+    cookiesConsentDisplay();
   });
+}
 
-  if (target == "" || target == "#home") {
-    ctrl.scrollTo(0);
-  } else {
-    ctrl.scrollTo(target);
-  }
-
+function cookiesConsentDisplay() {
   if (cookiesConsent == false) {
     _gsap.gsap.to(".cookies-consent", {
       height: 60,
@@ -10649,9 +10674,7 @@ timeline.to(".menu-logo-img", {
       delay: 1.5
     });
   }
-}); //.to(".cookies-consent", { height: 60, duration: 0.3, delay: 1.5 });
-
-timeline.then(initScrollTrig);
+}
 
 function initScrollTrig() {
   console.log("passe ici");
@@ -10934,7 +10957,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "5173" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "26383" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollMagic from "scrollmagic";
 
 let cookiesConsent = false;
+let arrowScroll = false;
 
 /* const gsap = require("gsap");
 require("gsap/ScrollToPlugin");
@@ -26,7 +27,6 @@ if (top !== null) {
 } */
 
 window.addEventListener("beforeunload", () => {
-  console.log("iiiiii");
   /* localStorage.setItem("sidebar-scroll", sidebar.scrollTop); */
   window.scrollTo(0, 0);
 });
@@ -51,7 +51,7 @@ window.addEventListener("load", function () {
   const links = document.querySelectorAll(".menu-link");
   let ctrl = new ScrollMagic.Controller({});
 
-  console.log("Link 0 : " + links[0]);
+  // console.log("Link 0 : " + links[0]);
   for (let i = 0; i < links.length; i++) {
     links[i].addEventListener("click", function (event) {
       scrolling = 1;
@@ -71,10 +71,12 @@ window.addEventListener("load", function () {
 
   // Arrow
   const arrowLink = document.querySelector(".arrow-scroll");
-  console.log("Arrow : " + arrowLink);
+  // console.log("Arrow : " + arrowLink);
 
   arrowLink.addEventListener("click", function (e) {
     scrolling = 1;
+
+    arrowScroll = true;
     e.preventDefault();
 
     gsap.to(".menu-logo-img", { width: 100 });
@@ -139,44 +141,67 @@ let timeline = gsap.timeline({
   },
 });
 
-timeline
-  .to(".menu-logo-img", { width: 100 })
-  .set("#logo-nav", {
-    display: "none",
-  })
-  .set("#logo-nav-contract", {
-    display: "block",
-  })
-  .set(".arrow-container", { display: "none" })
-  //.to("#logo-nav", { opacity: 0 })
-  .to("#logo-nav-contract", { opacity: 1 })
-  .to("#logo-nav-contract", { marginTop: 25 })
-  .to(".header", { height: 75, duration: 0.3 })
-  .add(function () {
-    let ctrl = new ScrollMagic.Controller({});
-    scrolling = 1;
-    ctrl.scrollTo(function (newpos) {
-      TweenMax.to(window, 1, {
-        scrollTo: { y: newpos },
-        onComplete: scrollingOff,
-      });
-    });
-    if (target == "" || target == "#home") {
-      ctrl.scrollTo(0);
-    } else {
-      ctrl.scrollTo(target);
-    }
-    if (cookiesConsent == false) {
-      gsap.to(".cookies-consent", {
-        height: 60,
-        duration: 0.3,
-        delay: 1.5,
-      });
-    }
-  });
-//.to(".cookies-consent", { height: 60, duration: 0.3, delay: 1.5 });
+if (arrowScroll == false) {
+  console.log("arrow scroll est false mais");
+  timeline
+    .to(".menu-logo-img", { width: 100 })
+    .set("#logo-nav", {
+      display: "none",
+    })
+    .set("#logo-nav-contract", {
+      display: "block",
+    })
+    .set(".arrow-container", { display: "none" })
+    //.to("#logo-nav", { opacity: 0 })
+    .to("#logo-nav-contract", { opacity: 1 })
+    .to("#logo-nav-contract", { marginTop: 25 })
+    .to(".header", { height: 75, duration: 0.3 })
+    .add(function () {
+      console.log("give me arrow " + (arrowScroll == false));
+      if (arrowScroll) {
+        console.log("do noting");
+      } else {
+        console.log("timeline");
+        let ctrl = new ScrollMagic.Controller({});
+        scrolling = 1;
+        ctrl.scrollTo(function (newpos) {
+          console.log("newpos : " + newpos);
+          TweenMax.to(window, 1, {
+            scrollTo: { y: newpos },
+            onComplete: scrollingOff,
+          });
+        });
 
-timeline.then(initScrollTrig);
+        console.log("target : " + target);
+
+        if (target == "" || target == "#home") {
+          ctrl.scrollTo(0);
+        } else {
+          ctrl.scrollTo(target);
+        }
+      }
+    });
+  //.to(".cookies-consent", { height: 60, duration: 0.3, delay: 1.5 });
+
+  timeline.then(function () {
+    console.log("timeline then");
+    console.log("arrow scroll " + arrowScroll);
+    if (!arrowScroll) {
+      initScrollTrig();
+    }
+    cookiesConsentDisplay();
+  });
+}
+
+function cookiesConsentDisplay() {
+  if (cookiesConsent == false) {
+    gsap.to(".cookies-consent", {
+      height: 60,
+      duration: 0.3,
+      delay: 1.5,
+    });
+  }
+}
 
 function initScrollTrig() {
   console.log("passe ici");
