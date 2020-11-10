@@ -93,14 +93,6 @@ window.addEventListener("load", function () {
     gsap.to("#logo-nav-contract", { marginTop: 25 });
     gsap.to(".header", { height: 75, duration: 0.3 });
 
-    if (cookiesConsent == false) {
-      gsap.to(".cookies-consent", {
-        height: 60,
-        duration: 0.3,
-        delay: 1.5,
-      });
-    }
-
     let video = document.querySelector("video");
     video.currentTime = 0;
     video.play();
@@ -114,6 +106,14 @@ window.addEventListener("load", function () {
       });
     });
     ctrl.scrollTo("#home");
+
+    if (cookiesConsent == false) {
+      gsap.to(".cookies-consent", {
+        height: 60,
+        duration: 0.3,
+        delay: 1.5,
+      });
+    }
 
     initScrollTrig();
 
@@ -294,13 +294,21 @@ ScrollTrigger.create({
   trigger: ".projet-section",
   onEnterBack: () => {
     console.log("démarrage slide projet");
-    clearInterval(intervalProjet);
     intervalProjet = setInterval(slideProjet, 15000);
   },
   onEnter: () => {
     console.log("démarrage slide projet");
-    clearInterval(intervalProjet);
     intervalProjet = setInterval(slideProjet, 15000);
+  },
+  onLeave: () => {
+    console.log("STOP slide projet");
+    clearInterval(intervalProjet);
+    gsap.to(".container-projet", { marginLeft: 0 });
+  },
+  onLeaveBack: () => {
+    console.log("STOP slide projet");
+    clearInterval(intervalProjet);
+    gsap.to(".container-projet", { marginLeft: 0 });
   },
 });
 
@@ -309,13 +317,21 @@ ScrollTrigger.create({
   trigger: ".equipe-section",
   onEnterBack: () => {
     console.log("démarrage slide equipe");
-    clearInterval(intervalEquipe);
     intervalEquipe = setInterval(slideEquipe, 15000);
   },
   onEnter: () => {
     console.log("démarrage slide equipe");
-    clearInterval(intervalEquipe);
     intervalEquipe = setInterval(slideEquipe, 15000);
+  },
+  onLeave: () => {
+    console.log("STOP slide équipe");
+    clearInterval(intervalEquipe);
+    gsap.to(".container-equipe", { marginLeft: 0 });
+  },
+  onLeaveBack: () => {
+    console.log("STOP slide équipe");
+    clearInterval(intervalEquipe);
+    gsap.to(".container-equipe", { marginLeft: 0 });
   },
 });
 

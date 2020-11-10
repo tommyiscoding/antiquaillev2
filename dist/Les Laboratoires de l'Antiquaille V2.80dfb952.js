@@ -10564,14 +10564,6 @@ window.addEventListener("load", function () {
       duration: 0.3
     });
 
-    if (cookiesConsent == false) {
-      _gsap.gsap.to(".cookies-consent", {
-        height: 60,
-        duration: 0.3,
-        delay: 1.5
-      });
-    }
-
     var video = document.querySelector("video");
     video.currentTime = 0;
     video.play();
@@ -10586,6 +10578,15 @@ window.addEventListener("load", function () {
       });
     });
     ctrl.scrollTo("#home");
+
+    if (cookiesConsent == false) {
+      _gsap.gsap.to(".cookies-consent", {
+        height: 60,
+        duration: 0.3,
+        delay: 1.5
+      });
+    }
+
     initScrollTrig();
     /*const linkId = e.target.getAttribute("href");
       console.log("target : " + linkId);
@@ -10773,13 +10774,27 @@ _ScrollTrigger.ScrollTrigger.create({
   trigger: ".projet-section",
   onEnterBack: function onEnterBack() {
     console.log("démarrage slide projet");
-    clearInterval(intervalProjet);
     intervalProjet = setInterval(slideProjet, 15000);
   },
   onEnter: function onEnter() {
     console.log("démarrage slide projet");
-    clearInterval(intervalProjet);
     intervalProjet = setInterval(slideProjet, 15000);
+  },
+  onLeave: function onLeave() {
+    console.log("STOP slide projet");
+    clearInterval(intervalProjet);
+
+    _gsap.gsap.to(".container-projet", {
+      marginLeft: 0
+    });
+  },
+  onLeaveBack: function onLeaveBack() {
+    console.log("STOP slide projet");
+    clearInterval(intervalProjet);
+
+    _gsap.gsap.to(".container-projet", {
+      marginLeft: 0
+    });
   }
 }); // Redémarrage du slide équipe quand on arrive sur la section
 
@@ -10788,13 +10803,27 @@ _ScrollTrigger.ScrollTrigger.create({
   trigger: ".equipe-section",
   onEnterBack: function onEnterBack() {
     console.log("démarrage slide equipe");
-    clearInterval(intervalEquipe);
     intervalEquipe = setInterval(slideEquipe, 15000);
   },
   onEnter: function onEnter() {
     console.log("démarrage slide equipe");
-    clearInterval(intervalEquipe);
     intervalEquipe = setInterval(slideEquipe, 15000);
+  },
+  onLeave: function onLeave() {
+    console.log("STOP slide équipe");
+    clearInterval(intervalEquipe);
+
+    _gsap.gsap.to(".container-equipe", {
+      marginLeft: 0
+    });
+  },
+  onLeaveBack: function onLeaveBack() {
+    console.log("STOP slide équipe");
+    clearInterval(intervalEquipe);
+
+    _gsap.gsap.to(".container-equipe", {
+      marginLeft: 0
+    });
   }
 });
 /* Slider projet */

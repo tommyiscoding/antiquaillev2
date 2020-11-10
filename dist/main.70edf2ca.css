@@ -1383,8 +1383,7 @@ h1 {
   margin: 2em;
 }
 
-.avis-article .btn-avis:hover,
-.avis-article .btn-avis:focus {
+.avis-article .btn-avis:hover {
   background-color: #fff;
   color: #80705a;
 }
