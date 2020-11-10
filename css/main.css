@@ -73,7 +73,7 @@ p {
 }
 
 .bold {
-  font-weight: bold;
+  font-family: "Gotham Bold";
 }
 
 .spacing > * + * {
@@ -996,7 +996,8 @@ h1 {
 .equipe-pagination {
   position: relative;
   display: inline-block;
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham Book";
+  font-weight: 700;
   -webkit-box-pack: left;
       -ms-flex-pack: left;
           justify-content: left;
