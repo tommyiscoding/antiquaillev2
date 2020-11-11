@@ -10463,8 +10463,8 @@ var _scrollmagic = _interopRequireDefault(require("scrollmagic"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var cookiesConsent = false;
-var arrowScroll = false;
-document.getElementById("video").load();
+var arrowScroll = false; // document.getElementById("video").load();
+
 /* const gsap = require("gsap");
 require("gsap/ScrollToPlugin");
  */

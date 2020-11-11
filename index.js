@@ -6,7 +6,7 @@ import ScrollMagic from "scrollmagic";
 let cookiesConsent = false;
 let arrowScroll = false;
 
-document.getElementById("video").load();
+// document.getElementById("video").load();
 
 /* const gsap = require("gsap");
 require("gsap/ScrollToPlugin");
