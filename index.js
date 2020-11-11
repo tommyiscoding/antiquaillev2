@@ -6,6 +6,8 @@ import ScrollMagic from "scrollmagic";
 let cookiesConsent = false;
 let arrowScroll = false;
 
+document.getElementById("video").load();
+
 /* const gsap = require("gsap");
 require("gsap/ScrollToPlugin");
  */
@@ -47,77 +49,77 @@ function scrollingOff() {
   scrolling = 0;
 }
 
-window.addEventListener("load", function () {
-  const links = document.querySelectorAll(".menu-link");
-  let ctrl = new ScrollMagic.Controller({});
+//window.addEventListener("load", function () {
+const links = document.querySelectorAll(".menu-link");
+let ctrl = new ScrollMagic.Controller({});
 
-  // console.log("Link 0 : " + links[0]);
-  for (let i = 0; i < links.length; i++) {
-    links[i].addEventListener("click", function (event) {
-      scrolling = 1;
-      event.preventDefault();
-      const linkId = event.target.getAttribute("href");
-      target = linkId;
-      ctrl.scrollTo(function (newpos) {
-        TweenMax.to(window, 1, {
-          scrollTo: { y: newpos },
-          onComplete: scrollingOff,
-        });
-      });
-
-      ctrl.scrollTo(linkId);
-    });
-  }
-
-  // Arrow
-  const arrowLink = document.querySelector(".arrow-scroll");
-  // console.log("Arrow : " + arrowLink);
-
-  arrowLink.addEventListener("click", function (e) {
+// console.log("Link 0 : " + links[0]);
+for (let i = 0; i < links.length; i++) {
+  links[i].addEventListener("click", function (event) {
     scrolling = 1;
-
-    arrowScroll = true;
-    e.preventDefault();
-
-    gsap.to(".menu-logo-img", { width: 100 });
-    gsap.set("#logo-nav", {
-      display: "none",
-    });
-
-    gsap.set("#logo-nav-contract", {
-      display: "block",
-    });
-    gsap.set(".arrow-container", { display: "none" });
-    //.to("#logo-nav", { opacity: 0 })
-    gsap.to("#logo-nav-contract", { opacity: 1 });
-    gsap.to("#logo-nav-contract", { marginTop: 25 });
-    gsap.to(".header", { height: 75, duration: 0.3 });
-
-    let video = document.querySelector("video");
-    video.currentTime = 0;
-    video.play();
-
-    let ctrl = new ScrollMagic.Controller({});
-    scrolling = 1;
+    event.preventDefault();
+    const linkId = event.target.getAttribute("href");
+    target = linkId;
     ctrl.scrollTo(function (newpos) {
       TweenMax.to(window, 1, {
         scrollTo: { y: newpos },
         onComplete: scrollingOff,
       });
     });
-    ctrl.scrollTo("#home");
 
-    if (cookiesConsent == false) {
-      gsap.to(".cookies-consent", {
-        height: 60,
-        duration: 0.3,
-        delay: 1.5,
-      });
-    }
+    ctrl.scrollTo(linkId);
+  });
+}
 
-    initScrollTrig();
+// Arrow
+const arrowLink = document.querySelector(".arrow-scroll");
+// console.log("Arrow : " + arrowLink);
 
-    /*const linkId = e.target.getAttribute("href");
+arrowLink.addEventListener("click", function (e) {
+  scrolling = 1;
+
+  arrowScroll = true;
+  e.preventDefault();
+
+  gsap.to(".menu-logo-img", { width: 100 });
+  gsap.set("#logo-nav", {
+    display: "none",
+  });
+
+  gsap.set("#logo-nav-contract", {
+    display: "block",
+  });
+  gsap.set(".arrow-container", { display: "none" });
+  //.to("#logo-nav", { opacity: 0 })
+  gsap.to("#logo-nav-contract", { opacity: 1 });
+  gsap.to("#logo-nav-contract", { marginTop: 25 });
+  gsap.to(".header", { height: 75, duration: 0.3 });
+
+  let video = document.querySelector("video");
+  video.currentTime = 0;
+  video.play();
+
+  let ctrl = new ScrollMagic.Controller({});
+  scrolling = 1;
+  ctrl.scrollTo(function (newpos) {
+    TweenMax.to(window, 1, {
+      scrollTo: { y: newpos },
+      onComplete: scrollingOff,
+    });
+  });
+  ctrl.scrollTo("#home");
+
+  if (cookiesConsent == false) {
+    gsap.to(".cookies-consent", {
+      height: 60,
+      duration: 0.3,
+      delay: 1.5,
+    });
+  }
+
+  initScrollTrig();
+
+  /*const linkId = e.target.getAttribute("href");
 
     console.log("target : " + linkId);
     ctrl.scrollTo(function (newpos) {
@@ -128,8 +130,8 @@ window.addEventListener("load", function () {
     });
 
     ctrl.scrollTo(linkId);*/
-  });
 });
+//});
 
 // Header
 

@@ -10464,6 +10464,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var cookiesConsent = false;
 var arrowScroll = false;
+document.getElementById("video").load();
 /* const gsap = require("gsap");
 require("gsap/ScrollToPlugin");
  */
@@ -10502,73 +10503,18 @@ var target = "";
 
 function scrollingOff() {
   scrolling = 0;
-}
-
-window.addEventListener("load", function () {
-  var links = document.querySelectorAll(".menu-link");
-  var ctrl = new _scrollmagic.default.Controller({}); // console.log("Link 0 : " + links[0]);
-
-  for (var i = 0; i < links.length; i++) {
-    links[i].addEventListener("click", function (event) {
-      scrolling = 1;
-      event.preventDefault();
-      var linkId = event.target.getAttribute("href");
-      target = linkId;
-      ctrl.scrollTo(function (newpos) {
-        _gsap.TweenMax.to(window, 1, {
-          scrollTo: {
-            y: newpos
-          },
-          onComplete: scrollingOff
-        });
-      });
-      ctrl.scrollTo(linkId);
-    });
-  } // Arrow
+} //window.addEventListener("load", function () {
 
 
-  var arrowLink = document.querySelector(".arrow-scroll"); // console.log("Arrow : " + arrowLink);
+var links = document.querySelectorAll(".menu-link");
+var ctrl = new _scrollmagic.default.Controller({}); // console.log("Link 0 : " + links[0]);
 
-  arrowLink.addEventListener("click", function (e) {
+for (var i = 0; i < links.length; i++) {
+  links[i].addEventListener("click", function (event) {
     scrolling = 1;
-    arrowScroll = true;
-    e.preventDefault();
-
-    _gsap.gsap.to(".menu-logo-img", {
-      width: 100
-    });
-
-    _gsap.gsap.set("#logo-nav", {
-      display: "none"
-    });
-
-    _gsap.gsap.set("#logo-nav-contract", {
-      display: "block"
-    });
-
-    _gsap.gsap.set(".arrow-container", {
-      display: "none"
-    }); //.to("#logo-nav", { opacity: 0 })
-
-
-    _gsap.gsap.to("#logo-nav-contract", {
-      opacity: 1
-    });
-
-    _gsap.gsap.to("#logo-nav-contract", {
-      marginTop: 25
-    });
-
-    _gsap.gsap.to(".header", {
-      height: 75,
-      duration: 0.3
-    });
-
-    var video = document.querySelector("video");
-    video.currentTime = 0;
-    video.play();
-    var ctrl = new _scrollmagic.default.Controller({});
-    scrolling = 1;
+    event.preventDefault();
+    var linkId = event.target.getAttribute("href");
+    target = linkId;
     ctrl.scrollTo(function (newpos) {
       _gsap.TweenMax.to(window, 1, {
         scrollTo: {
@@ -10577,18 +10523,73 @@ window.addEventListener("load", function () {
         onComplete: scrollingOff
       });
     });
-    ctrl.scrollTo("#home");
+    ctrl.scrollTo(linkId);
+  });
+} // Arrow
 
-    if (cookiesConsent == false) {
-      _gsap.gsap.to(".cookies-consent", {
-        height: 60,
-        duration: 0.3,
-        delay: 1.5
-      });
-    }
 
-    initScrollTrig();
-    /*const linkId = e.target.getAttribute("href");
+var arrowLink = document.querySelector(".arrow-scroll"); // console.log("Arrow : " + arrowLink);
+
+arrowLink.addEventListener("click", function (e) {
+  scrolling = 1;
+  arrowScroll = true;
+  e.preventDefault();
+
+  _gsap.gsap.to(".menu-logo-img", {
+    width: 100
+  });
+
+  _gsap.gsap.set("#logo-nav", {
+    display: "none"
+  });
+
+  _gsap.gsap.set("#logo-nav-contract", {
+    display: "block"
+  });
+
+  _gsap.gsap.set(".arrow-container", {
+    display: "none"
+  }); //.to("#logo-nav", { opacity: 0 })
+
+
+  _gsap.gsap.to("#logo-nav-contract", {
+    opacity: 1
+  });
+
+  _gsap.gsap.to("#logo-nav-contract", {
+    marginTop: 25
+  });
+
+  _gsap.gsap.to(".header", {
+    height: 75,
+    duration: 0.3
+  });
+
+  var video = document.querySelector("video");
+  video.currentTime = 0;
+  video.play();
+  var ctrl = new _scrollmagic.default.Controller({});
+  scrolling = 1;
+  ctrl.scrollTo(function (newpos) {
+    _gsap.TweenMax.to(window, 1, {
+      scrollTo: {
+        y: newpos
+      },
+      onComplete: scrollingOff
+    });
+  });
+  ctrl.scrollTo("#home");
+
+  if (cookiesConsent == false) {
+    _gsap.gsap.to(".cookies-consent", {
+      height: 60,
+      duration: 0.3,
+      delay: 1.5
+    });
+  }
+
+  initScrollTrig();
+  /*const linkId = e.target.getAttribute("href");
       console.log("target : " + linkId);
     ctrl.scrollTo(function (newpos) {
       TweenMax.to(window, 1, {
@@ -10597,8 +10598,8 @@ window.addEventListener("load", function () {
       });
     });
       ctrl.scrollTo(linkId);*/
-  });
-}); // Header
+}); //});
+// Header
 
 var timeline = _gsap.gsap.timeline({
   scrollTrigger: {
@@ -10633,9 +10634,12 @@ if (arrowScroll == false) {
       console.log("do noting");
     } else {
       console.log("timeline");
-      var ctrl = new _scrollmagic.default.Controller({});
+
+      var _ctrl = new _scrollmagic.default.Controller({});
+
       scrolling = 1;
-      ctrl.scrollTo(function (newpos) {
+
+      _ctrl.scrollTo(function (newpos) {
         console.log("newpos : " + newpos);
 
         _gsap.TweenMax.to(window, 1, {
@@ -10645,12 +10649,13 @@ if (arrowScroll == false) {
           onComplete: scrollingOff
         });
       });
+
       console.log("target : " + target);
 
       if (target == "" || target == "#home") {
-        ctrl.scrollTo(0);
+        _ctrl.scrollTo(0);
       } else {
-        ctrl.scrollTo(target);
+        _ctrl.scrollTo(target);
       }
     }
   }); //.to(".cookies-consent", { height: 60, duration: 0.3, delay: 1.5 });
