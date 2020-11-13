@@ -10562,10 +10562,11 @@ arrowLink.addEventListener("click", function (e) {
 
   if (cookiesConsent == false) {
     _gsap.gsap.to(".cookies-consent", {
-      height: 60,
+      height: 75,
       duration: 0.3,
       delay: 1.5
-    });
+    }); //.set(".box", { display: "block" });
+
   }
 
   initScrollTrig();
@@ -10643,7 +10644,7 @@ if (arrowScroll == false) {
 function cookiesConsentDisplay() {
   if (cookiesConsent == false) {
     _gsap.gsap.to(".cookies-consent", {
-      height: 60,
+      height: 75,
       duration: 0.3,
       delay: 1.5
     });
