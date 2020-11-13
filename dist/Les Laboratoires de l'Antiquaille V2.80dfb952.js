@@ -10463,31 +10463,9 @@ var _scrollmagic = _interopRequireDefault(require("scrollmagic"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var cookiesConsent = false;
-var arrowScroll = false; // document.getElementById("video").load();
-
-/* const gsap = require("gsap");
-require("gsap/ScrollToPlugin");
- */
-
-/* const express = require("express");
-const request = require("request");
-const bodyParser = require("body-parser");
-const path = require("path");
-
-const app = express(); */
-
-/* const port = process.env.PORT || 5000;
-app.listen(port, console.log("Server started on " + port)); */
-
-/* let sidebar = document.querySelector(".sidebar");
-
-let top = localStorage.getItem("sidebar-scroll");
-if (top !== null) {
-  sidebar.scrollTop = parseInt(top, 10);
-} */
-
+var arrowScroll = false;
+var video = document.querySelector("video");
 window.addEventListener("beforeunload", function () {
-  /* localStorage.setItem("sidebar-scroll", sidebar.scrollTop); */
   window.scrollTo(0, 0);
 }); // Enregistrement des plugins GSAP
 
@@ -10503,11 +10481,10 @@ var target = "";
 
 function scrollingOff() {
   scrolling = 0;
-} //window.addEventListener("load", function () {
-
+}
 
 var links = document.querySelectorAll(".menu-link");
-var ctrl = new _scrollmagic.default.Controller({}); // console.log("Link 0 : " + links[0]);
+var ctrl = new _scrollmagic.default.Controller({});
 
 for (var i = 0; i < links.length; i++) {
   links[i].addEventListener("click", function (event) {
@@ -10528,8 +10505,7 @@ for (var i = 0; i < links.length; i++) {
 } // Arrow
 
 
-var arrowLink = document.querySelector(".arrow-scroll"); // console.log("Arrow : " + arrowLink);
-
+var arrowLink = document.querySelector(".arrow-scroll");
 arrowLink.addEventListener("click", function (e) {
   scrolling = 1;
   arrowScroll = true;
@@ -10564,8 +10540,12 @@ arrowLink.addEventListener("click", function (e) {
     height: 75,
     duration: 0.3
   });
+  /* let video = document.querySelector("video");
+  video.currentTime = 0;
+  video.play();
+  */
 
-  var video = document.querySelector("video");
+
   video.currentTime = 0;
   video.play();
   var ctrl = new _scrollmagic.default.Controller({});
@@ -10589,17 +10569,7 @@ arrowLink.addEventListener("click", function (e) {
   }
 
   initScrollTrig();
-  /*const linkId = e.target.getAttribute("href");
-      console.log("target : " + linkId);
-    ctrl.scrollTo(function (newpos) {
-      TweenMax.to(window, 1, {
-        scrollTo: { y: newpos },
-        onComplete: scrollingOff,
-      });
-    });
-      ctrl.scrollTo(linkId);*/
-}); //});
-// Header
+}); // Header
 
 var timeline = _gsap.gsap.timeline({
   scrollTrigger: {
@@ -10619,8 +10589,7 @@ if (arrowScroll == false) {
     display: "block"
   }).set(".arrow-container", {
     display: "none"
-  }) //.to("#logo-nav", { opacity: 0 })
-  .to("#logo-nav-contract", {
+  }).to("#logo-nav-contract", {
     opacity: 1
   }).to("#logo-nav-contract", {
     marginTop: 25
@@ -10658,8 +10627,7 @@ if (arrowScroll == false) {
         _ctrl.scrollTo(target);
       }
     }
-  }); //.to(".cookies-consent", { height: 60, duration: 0.3, delay: 1.5 });
-
+  });
   timeline.then(function () {
     console.log("timeline then");
     console.log("arrow scroll " + arrowScroll);
@@ -10690,7 +10658,6 @@ function initScrollTrig() {
   var panels = document.querySelectorAll(".panel");
 
   _gsap.gsap.utils.toArray(".panel").forEach(function (panel, i) {
-    //if (i != 0) {
     _ScrollTrigger.ScrollTrigger.create({
       trigger: panel,
       onEnter: function onEnter() {
@@ -10702,8 +10669,7 @@ function initScrollTrig() {
         }
       },
       invalidateOnRefresh: true
-    }); //}
-
+    });
 
     _ScrollTrigger.ScrollTrigger.create({
       trigger: panel,
@@ -10717,7 +10683,6 @@ function initScrollTrig() {
     });
   });
 } // Scroll to sections
-// Scroll to sections
 
 
 function goToOffsetY(offsetY, anim) {
@@ -10759,18 +10724,14 @@ _ScrollTrigger.ScrollTrigger.create({
   trigger: ".video-section",
   start: "top top",
   onEnter: function onEnter() {
-    var video = document.querySelector("video");
+    video.currentTime = 0;
+    video.play();
+  },
+  onEnterBack: function onEnterBack() {
     video.currentTime = 0;
     video.play();
   }
 });
-/* ScrollTrigger.create({
-  trigger: ".projet-section",
-  start: "top top",
-  horizontal: true,
-  onEnter: () => {},
-}); */
-
 
 var intervalProjet;
 var intervalEquipe; // Redémarrage du slide projet quand on arrive sur la section
@@ -10778,15 +10739,12 @@ var intervalEquipe; // Redémarrage du slide projet quand on arrive sur la secti
 _ScrollTrigger.ScrollTrigger.create({
   trigger: ".projet-section",
   onEnterBack: function onEnterBack() {
-    console.log("démarrage slide projet");
     intervalProjet = setInterval(slideProjet, 15000);
   },
   onEnter: function onEnter() {
-    console.log("démarrage slide projet");
     intervalProjet = setInterval(slideProjet, 15000);
   },
   onLeave: function onLeave() {
-    console.log("STOP slide projet");
     clearInterval(intervalProjet);
 
     _gsap.gsap.to(".container-projet", {
@@ -10794,7 +10752,6 @@ _ScrollTrigger.ScrollTrigger.create({
     });
   },
   onLeaveBack: function onLeaveBack() {
-    console.log("STOP slide projet");
     clearInterval(intervalProjet);
 
     _gsap.gsap.to(".container-projet", {
@@ -10807,15 +10764,12 @@ _ScrollTrigger.ScrollTrigger.create({
 _ScrollTrigger.ScrollTrigger.create({
   trigger: ".equipe-section",
   onEnterBack: function onEnterBack() {
-    console.log("démarrage slide equipe");
     intervalEquipe = setInterval(slideEquipe, 15000);
   },
   onEnter: function onEnter() {
-    console.log("démarrage slide equipe");
     intervalEquipe = setInterval(slideEquipe, 15000);
   },
   onLeave: function onLeave() {
-    console.log("STOP slide équipe");
     clearInterval(intervalEquipe);
 
     _gsap.gsap.to(".container-equipe", {
@@ -10823,7 +10777,6 @@ _ScrollTrigger.ScrollTrigger.create({
     });
   },
   onLeaveBack: function onLeaveBack() {
-    console.log("STOP slide équipe");
     clearInterval(intervalEquipe);
 
     _gsap.gsap.to(".container-equipe", {
@@ -10946,17 +10899,18 @@ var hamburger = document.querySelector(".hamburger");
 var navLinks = document.querySelector(".nav-links");
 hamburger.addEventListener("click", function () {
   navLinks.classList.toggle("open");
-  document.querySelector(".hamburger").style.display = "none"; //document.querySelector(".relative-close-hamburger").style.display = "block";
+  document.querySelector(".hamburger").style.display = "none";
 });
 var hamburgerClose = document.querySelector(".close-hamburger");
 hamburgerClose.addEventListener("click", function () {
   navLinks.classList.toggle("open");
-  document.querySelector(".hamburger").style.display = "block"; //document.querySelector(".relative-close-hamburger").style.display = "block";
-});
+  document.querySelector(".hamburger").style.display = "block";
+}); // Cookies consent
+
 var consentOK = document.getElementById("consent-btn");
 consentOK.addEventListener("click", function (event) {
   event.preventDefault();
-  cookiesConsent = true; // document.querySelector(".cookies-consent").style.display = "none";
+  cookiesConsent = true;
 
   _gsap.gsap.to(".cookies-consent", {
     height: 0,
@@ -10991,7 +10945,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35819" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "9572" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

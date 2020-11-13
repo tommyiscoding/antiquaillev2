@@ -6,9 +6,30 @@ import ScrollMagic from "scrollmagic";
 let cookiesConsent = false;
 let arrowScroll = false;
 
-const video = document.querySelector("video");
+// document.getElementById("video").load();
+
+/* const gsap = require("gsap");
+require("gsap/ScrollToPlugin");
+ */
+/* const express = require("express");
+const request = require("request");
+const bodyParser = require("body-parser");
+const path = require("path");
+
+const app = express(); */
+
+/* const port = process.env.PORT || 5000;
+app.listen(port, console.log("Server started on " + port)); */
+
+/* let sidebar = document.querySelector(".sidebar");
+
+let top = localStorage.getItem("sidebar-scroll");
+if (top !== null) {
+  sidebar.scrollTop = parseInt(top, 10);
+} */
 
 window.addEventListener("beforeunload", () => {
+  /* localStorage.setItem("sidebar-scroll", sidebar.scrollTop); */
   window.scrollTo(0, 0);
 });
 
@@ -28,9 +49,11 @@ function scrollingOff() {
   scrolling = 0;
 }
 
+//window.addEventListener("load", function () {
 const links = document.querySelectorAll(".menu-link");
 let ctrl = new ScrollMagic.Controller({});
 
+// console.log("Link 0 : " + links[0]);
 for (let i = 0; i < links.length; i++) {
   links[i].addEventListener("click", function (event) {
     scrolling = 1;
@@ -50,6 +73,7 @@ for (let i = 0; i < links.length; i++) {
 
 // Arrow
 const arrowLink = document.querySelector(".arrow-scroll");
+// console.log("Arrow : " + arrowLink);
 
 arrowLink.addEventListener("click", function (e) {
   scrolling = 1;
@@ -75,10 +99,6 @@ arrowLink.addEventListener("click", function (e) {
   video.currentTime = 0;
   video.play();
  */
-
-  video.currentTime = 0;
-  video.play();
-
   let ctrl = new ScrollMagic.Controller({});
   scrolling = 1;
   ctrl.scrollTo(function (newpos) {
@@ -98,7 +118,20 @@ arrowLink.addEventListener("click", function (e) {
   }
 
   initScrollTrig();
+
+  /*const linkId = e.target.getAttribute("href");
+
+    console.log("target : " + linkId);
+    ctrl.scrollTo(function (newpos) {
+      TweenMax.to(window, 1, {
+        scrollTo: { y: newpos },
+        onComplete: scrollingOff,
+      });
+    });
+
+    ctrl.scrollTo(linkId);*/
 });
+//});
 
 // Header
 
@@ -121,6 +154,7 @@ if (arrowScroll == false) {
       display: "block",
     })
     .set(".arrow-container", { display: "none" })
+    //.to("#logo-nav", { opacity: 0 })
     .to("#logo-nav-contract", { opacity: 1 })
     .to("#logo-nav-contract", { marginTop: 25 })
     .to(".header", { height: 75, duration: 0.3 })
@@ -149,6 +183,7 @@ if (arrowScroll == false) {
         }
       }
     });
+  //.to(".cookies-consent", { height: 60, duration: 0.3, delay: 1.5 });
 
   timeline.then(function () {
     console.log("timeline then");
@@ -180,6 +215,7 @@ function initScrollTrig() {
   let panels = document.querySelectorAll(".panel");
 
   gsap.utils.toArray(".panel").forEach((panel, i) => {
+    //if (i != 0) {
     ScrollTrigger.create({
       trigger: panel,
       onEnter: () => {
@@ -192,6 +228,7 @@ function initScrollTrig() {
       },
       invalidateOnRefresh: true,
     });
+    //}
     ScrollTrigger.create({
       trigger: panel,
       start: "bottom bottom",
@@ -204,6 +241,8 @@ function initScrollTrig() {
     });
   });
 }
+
+// Scroll to sections
 
 // Scroll to sections
 function goToOffsetY(offsetY, anim) {
@@ -237,15 +276,18 @@ ScrollTrigger.create({
   trigger: ".video-section",
   start: "top top",
   onEnter: () => {
-    video.currentTime = 0;
-    video.play();
-  },
-  onEnterBack: () => {
+    let video = document.querySelector("video");
     video.currentTime = 0;
     video.play();
   },
 });
 
+/* ScrollTrigger.create({
+  trigger: ".projet-section",
+  start: "top top",
+  horizontal: true,
+  onEnter: () => {},
+}); */
 let intervalProjet;
 let intervalEquipe;
 
@@ -253,16 +295,20 @@ let intervalEquipe;
 ScrollTrigger.create({
   trigger: ".projet-section",
   onEnterBack: () => {
+    console.log("démarrage slide projet");
     intervalProjet = setInterval(slideProjet, 15000);
   },
   onEnter: () => {
+    console.log("démarrage slide projet");
     intervalProjet = setInterval(slideProjet, 15000);
   },
   onLeave: () => {
+    console.log("STOP slide projet");
     clearInterval(intervalProjet);
     gsap.to(".container-projet", { marginLeft: 0 });
   },
   onLeaveBack: () => {
+    console.log("STOP slide projet");
     clearInterval(intervalProjet);
     gsap.to(".container-projet", { marginLeft: 0 });
   },
@@ -272,16 +318,20 @@ ScrollTrigger.create({
 ScrollTrigger.create({
   trigger: ".equipe-section",
   onEnterBack: () => {
+    console.log("démarrage slide equipe");
     intervalEquipe = setInterval(slideEquipe, 15000);
   },
   onEnter: () => {
+    console.log("démarrage slide equipe");
     intervalEquipe = setInterval(slideEquipe, 15000);
   },
   onLeave: () => {
+    console.log("STOP slide équipe");
     clearInterval(intervalEquipe);
     gsap.to(".container-equipe", { marginLeft: 0 });
   },
   onLeaveBack: () => {
+    console.log("STOP slide équipe");
     clearInterval(intervalEquipe);
     gsap.to(".container-equipe", { marginLeft: 0 });
   },
@@ -389,18 +439,20 @@ const navLinks = document.querySelector(".nav-links");
 hamburger.addEventListener("click", () => {
   navLinks.classList.toggle("open");
   document.querySelector(".hamburger").style.display = "none";
+  //document.querySelector(".relative-close-hamburger").style.display = "block";
 });
 
 const hamburgerClose = document.querySelector(".close-hamburger");
 hamburgerClose.addEventListener("click", () => {
   navLinks.classList.toggle("open");
   document.querySelector(".hamburger").style.display = "block";
+  //document.querySelector(".relative-close-hamburger").style.display = "block";
 });
 
-// Cookies consent
 const consentOK = document.getElementById("consent-btn");
 consentOK.addEventListener("click", function (event) {
   event.preventDefault();
   cookiesConsent = true;
+  // document.querySelector(".cookies-consent").style.display = "none";
   gsap.to(".cookies-consent", { height: 0, duration: 0.5 });
 });

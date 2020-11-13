@@ -39,7 +39,11 @@
       </nav>
 
       <div class="arrow-container">
-        <a href="#home" class="arrow-scroll" id=""><i class="arrow"></i></a>
+        <!-- <a href="#home" class="arrow-scroll" id=""><i class="arrow" ></i></a> -->
+        <a href="#home" class="arrow-scroll" id="">
+          <img src="/icon_down.471e1273.svg" class="arrow">
+        </a>
+          
       </div>
 
       <nav class="mobile-navbar unselectable">
@@ -120,9 +124,9 @@
               >Professionnel
             </a> -->
           </article>
-          <video id="video" class="video-bg" muted="" playsinline="" autoplay="" loop="" poster="/video_poster.32450ae2.jpg">
-            <source src="/Montage_lantiquaille_5.a1dc727d.mp4" type="video/mp4">
+          <video id="video" class="video-bg" muted="" playsinline="" autoplay="" loop="" preload="auto" poster="/video_poster.32450ae2.jpg">
             <source src="/Montage_lantiquaille_5.5af7311c.webm" type="video/webm">
+            <source src="/Montage_lantiquaille_5.a1dc727d.mp4" type="video/mp4">
             <source src="/Montage_lantiquaille_5.762fe890.ogv" type="video/ogv">
           </video>
         </div>
@@ -705,8 +709,6 @@ bgvideo.play();</script>
     <script>var cb = document.querySelector('#checkbox');
 var btn = document.querySelector('#mc-embedded-subscribe');
 cb.checked = false;
-console.log(cb.checked);
-console.log(cb.value);
 cb.addEventListener("change", function () {
   if (this.checked) {
     btn.classList.remove("disabled");
