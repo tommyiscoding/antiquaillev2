@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel fr/index.html parcel fr/inscription-newsletter.html parcel en/index.html en/newsletter-register.html",
+    "start": "parcel fr/index.html parcel fr/inscription-newsletter.html parcel en/index.html parcel en/newsletter-register.html",
     "mailchimp": "node app",
-    "build": "parcel fr/index.html --public-url ./",
+    "build": "parcel fr/index.html --public-url ./fr parcel en/index.html --public-url ./en",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Thomas Freger",
