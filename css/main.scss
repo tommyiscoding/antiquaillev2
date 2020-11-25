@@ -247,11 +247,17 @@ button {
       width: 150px;
       // padding: 0 2em;
     }
+    .lang {
+      right: 20px;
+    }
   }
 
   @media screen and (min-width: 1025px) and (max-width: 1200px) {
     .menu-link {
       width: 120px;
+    }
+    .lang {
+      right: 20px;
     }
   }
 
@@ -259,6 +265,12 @@ button {
     .menu-link {
       width: 100px;
     }
+
+    .lang {
+      right: 8px;
+    }
+
+
   }
 
   .nav-space {
@@ -282,6 +294,19 @@ button {
     transition: width 0.5s;
   }
 
+  
+
+  .lang {
+    color: #80705a;
+    display: flex;
+    position: fixed;
+    top: 0;
+    margin-top: -1px;
+    width: 75px;
+    height: 75px;
+    align-items: center;
+  }
+
 .lang-link {
     font-size: clamp(0.6em, 1vw, 0.8em);
   } 
@@ -291,10 +316,9 @@ button {
   } */
   .lang-separator {
     height: 16px;
-    margin-top: -2px;
     width: 1px;
     background-color: #80705a;
-    margin: 0 8px;
+    margin: -4px 8px 0 8px;
   }
 
   .menu-logo-img {
@@ -309,18 +333,10 @@ button {
     transform: scale(1.05);
   }
 
-  .lang {
-    color: #80705a;
-    display: flex;
-    position: fixed;
-    top: 0;
-    right: 5px;
-    margin-top: -1px;
-    width: 75px;
-    height: 75px;
-    align-items: center;
-  }
+ 
 }
+
+
 
 .arrow-container {
   position: absolute;
