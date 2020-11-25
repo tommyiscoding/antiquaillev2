@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel fr/index.html parcel fr/inscription-newsletter.html parcel en/index.html en/newsletter-register.html",
     "mailchimp": "node app",
-    "build": "parcel fr/index.html --public-url ./",
+    "build": "parcel fr/index.html en/index.html --public-url ./",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Thomas Freger",
