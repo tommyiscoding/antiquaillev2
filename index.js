@@ -48,6 +48,26 @@ for (let i = 0; i < links.length; i++) {
   });
 }
 
+const mobilelinks = document.querySelectorAll(".nav-menu-link");
+
+for (let i = 0; i < mobilelinks.length; i++) {
+  mobilelinks[i].addEventListener("click", function (event) {
+    scrolling = 1;
+    event.preventDefault();
+    const linkId = event.target.getAttribute("href");
+    target = linkId;
+    menuMobileClose();
+    ctrl.scrollTo(function (newpos) {
+      TweenMax.to(window, 1, {
+        scrollTo: { y: newpos },
+        onComplete: scrollingOff,
+      });
+    });
+
+    ctrl.scrollTo(linkId);
+  });
+}
+
 // Arrow
 const arrowLink = document.querySelector(".arrow-scroll");
 
@@ -102,64 +122,72 @@ arrowLink.addEventListener("click", function (e) {
 });
 
 // Header
-
-let timeline = gsap.timeline({
-  scrollTrigger: {
-    trigger: "header",
-    start: "top -80",
-    endTrigger: "home",
-  },
-});
-
-if (arrowScroll == false) {
-  console.log("arrow scroll est false mais");
-  timeline
-    .to(".menu-logo-img", { width: 100 })
-    .set("#logo-nav", {
-      display: "none",
-    })
-    .set("#logo-nav-contract", {
-      display: "block",
-    })
-    .set(".arrow-container", { display: "none" })
-    .to("#logo-nav-contract", { opacity: 1 })
-    .to("#logo-nav-contract", { marginTop: 25 })
-    .to(".header", { height: 75, duration: 0.3 })
-    .add(function () {
-      console.log("give me arrow " + (arrowScroll == false));
-      if (arrowScroll) {
-        console.log("do noting");
-      } else {
-        console.log("timeline");
-        let ctrl = new ScrollMagic.Controller({});
-        scrolling = 1;
-        ctrl.scrollTo(function (newpos) {
-          console.log("newpos : " + newpos);
-          TweenMax.to(window, 1, {
-            scrollTo: { y: newpos },
-            onComplete: scrollingOff,
-          });
-        });
-
-        console.log("target : " + target);
-
-        if (target == "" || target == "#home") {
-          ctrl.scrollTo(0);
-        } else {
-          ctrl.scrollTo(target);
-        }
-      }
+ScrollTrigger.matchMedia({
+  "(min-width: 769px)": function () {
+    let timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: "header",
+        start: "top -80",
+        endTrigger: "home",
+      },
     });
 
-  timeline.then(function () {
-    console.log("timeline then");
-    console.log("arrow scroll " + arrowScroll);
-    if (!arrowScroll) {
-      initScrollTrig();
+    if (arrowScroll == false) {
+      console.log("arrow scroll est false mais");
+      timeline
+        .to(".menu-logo-img", { width: 100 })
+        .set("#logo-nav", {
+          display: "none",
+        })
+        .set("#logo-nav-contract", {
+          display: "block",
+        })
+        .set(".arrow-container", { display: "none" })
+        .to("#logo-nav-contract", { opacity: 1 })
+        .to("#logo-nav-contract", { marginTop: 25 })
+        .to(".header", { height: 75, duration: 0.3 })
+        .add(function () {
+          console.log("give me arrow " + (arrowScroll == false));
+          if (arrowScroll) {
+            console.log("do noting");
+          } else {
+            console.log("timeline");
+            let ctrl = new ScrollMagic.Controller({});
+            scrolling = 1;
+            ctrl.scrollTo(function (newpos) {
+              console.log("newpos : " + newpos);
+              TweenMax.to(window, 1, {
+                scrollTo: { y: newpos },
+                onComplete: scrollingOff,
+              });
+            });
+
+            console.log("target : " + target);
+
+            if (target == "" || target == "#home") {
+              ctrl.scrollTo(0);
+            } else {
+              ctrl.scrollTo(target);
+            }
+          }
+        });
+
+      timeline.then(function () {
+        console.log("timeline then");
+        console.log("arrow scroll " + arrowScroll);
+        if (!arrowScroll) {
+          initScrollTrig();
+        }
+        cookiesConsentDisplay();
+      });
     }
+  },
+
+  "(max-width: 768px)": function () {
+    initScrollTrig();
     cookiesConsentDisplay();
-  });
-}
+  },
+});
 
 function cookiesConsentDisplay() {
   if (cookiesConsent == false) {
@@ -388,14 +416,16 @@ document.querySelector(".close").addEventListener("click", function () {
 const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
 hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
-  document.querySelector(".hamburger").style.display = "none";
+  /* navLinks.classList.toggle("open");
+  document.querySelector(".hamburger").style.display = "none"; */
+  menuMobileOpen();
 });
 
 const hamburgerClose = document.querySelector(".close-hamburger");
 hamburgerClose.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
-  document.querySelector(".hamburger").style.display = "block";
+  /*  navLinks.classList.toggle("open");
+  document.querySelector(".hamburger").style.display = "block"; */
+  menuMobileClose();
 });
 
 // Cookies consent
@@ -405,3 +435,13 @@ consentOK.addEventListener("click", function (event) {
   cookiesConsent = true;
   gsap.to(".cookies-consent", { height: 0, duration: 0.5 });
 });
+
+function menuMobileOpen() {
+  navLinks.classList.toggle("open");
+  document.querySelector(".hamburger").style.display = "none";
+}
+
+function menuMobileClose() {
+  navLinks.classList.toggle("open");
+  document.querySelector(".hamburger").style.display = "block";
+}

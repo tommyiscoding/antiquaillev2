@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/gsap/gsap-core.js":[function(require,module,exports) {
+})({"node_modules/gsap/gsap-core.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3988,7 +3988,7 @@ exports.Power3 = Power3;
 exports.Power2 = Power2;
 exports.Power1 = Power1;
 exports.Power0 = Power0;
-},{}],"../node_modules/gsap/CSSPlugin.js":[function(require,module,exports) {
+},{}],"node_modules/gsap/CSSPlugin.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5381,7 +5381,7 @@ _gsapCore.gsap.utils.checkPrefix = _checkPropPrefix;
 });
 
 _gsapCore.gsap.registerPlugin(CSSPlugin);
-},{"./gsap-core.js":"../node_modules/gsap/gsap-core.js"}],"../node_modules/gsap/index.js":[function(require,module,exports) {
+},{"./gsap-core.js":"node_modules/gsap/gsap-core.js"}],"node_modules/gsap/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5531,7 +5531,7 @@ TweenMaxWithCSS = gsapWithCSS.core.Tween;
 
 exports.TweenMax = TweenMaxWithCSS;
 exports.default = exports.gsap = gsapWithCSS;
-},{"./gsap-core.js":"../node_modules/gsap/gsap-core.js","./CSSPlugin.js":"../node_modules/gsap/CSSPlugin.js"}],"../node_modules/gsap/ScrollToPlugin.js":[function(require,module,exports) {
+},{"./gsap-core.js":"node_modules/gsap/gsap-core.js","./CSSPlugin.js":"node_modules/gsap/CSSPlugin.js"}],"node_modules/gsap/ScrollToPlugin.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5769,7 +5769,7 @@ ScrollToPlugin.max = _max;
 ScrollToPlugin.getOffset = _getOffset;
 ScrollToPlugin.buildGetter = _buildGetter;
 _getGSAP() && gsap.registerPlugin(ScrollToPlugin);
-},{}],"../node_modules/gsap/ScrollTrigger.js":[function(require,module,exports) {
+},{}],"node_modules/gsap/ScrollTrigger.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10449,12 +10449,10 @@ var define;
 
   return ScrollMagic;
 });
-},{}],"../index.js":[function(require,module,exports) {
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _gsap = require("gsap");
-
-var _gsapCore = require("gsap/gsap-core");
 
 var _ScrollToPlugin = require("gsap/ScrollToPlugin");
 
@@ -10464,27 +10462,19 @@ var _scrollmagic = _interopRequireDefault(require("scrollmagic"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* const express = require("express");
-const request = require("request");
-const bodyParser = require("body-parser");
-const path = require("path");
+var cookiesConsent = false;
+var arrowScroll = false;
+var video = document.querySelector("video");
+window.addEventListener("beforeunload", function () {
+  window.scrollTo(0, 0);
+}); // Enregistrement des plugins GSAP
 
-const app = express(); */
-
-/* const port = process.env.PORT || 5000;
-app.listen(port, console.log("Server started on " + port)); */
-// Enregistrement des plugins GSAP
 _gsap.gsap.registerPlugin(_ScrollToPlugin.ScrollToPlugin, _ScrollTrigger.ScrollTrigger);
 
 var header = document.querySelector(".header");
-
-window.onbeforeunload = function () {
-  window.scrollTo(0);
-};
 /***********
 Navigation
 ************/
-
 
 var scrolling = 0;
 var target = "";
@@ -10493,71 +10483,15 @@ function scrollingOff() {
   scrolling = 0;
 }
 
-window.addEventListener("load", function () {
-  var links = document.querySelectorAll(".menu-link");
-  var ctrl = new _scrollmagic.default.Controller({});
-  console.log("Link 0 : " + links[0]);
+var links = document.querySelectorAll(".menu-link");
+var ctrl = new _scrollmagic.default.Controller({});
 
-  for (var i = 0; i < links.length; i++) {
-    links[i].addEventListener("click", function (event) {
-      scrolling = 1;
-      event.preventDefault();
-      var linkId = event.target.getAttribute("href");
-      target = linkId;
-      ctrl.scrollTo(function (newpos) {
-        _gsap.TweenMax.to(window, 1, {
-          scrollTo: {
-            y: newpos
-          },
-          onComplete: scrollingOff
-        });
-      });
-      ctrl.scrollTo(linkId);
-    });
-  } // Arrow
-
-
-  var arrowLink = document.querySelector(".arrow-scroll");
-  console.log("Arrow : " + arrowLink);
-  arrowLink.addEventListener("click", function (e) {
+for (var i = 0; i < links.length; i++) {
+  links[i].addEventListener("click", function (event) {
     scrolling = 1;
-    e.preventDefault();
-
-    _gsap.gsap.to(".menu-logo-img", {
-      width: 100
-    });
-
-    _gsap.gsap.set("#logo-nav", {
-      display: "none"
-    });
-
-    _gsap.gsap.set("#logo-nav-contract", {
-      display: "block"
-    });
-
-    _gsap.gsap.set(".arrow-container", {
-      display: "none"
-    }); //.to("#logo-nav", { opacity: 0 })
-
-
-    _gsap.gsap.to("#logo-nav-contract", {
-      opacity: 1
-    });
-
-    _gsap.gsap.to("#logo-nav-contract", {
-      marginTop: 25
-    });
-
-    _gsap.gsap.to(".header", {
-      height: 75,
-      duration: 0.3
-    });
-
-    var video = document.querySelector("video");
-    video.currentTime = 0;
-    video.play();
-    var ctrl = new _scrollmagic.default.Controller({});
-    scrolling = 1;
+    event.preventDefault();
+    var linkId = event.target.getAttribute("href");
+    target = linkId;
     ctrl.scrollTo(function (newpos) {
       _gsap.TweenMax.to(window, 1, {
         scrollTo: {
@@ -10566,45 +10500,75 @@ window.addEventListener("load", function () {
         onComplete: scrollingOff
       });
     });
-    ctrl.scrollTo("#home");
-    initScrollTrig();
-    /*const linkId = e.target.getAttribute("href");
-      console.log("target : " + linkId);
+    ctrl.scrollTo(linkId);
+  });
+}
+
+var mobilelinks = document.querySelectorAll(".nav-menu-link");
+
+for (var _i = 0; _i < mobilelinks.length; _i++) {
+  mobilelinks[_i].addEventListener("click", function (event) {
+    scrolling = 1;
+    event.preventDefault();
+    var linkId = event.target.getAttribute("href");
+    target = linkId;
+    menuMobileClose();
     ctrl.scrollTo(function (newpos) {
-      TweenMax.to(window, 1, {
-        scrollTo: { y: newpos },
-        onComplete: scrollingOff,
+      _gsap.TweenMax.to(window, 1, {
+        scrollTo: {
+          y: newpos
+        },
+        onComplete: scrollingOff
       });
     });
-      ctrl.scrollTo(linkId);*/
+    ctrl.scrollTo(linkId);
   });
-}); // Header
+} // Arrow
 
-var timeline = _gsap.gsap.timeline({
-  scrollTrigger: {
-    trigger: "header",
-    start: "top -80",
-    endTrigger: "home"
-  }
-});
 
-timeline.to(".menu-logo-img", {
-  width: 100
-}).set("#logo-nav", {
-  display: "none"
-}).set("#logo-nav-contract", {
-  display: "block"
-}).set(".arrow-container", {
-  display: "none"
-}) //.to("#logo-nav", { opacity: 0 })
-.to("#logo-nav-contract", {
-  opacity: 1
-}).to("#logo-nav-contract", {
-  marginTop: 25
-}).to(".header", {
-  height: 75,
-  duration: 0.3
-}).add(function () {
+var arrowLink = document.querySelector(".arrow-scroll");
+arrowLink.addEventListener("click", function (e) {
+  scrolling = 1;
+  arrowScroll = true;
+  e.preventDefault();
+
+  _gsap.gsap.to(".menu-logo-img", {
+    width: 100
+  });
+
+  _gsap.gsap.set("#logo-nav", {
+    display: "none"
+  });
+
+  _gsap.gsap.set("#logo-nav-contract", {
+    display: "block"
+  });
+
+  _gsap.gsap.set(".arrow-container", {
+    display: "none"
+  }); //.to("#logo-nav", { opacity: 0 })
+
+
+  _gsap.gsap.to("#logo-nav-contract", {
+    opacity: 1
+  });
+
+  _gsap.gsap.to("#logo-nav-contract", {
+    marginTop: 25
+  });
+
+  _gsap.gsap.to(".header", {
+    height: 75,
+    duration: 0.3
+  });
+  /* let video = document.querySelector("video");
+  video.currentTime = 0;
+  video.play();
+  */
+
+
+  video.currentTime = 0;
+  video.play();
   var ctrl = new _scrollmagic.default.Controller({});
   scrolling = 1;
   ctrl.scrollTo(function (newpos) {
@@ -10615,14 +10579,106 @@ timeline.to(".menu-logo-img", {
       onComplete: scrollingOff
     });
   });
+  ctrl.scrollTo("#home");
 
-  if (target == "" || target == "#home") {
-    ctrl.scrollTo(0);
-  } else {
-    ctrl.scrollTo(target);
+  if (cookiesConsent == false) {
+    _gsap.gsap.to(".cookies-consent", {
+      height: 75,
+      duration: 0.3,
+      delay: 1.5
+    }); //.set(".box", { display: "block" });
+
+  }
+
+  initScrollTrig();
+}); // Header
+
+_ScrollTrigger.ScrollTrigger.matchMedia({
+  "(min-width: 769px)": function minWidth769px() {
+    var timeline = _gsap.gsap.timeline({
+      scrollTrigger: {
+        trigger: "header",
+        start: "top -80",
+        endTrigger: "home"
+      }
+    });
+
+    if (arrowScroll == false) {
+      console.log("arrow scroll est false mais");
+      timeline.to(".menu-logo-img", {
+        width: 100
+      }).set("#logo-nav", {
+        display: "none"
+      }).set("#logo-nav-contract", {
+        display: "block"
+      }).set(".arrow-container", {
+        display: "none"
+      }).to("#logo-nav-contract", {
+        opacity: 1
+      }).to("#logo-nav-contract", {
+        marginTop: 25
+      }).to(".header", {
+        height: 75,
+        duration: 0.3
+      }).add(function () {
+        console.log("give me arrow " + (arrowScroll == false));
+
+        if (arrowScroll) {
+          console.log("do noting");
+        } else {
+          console.log("timeline");
+
+          var _ctrl = new _scrollmagic.default.Controller({});
+
+          scrolling = 1;
+
+          _ctrl.scrollTo(function (newpos) {
+            console.log("newpos : " + newpos);
+
+            _gsap.TweenMax.to(window, 1, {
+              scrollTo: {
+                y: newpos
+              },
+              onComplete: scrollingOff
+            });
+          });
+
+          console.log("target : " + target);
+
+          if (target == "" || target == "#home") {
+            _ctrl.scrollTo(0);
+          } else {
+            _ctrl.scrollTo(target);
+          }
+        }
+      });
+      timeline.then(function () {
+        console.log("timeline then");
+        console.log("arrow scroll " + arrowScroll);
+
+        if (!arrowScroll) {
+          initScrollTrig();
+        }
+
+        cookiesConsentDisplay();
+      });
+    }
+  },
+  "(max-width: 768px)": function maxWidth768px() {
+    initScrollTrig();
+    cookiesConsentDisplay();
   }
 });
-timeline.then(initScrollTrig);
+
+function cookiesConsentDisplay() {
+  if (cookiesConsent == false) {
+    _gsap.gsap.to(".cookies-consent", {
+      height: 75,
+      duration: 0.3,
+      delay: 1.5
+    });
+  }
+}
 
 function initScrollTrig() {
   console.log("passe ici");
@@ -10632,7 +10688,6 @@ function initScrollTrig() {
   var panels = document.querySelectorAll(".panel");
 
   _gsap.gsap.utils.toArray(".panel").forEach(function (panel, i) {
-    //if (i != 0) {
     _ScrollTrigger.ScrollTrigger.create({
       trigger: panel,
       onEnter: function onEnter() {
@@ -10644,8 +10699,7 @@ function initScrollTrig() {
         }
       },
       invalidateOnRefresh: true
-    }); //}
-
+    });
 
     _ScrollTrigger.ScrollTrigger.create({
       trigger: panel,
@@ -10659,7 +10713,6 @@ function initScrollTrig() {
     });
   });
 } // Scroll to sections
-// Scroll to sections
 
 
 function goToOffsetY(offsetY, anim) {
@@ -10701,18 +10754,14 @@ _ScrollTrigger.ScrollTrigger.create({
   trigger: ".video-section",
   start: "top top",
   onEnter: function onEnter() {
-    var video = document.querySelector("video");
+    video.currentTime = 0;
+    video.play();
+  },
+  onEnterBack: function onEnterBack() {
     video.currentTime = 0;
     video.play();
   }
 });
-/* ScrollTrigger.create({
-  trigger: ".projet-section",
-  start: "top top",
-  horizontal: true,
-  onEnter: () => {},
-}); */
-
 
 var intervalProjet;
 var intervalEquipe; // Redémarrage du slide projet quand on arrive sur la section
@@ -10720,14 +10769,24 @@ var intervalEquipe; // Redémarrage du slide projet quand on arrive sur la secti
 _ScrollTrigger.ScrollTrigger.create({
   trigger: ".projet-section",
   onEnterBack: function onEnterBack() {
-    console.log("démarrage slide projet");
-    clearInterval(intervalProjet);
     intervalProjet = setInterval(slideProjet, 15000);
   },
   onEnter: function onEnter() {
-    console.log("démarrage slide projet");
-    clearInterval(intervalProjet);
     intervalProjet = setInterval(slideProjet, 15000);
+  },
+  onLeave: function onLeave() {
+    clearInterval(intervalProjet);
+
+    _gsap.gsap.to(".container-projet", {
+      marginLeft: 0
+    });
+  },
+  onLeaveBack: function onLeaveBack() {
+    clearInterval(intervalProjet);
+
+    _gsap.gsap.to(".container-projet", {
+      marginLeft: 0
+    });
   }
 }); // Redémarrage du slide équipe quand on arrive sur la section
 
@@ -10735,14 +10794,24 @@ _ScrollTrigger.ScrollTrigger.create({
 _ScrollTrigger.ScrollTrigger.create({
   trigger: ".equipe-section",
   onEnterBack: function onEnterBack() {
-    console.log("démarrage slide equipe");
-    clearInterval(intervalEquipe);
     intervalEquipe = setInterval(slideEquipe, 15000);
   },
   onEnter: function onEnter() {
-    console.log("démarrage slide equipe");
-    clearInterval(intervalEquipe);
     intervalEquipe = setInterval(slideEquipe, 15000);
+  },
+  onLeave: function onLeave() {
+    clearInterval(intervalEquipe);
+
+    _gsap.gsap.to(".container-equipe", {
+      marginLeft: 0
+    });
+  },
+  onLeaveBack: function onLeaveBack() {
+    clearInterval(intervalEquipe);
+
+    _gsap.gsap.to(".container-equipe", {
+      marginLeft: 0
+    });
   }
 });
 /* Slider projet */
@@ -10831,12 +10900,66 @@ function slideEquipe() {
 
 document.getElementById("open-modal-button").addEventListener("click", function (event) {
   event.preventDefault();
+  document.querySelector("body").style.overflowY = "hidden";
   document.querySelector(".bg-modal").style.display = "flex";
+  document.addEventListener("click", function (e) {
+    console.log("click");
+    console.log(e.target.id); // If user clicks inside the element, do nothing
+
+    if (e.target.closest(".modal-content") || e.target.id == "open-modal-button") {
+      console.log("detewt");
+      return;
+    } // If user clicks outside the element, hide it!
+
+
+    document.querySelector(".bg-modal").style.display = "none";
+    document.querySelector("body").style.overflowY = "visible";
+    document.querySelector("#checkbox").checked = false;
+    document.querySelector("#mc-embedded-subscribe").classList.add("disabled");
+  });
 });
 document.querySelector(".close").addEventListener("click", function () {
   document.querySelector(".bg-modal").style.display = "none";
-}); // Signup route
-},{"gsap":"../node_modules/gsap/index.js","gsap/gsap-core":"../node_modules/gsap/gsap-core.js","gsap/ScrollToPlugin":"../node_modules/gsap/ScrollToPlugin.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js","scrollmagic":"node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"}],"C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  document.querySelector("body").style.overflowY = "visible";
+  document.querySelector("#checkbox").checked = false;
+  document.querySelector("#mc-embedded-subscribe").classList.add("disabled");
+}); // Hamburger menu
+
+var hamburger = document.querySelector(".hamburger");
+var navLinks = document.querySelector(".nav-links");
+hamburger.addEventListener("click", function () {
+  /* navLinks.classList.toggle("open");
+  document.querySelector(".hamburger").style.display = "none"; */
+  menuMobileOpen();
+});
+var hamburgerClose = document.querySelector(".close-hamburger");
+hamburgerClose.addEventListener("click", function () {
+  /*  navLinks.classList.toggle("open");
+  document.querySelector(".hamburger").style.display = "block"; */
+  menuMobileClose();
+}); // Cookies consent
+
+var consentOK = document.getElementById("consent-btn");
+consentOK.addEventListener("click", function (event) {
+  event.preventDefault();
+  cookiesConsent = true;
+
+  _gsap.gsap.to(".cookies-consent", {
+    height: 0,
+    duration: 0.5
+  });
+});
+
+function menuMobileOpen() {
+  navLinks.classList.toggle("open");
+  document.querySelector(".hamburger").style.display = "none";
+}
+
+function menuMobileClose() {
+  navLinks.classList.toggle("open");
+  document.querySelector(".hamburger").style.display = "block";
+}
+},{"gsap":"node_modules/gsap/index.js","gsap/ScrollToPlugin":"node_modules/gsap/ScrollToPlugin.js","gsap/ScrollTrigger":"node_modules/gsap/ScrollTrigger.js","scrollmagic":"node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"}],"C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -10864,7 +10987,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "29949" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "21041" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -11040,5 +11163,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","../index.js"], null)
+},{}]},{},["C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/Les%20Laboratoires%20de%20l%27Antiquaille%20V2.e31bb0bc.js.map

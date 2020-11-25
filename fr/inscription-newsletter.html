@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Les Laboratoires de l'Antiquaille - Inscription newsletter</title>
+    <title>Les Laboratoires de L'Antiquaille - Inscription newsletter</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/main.css">
@@ -42,6 +42,19 @@
         font-size: 12px;
         color: #af0a0a;
       }
+
+      #mce-error-response {
+        
+        background-color: #fff;
+        font-size: 12px;
+        color: #80705a;
+      }
+
+      #mce-success-response {
+            background-color: #fff;
+            font-size: 14px;
+            color: #00721c;
+      }
       
       /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
          We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
@@ -52,17 +65,25 @@
       #mergeRow-gdpr {margin-top: 20px;}
       #mergeRow-gdpr fieldset label {font-weight: normal;}
       #mc-embedded-subscribe-form .mc_fieldset{border:none;min-height: 0px;padding-bottom:0px;}
+      
     </style>
 
     <div id="mc_embed_signup">
       <form action="https://lantiquaille.us2.list-manage.com/subscribe/post?u=8b73c432d0160aa20a62fdfe6&amp;id=c883200115" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
         <div id="mc_embed_signup_scroll">
           <!-- <h4 class="modal-title">Pour rester informé(e), laissez-nous vos coordonnées</h4> -->
-          <p class="modal-description">
-            Pour rester informé(e) de l’évolution de notre projet, pour recevoir des informations régulières sur ses grandes étapes ainsi que notre future Newsletter, nous vous invitons à nous laisser vos coordonnées en remplissant la fiche ci-dessous.
+          <p class="modal-description">            
+            Pour rester informé(e) de l’évolution de notre projet, pour recevoir des informations régulières sur ses grandes étapes ou vous abonner à notre future Newsletter, 
+            nous vous invitons à nous laisser vos coordonnées en remplissant la fiche ci-dessous.
           </p>
 
-          
+          <div class="mc-field-group input-group">            
+            <div id="genderArea">
+              <input type="radio" class="radio" value="Madame" name="MMERGE8" id="mce-MMERGE8-0" checked/><label for="mce-MMERGE8-0">Madame</label>
+              <input type="radio" class="radio" value="Monsieur" name="MMERGE8" id="mce-MMERGE8-1"/><label for="mce-MMERGE8-1">Monsieur</label>
+            </div>
+          </div>
+
           <div class="mc-field-group">
             <!-- <label for="mce-FNAME">Prénom </label> -->
             <input type="text" value="" name="FNAME" class="" id="mce-FNAME" placeholder="Prénom">
@@ -84,8 +105,11 @@
             <input type="text" value="" name="MMERGE7" class="" id="mce-MMERGE7" placeholder="Pays">
           </div>
 
+          <input type="hidden" value="FR" name="MMERGE9" class="" id="mce-MMERGE9">
+
+
           <p class="indicates-req">
-            <span class="asterisk">*</span> indique que l'information est requise
+            <span class="asterisk">*</span> Information requise
           </p>
 
           <div class="checkbox-container">
@@ -113,6 +137,9 @@
             </div> -->
         </div>
 
+        <div class="clear">
+          <input type="submit" value="Valider" name="subscribe" id="mc-embedded-subscribe" class="btn-mailchimp disabled">
+        </div>
           <div id="mce-responses" class="clear">
             <div class="response" id="mce-error-response" style="display:none"></div>
             <div class="response" id="mce-success-response" style="display:none"></div>
@@ -120,14 +147,12 @@
           <div style="position: absolute; left: -5000px;" aria-hidden="true">
             <input type="text" name="b_8b73c432d0160aa20a62fdfe6_c883200115" tabindex="-1" value="">
           </div>
-          <div class="clear">
-            <input type="submit" value="Valider" name="subscribe" id="mc-embedded-subscribe" class="btn-mailchimp disabled">
-          </div>
         </div>
       </form>
       
       <p class="modal-description-ita">
-        Nous vous rappelons que nous nous engageons à n'utiliser vos coordonnées qu'en interne et à ne les communiquer à aucun tiers. Sachez que, conformément à la législation européenne sur la protection des données (RGPD), vous pourrez à tout instant demander à ce qu'elles soient définitivement effacées de nos fichiers en nous écrivant à l'adresse suivante : contact@lantiquaille.com
+        Nous vous rappelons que nous nous engageons à n'utiliser vos coordonnées qu'en interne et à ne les communiquer à aucun tiers dans le cadre d'une démarche commerciale. 
+        Sachez que, conformément à la législation européenne sur la protection des données (RGPD), vous pourrez à tout instant demander à ce qu'elles soient définitivement effacées de nos fichiers en nous écrivant à l'adresse suivante : <a href="mailto:contact@lantiquaille.com" class="">contact@lantiquaille.com</a>.
       </p>
     </div>
 
@@ -142,7 +167,7 @@
     <footer>
       <div class="copyright">
         <div class="copyright-text">
-          © 2020 Les laboratoires de l’Antiquaille | Site web réalisé par <a href="mailto:emilieroquet@gmail.com" class="">Emilie Roquet</a> et <a href="mailto:thomas.freger@gmail.com" class="">Thomas Freger</a>
+          © 2020 Les Laboratoires de L’Antiquaille | Site web réalisé par <a href="mailto:emilieroquet@gmail.com" class="">Emilie Roquet</a> et <a href="mailto:thomas.freger@gmail.com" class="">Thomas Freger</a>
           <!-- <div class="copyright-links">
             <a href="#" class="copyright-link">Mentions légales</a>
             
@@ -206,28 +231,33 @@
   fnames[6]='MMERGE6';
   ftypes[6]='text';
   fnames[7]='MMERGE7';
-  ftypes[7]='text'; /*
+  ftypes[7]='text'; 
+  fnames[8]='MMERGE8';
+  ftypes[8]='radio';
+  fnames[9]='MMERGE9';
+  ftypes[9]='text'; 
+  /*
   * Translated default messages for the $ validation plugin.
   * Locale: FR
   */
   $.extend($.validator.messages, {
-          required: "Ce champ est requis.",
-          remote: "Veuillez remplir ce champ pour continuer.",
-          email: "Veuillez entrer une adresse email valide.",
-          url: "Veuillez entrer une URL valide.",
-          date: "Veuillez entrer une date valide.",
-          dateISO: "Veuillez entrer une date valide (ISO).",
-          number: "Veuillez entrer un nombre valide.",
-          digits: "Veuillez entrer (seulement) une valeur numérique.",
-          creditcard: "Veuillez entrer un numéro de carte de crédit valide.",
-          equalTo: "Veuillez entrer une nouvelle fois la même valeur.",
-          accept: "Veuillez entrer une valeur avec une extension valide.",
-          maxlength: $.validator.format("Veuillez ne pas entrer plus de {0} caractères."),
-          minlength: $.validator.format("Veuillez entrer au moins {0} caractères."),
-          rangelength: $.validator.format("Veuillez entrer entre {0} et {1} caractères."),
-          range: $.validator.format("Veuillez entrer une valeur entre {0} et {1}."),
-          max: $.validator.format("Veuillez entrer une valeur inférieure ou égale à {0}."),
-          min: $.validator.format("Veuillez entrer une valeur supérieure ou égale à {0}.")
+    required: "Ce champ est requis.",
+    remote: "Veuillez remplir ce champ pour continuer.",
+    email: "Veuillez entrer une adresse email valide.",
+    url: "Veuillez entrer une URL valide.",
+    date: "Veuillez entrer une date valide.",
+    dateISO: "Veuillez entrer une date valide (ISO).",
+    number: "Veuillez entrer un nombre valide.",
+    digits: "Veuillez entrer (seulement) une valeur numérique.",
+    creditcard: "Veuillez entrer un numéro de carte de crédit valide.",
+    equalTo: "Veuillez entrer une nouvelle fois la même valeur.",
+    accept: "Veuillez entrer une valeur avec une extension valide.",
+    maxlength: $.validator.format("Veuillez ne pas entrer plus de {0} caractères."),
+    minlength: $.validator.format("Veuillez entrer au moins {0} caractères."),
+    rangelength: $.validator.format("Veuillez entrer entre {0} et {1} caractères."),
+    range: $.validator.format("Veuillez entrer une valeur entre {0} et {1}."),
+    max: $.validator.format("Veuillez entrer une valeur inférieure ou égale à {0}."),
+    min: $.validator.format("Veuillez entrer une valeur supérieure ou égale à {0}.")
   });}(jQuery));
   var $mcj = jQuery.noConflict(true);
   </script>

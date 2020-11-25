@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel fr/index.html parcel fr/inscription-newsletter.html",
+    "start": "parcel fr/index.html parcel fr/inscription-newsletter.html parcel en/index.html en/newsletter-register.html",
     "mailchimp": "node app",
     "build": "parcel fr/index.html --public-url ./",
     "test": "echo \"Error: no test specified\" && exit 1"
