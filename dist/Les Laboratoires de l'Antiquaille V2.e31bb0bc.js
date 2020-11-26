@@ -10665,7 +10665,7 @@ _ScrollTrigger.ScrollTrigger.matchMedia({
     }
   },
   "(max-width: 768px)": function maxWidth768px() {
-    initScrollTrig();
+    //initScrollTrig();
     cookiesConsentDisplay();
   }
 });
@@ -10987,7 +10987,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "4247" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32313" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

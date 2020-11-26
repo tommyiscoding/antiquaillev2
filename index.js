@@ -184,7 +184,7 @@ ScrollTrigger.matchMedia({
   },
 
   "(max-width: 768px)": function () {
-    initScrollTrig();
+    //initScrollTrig();
     cookiesConsentDisplay();
   },
 });

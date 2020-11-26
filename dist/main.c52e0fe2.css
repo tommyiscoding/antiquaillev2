@@ -10,6 +10,10 @@
   src: url(/Gotham-Book.3fbb81f9.otf) format("opentype");
 }
 
+:root {
+  --main-filter-color: #5e513f;
+}
+
 /* Main */
 *,
 *:before,
@@ -22,6 +26,7 @@
 
 html {
   --header-height: 100vh;
+  overflow-x: hidden;
 }
 
 body {
@@ -55,6 +60,7 @@ h1 {
   font-size: clamp(1.4rem, 4vw, 2rem);
   line-height: 1.2;
   text-transform: uppercase;
+  font-weight: 400;
 }
 
 h2 {
@@ -86,7 +92,7 @@ p {
   color: #80705a;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: clamp(0.8rem, 1vw, 1rem);
+  font-size: clamp(0.6em, 1vw, 1em);
   padding: 0.5em 1.25em;
   border: 2px solid #80705a;
   border-radius: 2em;
@@ -121,6 +127,7 @@ p {
   position: fixed;
   height: calc(var(--header-height));
   width: 100%;
+  max-width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -135,8 +142,10 @@ p {
   -webkit-transition: ease 0.4s;
   transition: ease 0.4s;
   z-index: 99;
-  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+          box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px; */
   /*&--scrolled {
     height: 100px;
     --header-height: 100px;
@@ -234,7 +243,7 @@ button {
   text-decoration: none;
   color: #80705a;
   font-family: beloved-sans, sans-serif;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.22rem;
   font-style: normal;
   text-transform: uppercase;
@@ -414,9 +423,13 @@ button {
     overflow: hidden;
   }
   .header {
-    height: 10vh;
-    max-height: 10vh;
+    /* height: 10vh;
+    max-height: 10vh; */
     position: fixed;
+    height: 75px;
+    z-index: 100;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+            box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
     top: 0;
   }
   .mobile-nav-logo {
@@ -470,6 +483,7 @@ button {
     background: #fff;
     height: 100vh;
     width: 100%;
+    max-width: 100vw;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -630,6 +644,7 @@ button {
 
 .video-title {
   color: #80705a;
+  text-align: left;
 }
 
 @media screen and (min-width: 769px) {
@@ -779,17 +794,29 @@ h1 {
     display: -ms-flexbox;
     display: flex;
   }
+  .container-projet {
+    height: 100vh;
+    width: 200%;
+    max-width: 200vw;
+  }
+  .container-equipe {
+    height: 100vh;
+    width: 200%;
+    max-width: 200vw;
+  }
   .projet-slide {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    width: 100%;
   }
   .origine-slide {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    width: 100%;
   }
   .equipe-slide {
     -webkit-box-orient: vertical;
@@ -813,42 +840,45 @@ h1 {
   }
   .projet-image,
   .origine-image {
-    height: 50vh;
-    max-height: 50vh;
+    height: 33vh;
+    max-height: 33vh;
     width: 100%;
     overflow: hidden;
   }
   .equipe-image,
   .florent-image {
-    height: 50vh;
-    max-height: 50vh;
+    height: 33vh;
+    max-height: 33vh;
     width: 100%;
     overflow: hidden;
   }
   .image {
-    height: 50vh;
+    height: 33vh;
     width: 100%;
   }
   .projet-content {
     width: 100%;
     position: absolute;
     left: 0;
-    top: 50%;
+    top: 33vh;
   }
   .equipe-content {
     width: 100%;
     position: absolute;
     left: 0;
-    top: 50%;
+    top: 33vh;
   }
   .projet-article, .equipe-article {
     margin-top: 50px;
   }
   .image-antiquaille {
-    margin-top: 50px;
+    margin-top: 70px;
   }
   .image-papier {
-    margin-top: -100px;
+    margin-top: -220px;
+  }
+  .image-science {
+    margin-top: -120px;
   }
   .article {
     margin-top: 20px;
@@ -1136,15 +1166,29 @@ h1 {
 }
 
 .pagination {
-  height: 25%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
   position: relative;
   width: 100%;
+}
+
+@media screen and (min-width: 769px) {
+  .pagination {
+    padding-top: 40px;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .pagination {
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    padding-top: 20px;
+  }
 }
 
 .projet-pagination,
@@ -1173,7 +1217,7 @@ h1 {
 
 .projet-page-btn + .projet-page-btn,
 .equipe-page-btn + .equipe-page-btn {
-  margin: 1em;
+  margin: 0 1em;
 }
 
 .projet-page-btn::after,
@@ -1209,6 +1253,7 @@ h1 {
 /* PRODUIT */
 .produit-section {
   width: 100%;
+  max-width: 100vw;
 }
 
 .a-propos {
@@ -1227,10 +1272,19 @@ h1 {
           justify-content: center;
 }
 
-.a-propos-both {
-  height: 100%;
-  padding-top: 150px;
-  padding-bottom: 50px;
+@media screen and (min-width: 769px) {
+  .a-propos-both {
+    height: 100%;
+    padding-top: 150px;
+    padding-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .a-propos-both {
+    height: 100%;
+    padding-top: 0;
+  }
 }
 
 .produit-title {
@@ -1363,9 +1417,18 @@ h1 {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
   .produit-article {
     padding: 0 calc(max(10%, 50px)) 0 calc(max(10%, 100px));
+  }
+  .produit-article p {
+    line-height: 1.8em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .produit-article {
+    padding: 0 calc(max(10%, 20px)) 0 calc(max(10%, 50px));
   }
   .produit-article p {
     line-height: 1.8em;
@@ -1405,7 +1468,7 @@ h1 {
     opacity: 0.25;
   }
   .produit-article-title {
-    color: #868481;
+    color: #80705a;
     border-bottom: 2px solid #80705a;
   }
 }
@@ -1422,37 +1485,37 @@ h1 {
     background-image: url(/chimie.577e2c7a.jpg);
     background-position: center center;
     background-size: cover;
-    background-color: #664513ad;
-    background-blend-mode: soft-light;
+    background-color: var(--main-filter-color);
+    background-blend-mode: multiply;
   }
   .square-2 {
     background-image: url(/creme_mains.9a57bba8.jpeg);
     background-position: center center;
     background-size: cover;
-    background-color: #816e52c2;
-    background-blend-mode: soft-light;
+    background-color: var(--main-filter-color);
+    background-blend-mode: multiply;
   }
   .square-3 {
     background-image: url(/water_drops.f61b51cf.jpeg);
     background-position: center center;
     background-size: cover;
-    background-color: #856f4ea2;
-    background-blend-mode: soft-light;
+    background-color: var(--main-filter-color);
+    background-blend-mode: multiply;
   }
   .square-4 {
     background-image: url(/rue_lyon.34efa008.jpg);
     background-position: center center;
     background-size: cover;
     background-position-y: 0px;
-    background-color: #726654da;
-    background-blend-mode: soft-light;
+    background-color: var(--main-filter-color);
+    background-blend-mode: multiply;
   }
   .square-5 {
     background-image: url(/carte_paiement.26e4d9a7.jpeg);
     background-position: center center;
     background-size: cover;
-    background-color: #6b5637c0;
-    background-blend-mode: soft-light;
+    background-color: var(--main-filter-color);
+    background-blend-mode: multiply;
   }
   .number {
     color: white;
@@ -1518,11 +1581,22 @@ h1 {
   max-height: 75%;
 }
 
-.separator {
-  display: block;
-  background-color: #fff;
-  width: 100%;
-  height: 200px;
+@media screen and (min-width: 769px) {
+  .separator {
+    display: block;
+    background-color: #fff;
+    width: 100%;
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .separator {
+    display: block;
+    background-color: #fff;
+    width: 100%;
+    height: 100px;
+  }
 }
 
 /* Timing */
@@ -1561,11 +1635,22 @@ h1 {
   padding-top: 2em;
 }
 
+.timing-text {
+  font-family: "Gotham Book", sans-serif;
+  font-weight: 400;
+  line-height: 1.8;
+  margin: 0 4em;
+  font-size: clamp(0.7em, 1vw, 1em);
+}
+
 @media screen and (min-width: 1201px) {
   .timing-article {
     padding: 5em;
     width: 60%;
     min-width: 60vw;
+  }
+  .timing-text {
+    margin: 0 4em;
   }
 }
 
@@ -1575,6 +1660,9 @@ h1 {
     width: 60%;
     min-width: 60vw;
   }
+  .timing-text {
+    margin: 0 4em;
+  }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
@@ -1582,6 +1670,9 @@ h1 {
     padding: 2em;
     width: 60%;
     min-width: 60vw;
+  }
+  .timing-text {
+    margin: 0 2em;
   }
 }
 
@@ -1591,6 +1682,9 @@ h1 {
     width: 80%;
     min-width: 80vw;
   }
+  .timing-text {
+    margin: 0 2em;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -1599,14 +1693,9 @@ h1 {
     width: 80%;
     min-width: 80vw;
   }
-}
-
-.timing-text {
-  font-family: "Gotham Book", sans-serif;
-  font-weight: 400;
-  line-height: 1.8;
-  margin: 0 4em;
-  font-size: clamp(0.7em, 1vw, 1em);
+  .timing-text {
+    margin: 0 2em;
+  }
 }
 
 /* Avis */
@@ -1629,6 +1718,7 @@ h1 {
 .avis-title {
   font-family: "Gotham Book", sans-serif;
   font-size: clamp(1.6em, 2.5vw, 2.4em);
+  font-weight: 400;
 }
 
 .avis-article {
@@ -1739,32 +1829,49 @@ h1 {
   padding-top: 100px;
 }
 
-.split {
-  margin: 0 auto;
-  width: 75%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 1em;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 100px;
-}
-
-.split > * {
-  -ms-flex-preferred-size: 30%;
-      flex-basis: 30%;
-  min-width: 15em;
-}
-
 .partenaires-title {
   font-family: "Gotham Book", sans-serif;
   text-align: center;
   font-weight: 500;
   margin-bottom: 50px;
+}
+
+@media screen and (min-width: 481px) {
+  .split {
+    margin: 0 auto;
+    width: 75%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 1em;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-bottom: 100px;
+  }
+  .split > * {
+    -ms-flex-preferred-size: 30%;
+        flex-basis: 30%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .split {
+    margin: 0 auto;
+    width: 80%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 20px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-bottom: 100px;
+  }
+  .split > * {
+    -ms-flex-preferred-size: 30%;
+        flex-basis: 30%;
+  }
 }
 
 .featured__item {
@@ -1785,7 +1892,6 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  min-height: 250px;
 }
 
 .featured__item:hover, .featured__item:focus {
@@ -1818,8 +1924,8 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px -25px 55px;
-          box-shadow: rgba(0, 0, 0, 0.2) 0px -25px 55px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.07) 0px -6px 20px, rgba(0, 0, 0, 0.07) 0px -12px 20px, rgba(0, 0, 0, 0.07) 0px -24px 40px;
+          box-shadow: rgba(0, 0, 0, 0.07) 0px -6px 20px, rgba(0, 0, 0, 0.07) 0px -12px 20px, rgba(0, 0, 0, 0.07) 0px -24px 40px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   display: -webkit-box;
@@ -2178,9 +2284,6 @@ h1 {
 
 .mentions-logo {
   margin: 0 auto;
-  padding-top: 100px;
-  width: 20%;
-  min-width: 20vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2191,6 +2294,73 @@ h1 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+@media screen and (min-width: 769px) {
+  .mentions-logo {
+    padding-top: 100px;
+    width: 20%;
+    min-width: 20vw;
+  }
+  .mentions-content {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .mentions-content p {
+    text-align: justify;
+  }
+  .mentions-content h2 {
+    line-height: 3em;
+  }
+  .mentions-content li {
+    text-align: left;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .mentions-logo {
+    padding-top: 100px;
+    width: 20%;
+    min-width: 20vw;
+  }
+  .mentions-content {
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
+  }
+  .mentions-content p {
+    text-align: left;
+  }
+  .mentions-content h2 {
+    line-height: 1.8em;
+  }
+  .mentions-content li {
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .mentions-logo {
+    padding-top: 50px;
+    width: 50%;
+    min-width: 50vw;
+  }
+  .mentions-content {
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
+  }
+  .mentions-content p {
+    text-align: left;
+  }
+  .mentions-content h2 {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+  .mentions-content li {
+    text-align: left;
+  }
 }
 
 .mentions-logo-img {
@@ -2210,9 +2380,6 @@ h1 {
 .mentions-content {
   width: 80%;
   position: relative;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   margin: 0 auto;
 }
 
@@ -2222,14 +2389,13 @@ h1 {
 }
 
 .mentions-content h2 {
-  line-height: 3em;
   color: #80705a;
 }
 
 .mentions-content p {
   line-height: 1.6em;
   margin-bottom: 20px;
-  text-align: justify;
+  font-size: clamp(0.7em, 1vw, 1em);
 }
 
 .mentions-content a {
@@ -2247,8 +2413,7 @@ h1 {
 .mentions-content li {
   margin-left: 25px;
   padding: 5px;
-  text-align: justify;
-  font-size: clamp(0.8rem, 1vw, 1rem);
+  font-size: clamp(0.7em, 1vw, 1em);
   font-weight: 400;
 }
 
@@ -2263,7 +2428,7 @@ h1 {
 
 .note-maj {
   font-style: italic;
-  margin-top: -20px;
+  margin-top: -10px;
   margin-bottom: 20px;
   font-size: 0.8rem;
 }
