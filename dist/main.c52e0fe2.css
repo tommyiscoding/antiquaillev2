@@ -2688,9 +2688,20 @@ input[type=text], input[type=email] {
 
 .inscription-newsletter-content {
   margin: 0 auto;
-  width: 60%;
   text-align: center;
   max-width: 800px;
+}
+
+@media screen and (min-width: 769px) {
+  .inscription-newsletter-content {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .inscription-newsletter-content {
+    width: 80%;
+  }
 }
 
 .in-logo {
