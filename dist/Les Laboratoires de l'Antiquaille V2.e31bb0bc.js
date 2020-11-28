@@ -10464,6 +10464,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var cookiesConsent = false;
 var arrowScroll = false;
+var headerScroll = false;
 var video = document.querySelector("video");
 window.addEventListener("beforeunload", function () {
   window.scrollTo(0, 0);
@@ -10481,6 +10482,7 @@ var target = "";
 
 function scrollingOff() {
   scrolling = 0;
+  console.log("scrolling OFF");
 }
 
 var links = document.querySelectorAll(".menu-link");
@@ -10488,19 +10490,108 @@ var ctrl = new _scrollmagic.default.Controller({});
 
 for (var i = 0; i < links.length; i++) {
   links[i].addEventListener("click", function (event) {
-    scrolling = 1;
-    event.preventDefault();
     var linkId = event.target.getAttribute("href");
     target = linkId;
-    ctrl.scrollTo(function (newpos) {
-      _gsap.TweenMax.to(window, 1, {
-        scrollTo: {
-          y: newpos
-        },
-        onComplete: scrollingOff
+
+    if (document.querySelector("#logo-nav-contract").style.display == "block") {
+      console.log("header scrolled");
+
+      _gsap.gsap.set("body", {
+        overflow: "hidden"
       });
-    });
-    ctrl.scrollTo(linkId);
+
+      scrolling = 1;
+      event.preventDefault();
+      ctrl.scrollTo(function (newpos) {
+        _gsap.TweenMax.to(window, {
+          scrollTo: {
+            y: newpos
+          },
+          duration: 1.5,
+          onComplete: scrollingOff
+        });
+      });
+      ctrl.scrollTo(linkId);
+
+      _gsap.gsap.set("body", {
+        overflow: "auto"
+      });
+    } else {
+      headerScroll = true;
+      console.log("header unscrolled");
+      scrolling = 1;
+      event.preventDefault();
+
+      var timeline2 = _gsap.gsap.timeline();
+
+      _gsap.gsap.set("body", {
+        overflow: "hidden"
+      });
+
+      timeline2.to(".menu-logo-img", {
+        width: 100
+      }).set("#logo-nav", {
+        display: "none"
+      }).set("#logo-nav-contract", {
+        display: "block",
+        opacity: "1"
+      }).set(".arrow-container", {
+        display: "none"
+      }).to("#logo-nav-contract", {
+        marginTop: 25
+      }).to(".header", {
+        height: 75,
+        duration: 0.3,
+        onComplete: function onComplete() {
+          ctrl.scrollTo(function (newpos) {
+            _gsap.TweenMax.to(window, {
+              scrollTo: {
+                y: newpos
+              },
+              duration: 1.5,
+              onComplete: scrollingOff
+            });
+          });
+          ctrl.scrollTo(target);
+        }
+      });
+
+      _gsap.gsap.set("body", {
+        overflow: "auto"
+      });
+      /*
+      gsap.to(".menu-logo-img", { width: 100 });
+      gsap.set("#logo-nav", {
+        display: "none",
+      });
+        gsap.set("#logo-nav-contract", {
+        display: "block",
+        opacity: "1",
+      });
+      gsap.set(".arrow-container", { display: "none" });
+      //.to("#logo-nav", { opacity: 0 })
+      gsap.to("#logo-nav-contract", { marginTop: 25 });
+      gsap.to(".header", {
+        height: 75,
+        duration: 0.3,
+        onComplete: () => {
+          ctrl.scrollTo(function (newpos) {
+            TweenMax.to(window, {
+              scrollTo: { y: newpos },
+              duration: 1.5,
+              onComplete: scrollingOff,
+            });
+          });
+            ctrl.scrollTo(target);
+          console.log("end scroll menu");
+            scrollingOff();
+        },
+      });
+        initScrollTrig();*/
+
+
+      initScrollTrig();
+    }
   });
 }
 
@@ -10523,7 +10614,9 @@ for (var _i = 0; _i < mobilelinks.length; _i++) {
     });
     ctrl.scrollTo(linkId);
   });
-} // Arrow
+}
+
+function activateScroll() {} // Arrow
 
 
 var arrowLink = document.querySelector(".arrow-scroll");
@@ -10531,6 +10624,24 @@ arrowLink.addEventListener("click", function (e) {
   scrolling = 1;
   arrowScroll = true;
   e.preventDefault();
+
+  _gsap.gsap.set("body", {
+    overflow: "hidden"
+  });
+  /* const tl = gsap.timeline();
+    tl.set(document.body, { overflow: "hidden" })
+    .to(".menu-logo-img", { width: 100 })
+    .set("#logo-nav", {
+      display: "none",
+    })
+    .set("#logo-nav-contract", {
+      display: "block",
+      opacity: "1",
+    })
+    .set(".arrow-container", { display: "none" })
+    .to("#logo-nav-contract", { marginTop: 25 })
+    .to(".header", { height: 75, duration: 0.3 }); */
+
 
   _gsap.gsap.to(".menu-logo-img", {
     width: 100
@@ -10541,7 +10652,8 @@ arrowLink.addEventListener("click", function (e) {
   });
 
   _gsap.gsap.set("#logo-nav-contract", {
-    display: "block"
+    display: "block",
+    opacity: "1"
   });
 
   _gsap.gsap.set(".arrow-container", {
@@ -10549,8 +10661,8 @@ arrowLink.addEventListener("click", function (e) {
   }); //.to("#logo-nav", { opacity: 0 })
 
 
-  _gsap.gsap.to("#logo-nav-contract", {
-    opacity: 1
+  _gsap.gsap.set(".arrow-container", {
+    display: "none"
   });
 
   _gsap.gsap.to("#logo-nav-contract", {
@@ -10559,7 +10671,12 @@ arrowLink.addEventListener("click", function (e) {
 
   _gsap.gsap.to(".header", {
     height: 75,
-    duration: 0.3
+    duration: 0.3,
+    onComplete: function onComplete() {
+      return _gsap.gsap.set("body", {
+        overflow: "auto"
+      });
+    }
   });
   /* let video = document.querySelector("video");
   video.currentTime = 0;
@@ -10591,6 +10708,7 @@ arrowLink.addEventListener("click", function (e) {
   }
 
   initScrollTrig();
+  cookiesConsentDisplay();
 }); // Header
 
 _ScrollTrigger.ScrollTrigger.matchMedia({
@@ -10603,8 +10721,13 @@ _ScrollTrigger.ScrollTrigger.matchMedia({
       }
     });
 
-    if (arrowScroll == false) {
+    if (arrowScroll == false && headerScroll == false) {
       console.log("arrow scroll est false mais");
+
+      _gsap.gsap.set("body", {
+        overflow: "hidden"
+      });
+
       timeline.to(".menu-logo-img", {
         width: 100
       }).set("#logo-nav", {
@@ -10617,9 +10740,6 @@ _ScrollTrigger.ScrollTrigger.matchMedia({
         opacity: 1
       }).to("#logo-nav-contract", {
         marginTop: 25
-      }).to(".header", {
-        height: 75,
-        duration: 0.3
       }).add(function () {
         console.log("give me arrow " + (arrowScroll == false));
 
@@ -10631,33 +10751,68 @@ _ScrollTrigger.ScrollTrigger.matchMedia({
           var _ctrl = new _scrollmagic.default.Controller({});
 
           scrolling = 1;
-
-          _ctrl.scrollTo(function (newpos) {
+          /*
+          ctrl.scrollTo(function (newpos, duration) {
             console.log("newpos : " + newpos);
-
-            _gsap.TweenMax.to(window, 1, {
-              scrollTo: {
-                y: newpos
-              },
-              onComplete: scrollingOff
+            TweenMax.to(window, duration, {
+              scrollTo: { y: newpos },
+              onComplete: scrollingOff,
             });
-          });
+          });*/
 
           console.log("target : " + target);
 
           if (target == "" || target == "#home") {
-            _ctrl.scrollTo(0);
-          } else {
-            _ctrl.scrollTo(target);
+            _ctrl.scrollTo(0, 0);
+
+            _gsap.gsap.to(".header", {
+              height: 75,
+              duration: 0.3,
+              onComplete: function onComplete() {
+                _gsap.gsap.set("body", {
+                  overflow: "auto"
+                });
+
+                scrollingOff();
+              }
+            });
           }
+          /*else {
+            console.log("laaaaaaaaaaa");
+              gsap.to(".header", {
+              height: 75,
+              duration: 0.3,
+              onComplete: () => {
+                
+                ctrl.scrollTo(function (newpos) {
+                  TweenMax.to(window, 1, {
+                    scrollTo: { y: newpos },
+                    onComplete: scrollingOff,
+                  });
+                });
+                  ctrl.scrollTo(target);
+                  gsap.set("body", { overflow: "auto" });
+                scrollingOff();
+              },
+            });
+          }*/
+
         }
       });
+      /* .to(".header", {
+          height: 75,
+          duration: 0.3,
+          onComplete: () => gsap.set("body", { overflow: "auto" }),
+        }); */
+
       timeline.then(function () {
         console.log("timeline then");
         console.log("arrow scroll " + arrowScroll);
+        console.log("header scroll " + headerScroll);
 
         if (!arrowScroll) {
           initScrollTrig();
+          scrollingOff();
         }
 
         cookiesConsentDisplay();
@@ -10673,7 +10828,7 @@ _ScrollTrigger.ScrollTrigger.matchMedia({
 function cookiesConsentDisplay() {
   if (cookiesConsent == false) {
     _gsap.gsap.to(".cookies-consent", {
-      height: 75,
+      bottom: 0,
       duration: 0.3,
       delay: 1.5
     });
@@ -10688,29 +10843,49 @@ function initScrollTrig() {
   var panels = document.querySelectorAll(".panel");
 
   _gsap.gsap.utils.toArray(".panel").forEach(function (panel, i) {
-    _ScrollTrigger.ScrollTrigger.create({
-      trigger: panel,
-      onEnter: function onEnter() {
-        console.log("scrolling : " + scrolling);
-        console.log("panel : " + panels[i].offsetTop);
+    if (i === 3) {
+      _ScrollTrigger.ScrollTrigger.create({
+        trigger: panel,
+        start: "top center",
+        onEnter: function onEnter() {
+          console.log("scrolling : " + scrolling);
+          console.log("panel : " + panels[i].offsetTop);
 
-        if (scrolling === 0) {
-          goToOffsetY(panels[i].offsetTop);
-        }
-      },
-      invalidateOnRefresh: true
-    });
+          if (scrolling === 0) {
+            goToOffsetY(panels[i].offsetTop);
+          }
+        },
+        invalidateOnRefresh: true
+      });
+    } else {
+      _ScrollTrigger.ScrollTrigger.create({
+        trigger: panel,
+        onEnter: function onEnter() {
+          console.log("scrolling : " + scrolling);
+          console.log("panel : " + panels[i].offsetTop);
 
-    _ScrollTrigger.ScrollTrigger.create({
-      trigger: panel,
-      start: "bottom bottom",
-      onEnterBack: function onEnterBack() {
-        if (scrolling === 0) {
-          goToOffsetY(panels[i].offsetTop);
-        }
-      },
-      invalidateOnRefresh: true
-    });
+          if (scrolling === 0) {
+            goToOffsetY(panels[i].offsetTop);
+          }
+        },
+        invalidateOnRefresh: true
+      });
+    }
+
+    console.log("panel i= " + i);
+
+    if (i !== 2) {
+      _ScrollTrigger.ScrollTrigger.create({
+        trigger: panel,
+        start: "bottom bottom",
+        onEnterBack: function onEnterBack() {
+          if (scrolling === 0) {
+            goToOffsetY(panels[i].offsetTop);
+          }
+        },
+        invalidateOnRefresh: true
+      });
+    }
   });
 } // Scroll to sections
 
@@ -10718,13 +10893,22 @@ function initScrollTrig() {
 function goToOffsetY(offsetY, anim) {
   console.log(offsetY);
 
+  _gsap.gsap.set("body", {
+    overflow: "hidden"
+  });
+
   _gsap.gsap.to(window, {
     scrollTo: {
       y: offsetY,
       autoKill: false
     },
-    duration: 1,
-    ease: _gsap.Power3.easeOut
+    duration: 1.5,
+    ease: _gsap.Power3.easeOut,
+    onComplete: function onComplete() {
+      return _gsap.gsap.set("body", {
+        overflow: "auto"
+      });
+    }
   });
 
   if (anim) {
@@ -10769,10 +10953,10 @@ var intervalEquipe; // Redémarrage du slide projet quand on arrive sur la secti
 _ScrollTrigger.ScrollTrigger.create({
   trigger: ".projet-section",
   onEnterBack: function onEnterBack() {
-    intervalProjet = setInterval(slideProjet, 15000);
+    intervalProjet = setInterval(slideProjet, 20000);
   },
   onEnter: function onEnter() {
-    intervalProjet = setInterval(slideProjet, 15000);
+    intervalProjet = setInterval(slideProjet, 20000);
   },
   onLeave: function onLeave() {
     clearInterval(intervalProjet);
@@ -10794,10 +10978,10 @@ _ScrollTrigger.ScrollTrigger.create({
 _ScrollTrigger.ScrollTrigger.create({
   trigger: ".equipe-section",
   onEnterBack: function onEnterBack() {
-    intervalEquipe = setInterval(slideEquipe, 15000);
+    intervalEquipe = setInterval(slideEquipe, 20000);
   },
   onEnter: function onEnter() {
-    intervalEquipe = setInterval(slideEquipe, 15000);
+    intervalEquipe = setInterval(slideEquipe, 20000);
   },
   onLeave: function onLeave() {
     clearInterval(intervalEquipe);
@@ -10945,7 +11129,7 @@ consentOK.addEventListener("click", function (event) {
   cookiesConsent = true;
 
   _gsap.gsap.to(".cookies-consent", {
-    height: 0,
+    bottom: -75,
     duration: 0.5
   });
 });
@@ -10987,7 +11171,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "13569" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2263" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -27,6 +27,7 @@
 html {
   --header-height: 100vh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -1588,10 +1589,19 @@ h1 {
     width: 100%;
     height: 200px;
   }
+  .separator-video {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .separator {
+    display: block;
+    background-color: #fff;
+    width: 100%;
+    height: 100px;
+  }
+  .separator-video {
     display: block;
     background-color: #fff;
     width: 100%;
@@ -2724,9 +2734,9 @@ input[type=text], input[type=email] {
 
 .cookies-consent {
   position: fixed;
-  bottom: 0;
+  bottom: -75px;
   width: 100%;
-  height: 0px;
+  height: 75px;
   background-color: #262626;
   opacity: 0.8;
   color: white;
@@ -2743,10 +2753,6 @@ input[type=text], input[type=email] {
   /* a + a {
     padding-left: 10px;
   } */
-}
-
-.cookies-consent .box {
-  position: relative;
 }
 
 .cookies-consent p {

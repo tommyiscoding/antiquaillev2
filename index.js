@@ -5,6 +5,7 @@ import ScrollMagic from "scrollmagic";
 
 let cookiesConsent = false;
 let arrowScroll = false;
+let headerScroll = false;
 
 const video = document.querySelector("video");
 
@@ -26,6 +27,7 @@ let target = "";
 
 function scrollingOff() {
   scrolling = 0;
+  console.log("scrolling OFF");
 }
 
 const links = document.querySelectorAll(".menu-link");
@@ -33,18 +35,98 @@ let ctrl = new ScrollMagic.Controller({});
 
 for (let i = 0; i < links.length; i++) {
   links[i].addEventListener("click", function (event) {
-    scrolling = 1;
-    event.preventDefault();
     const linkId = event.target.getAttribute("href");
     target = linkId;
-    ctrl.scrollTo(function (newpos) {
-      TweenMax.to(window, 1, {
-        scrollTo: { y: newpos },
-        onComplete: scrollingOff,
-      });
-    });
+    if (document.querySelector("#logo-nav-contract").style.display == "block") {
+      console.log("header scrolled");
 
-    ctrl.scrollTo(linkId);
+      gsap.set("body", { overflow: "hidden" });
+      scrolling = 1;
+      event.preventDefault();
+      ctrl.scrollTo(function (newpos) {
+        TweenMax.to(window, {
+          scrollTo: { y: newpos },
+          duration: 1.5,
+          onComplete: scrollingOff,
+        });
+      });
+
+      ctrl.scrollTo(linkId);
+      gsap.set("body", { overflow: "auto" });
+    } else {
+      headerScroll = true;
+      console.log("header unscrolled");
+      scrolling = 1;
+      event.preventDefault();
+
+      let timeline2 = gsap.timeline();
+
+      gsap.set("body", { overflow: "hidden" });
+
+      timeline2
+        .to(".menu-logo-img", { width: 100 })
+        .set("#logo-nav", {
+          display: "none",
+        })
+        .set("#logo-nav-contract", {
+          display: "block",
+          opacity: "1",
+        })
+        .set(".arrow-container", { display: "none" })
+        .to("#logo-nav-contract", { marginTop: 25 })
+        .to(".header", {
+          height: 75,
+          duration: 0.3,
+          onComplete: () => {
+            ctrl.scrollTo(function (newpos) {
+              TweenMax.to(window, {
+                scrollTo: { y: newpos },
+                duration: 1.5,
+                onComplete: scrollingOff,
+              });
+            });
+
+            ctrl.scrollTo(target);
+          },
+        });
+
+      gsap.set("body", { overflow: "auto" });
+      /*
+      gsap.to(".menu-logo-img", { width: 100 });
+      gsap.set("#logo-nav", {
+        display: "none",
+      });
+
+      gsap.set("#logo-nav-contract", {
+        display: "block",
+        opacity: "1",
+      });
+      gsap.set(".arrow-container", { display: "none" });
+      //.to("#logo-nav", { opacity: 0 })
+      gsap.to("#logo-nav-contract", { marginTop: 25 });
+      gsap.to(".header", {
+        height: 75,
+        duration: 0.3,
+        onComplete: () => {
+          ctrl.scrollTo(function (newpos) {
+            TweenMax.to(window, {
+              scrollTo: { y: newpos },
+              duration: 1.5,
+              onComplete: scrollingOff,
+            });
+          });
+
+          ctrl.scrollTo(target);
+          console.log("end scroll menu");
+
+          scrollingOff();
+        },
+      });
+
+      initScrollTrig();*/
+
+      initScrollTrig();
+    }
   });
 }
 
@@ -68,6 +150,8 @@ for (let i = 0; i < mobilelinks.length; i++) {
   });
 }
 
+function activateScroll() {}
+
 // Arrow
 const arrowLink = document.querySelector(".arrow-scroll");
 
@@ -77,6 +161,23 @@ arrowLink.addEventListener("click", function (e) {
   arrowScroll = true;
   e.preventDefault();
 
+  gsap.set("body", { overflow: "hidden" });
+
+  /* const tl = gsap.timeline();
+
+  tl.set(document.body, { overflow: "hidden" })
+    .to(".menu-logo-img", { width: 100 })
+    .set("#logo-nav", {
+      display: "none",
+    })
+    .set("#logo-nav-contract", {
+      display: "block",
+      opacity: "1",
+    })
+    .set(".arrow-container", { display: "none" })
+    .to("#logo-nav-contract", { marginTop: 25 })
+    .to(".header", { height: 75, duration: 0.3 }); */
+
   gsap.to(".menu-logo-img", { width: 100 });
   gsap.set("#logo-nav", {
     display: "none",
@@ -84,12 +185,17 @@ arrowLink.addEventListener("click", function (e) {
 
   gsap.set("#logo-nav-contract", {
     display: "block",
+    opacity: "1",
   });
   gsap.set(".arrow-container", { display: "none" });
   //.to("#logo-nav", { opacity: 0 })
-  gsap.to("#logo-nav-contract", { opacity: 1 });
+  gsap.set(".arrow-container", { display: "none" });
   gsap.to("#logo-nav-contract", { marginTop: 25 });
-  gsap.to(".header", { height: 75, duration: 0.3 });
+  gsap.to(".header", {
+    height: 75,
+    duration: 0.3,
+    onComplete: () => gsap.set("body", { overflow: "auto" }),
+  });
 
   /* let video = document.querySelector("video");
   video.currentTime = 0;
@@ -119,6 +225,7 @@ arrowLink.addEventListener("click", function (e) {
   }
 
   initScrollTrig();
+  cookiesConsentDisplay();
 });
 
 // Header
@@ -132,8 +239,10 @@ ScrollTrigger.matchMedia({
       },
     });
 
-    if (arrowScroll == false) {
+    if (arrowScroll == false && headerScroll == false) {
       console.log("arrow scroll est false mais");
+
+      gsap.set("body", { overflow: "hidden" });
       timeline
         .to(".menu-logo-img", { width: 100 })
         .set("#logo-nav", {
@@ -145,7 +254,6 @@ ScrollTrigger.matchMedia({
         .set(".arrow-container", { display: "none" })
         .to("#logo-nav-contract", { opacity: 1 })
         .to("#logo-nav-contract", { marginTop: 25 })
-        .to(".header", { height: 75, duration: 0.3 })
         .add(function () {
           console.log("give me arrow " + (arrowScroll == false));
           if (arrowScroll) {
@@ -154,29 +262,66 @@ ScrollTrigger.matchMedia({
             console.log("timeline");
             let ctrl = new ScrollMagic.Controller({});
             scrolling = 1;
-            ctrl.scrollTo(function (newpos) {
+            /*
+            ctrl.scrollTo(function (newpos, duration) {
               console.log("newpos : " + newpos);
-              TweenMax.to(window, 1, {
+              TweenMax.to(window, duration, {
                 scrollTo: { y: newpos },
                 onComplete: scrollingOff,
               });
-            });
+            });*/
 
             console.log("target : " + target);
 
             if (target == "" || target == "#home") {
-              ctrl.scrollTo(0);
-            } else {
-              ctrl.scrollTo(target);
+              ctrl.scrollTo(0, 0);
+
+              gsap.to(".header", {
+                height: 75,
+                duration: 0.3,
+                onComplete: () => {
+                  gsap.set("body", { overflow: "auto" });
+                  scrollingOff();
+                },
+              });
             }
+            /*else {
+              console.log("laaaaaaaaaaa");
+
+              gsap.to(".header", {
+                height: 75,
+                duration: 0.3,
+                onComplete: () => {
+                  
+                  ctrl.scrollTo(function (newpos) {
+                    TweenMax.to(window, 1, {
+                      scrollTo: { y: newpos },
+                      onComplete: scrollingOff,
+                    });
+                  });
+
+                  ctrl.scrollTo(target);
+
+                  gsap.set("body", { overflow: "auto" });
+                  scrollingOff();
+                },
+              });
+            }*/
           }
         });
+      /* .to(".header", {
+          height: 75,
+          duration: 0.3,
+          onComplete: () => gsap.set("body", { overflow: "auto" }),
+        }); */
 
       timeline.then(function () {
         console.log("timeline then");
         console.log("arrow scroll " + arrowScroll);
+        console.log("header scroll " + headerScroll);
         if (!arrowScroll) {
           initScrollTrig();
+          scrollingOff();
         }
         cookiesConsentDisplay();
       });
@@ -192,7 +337,7 @@ ScrollTrigger.matchMedia({
 function cookiesConsentDisplay() {
   if (cookiesConsent == false) {
     gsap.to(".cookies-consent", {
-      height: 75,
+      bottom: 0,
       duration: 0.3,
       delay: 1.5,
     });
@@ -209,38 +354,62 @@ function initScrollTrig() {
   let panels = document.querySelectorAll(".panel");
 
   gsap.utils.toArray(".panel").forEach((panel, i) => {
-    ScrollTrigger.create({
-      trigger: panel,
-      onEnter: () => {
-        console.log("scrolling : " + scrolling);
-        console.log("panel : " + panels[i].offsetTop);
+    if (i === 3) {
+      ScrollTrigger.create({
+        trigger: panel,
+        start: "top center",
 
-        if (scrolling === 0) {
-          goToOffsetY(panels[i].offsetTop);
-        }
-      },
-      invalidateOnRefresh: true,
-    });
-    ScrollTrigger.create({
-      trigger: panel,
-      start: "bottom bottom",
-      onEnterBack: () => {
-        if (scrolling === 0) {
-          goToOffsetY(panels[i].offsetTop);
-        }
-      },
-      invalidateOnRefresh: true,
-    });
+        onEnter: () => {
+          console.log("scrolling : " + scrolling);
+          console.log("panel : " + panels[i].offsetTop);
+
+          if (scrolling === 0) {
+            goToOffsetY(panels[i].offsetTop);
+          }
+        },
+        invalidateOnRefresh: true,
+      });
+    } else {
+      ScrollTrigger.create({
+        trigger: panel,
+        onEnter: () => {
+          console.log("scrolling : " + scrolling);
+          console.log("panel : " + panels[i].offsetTop);
+
+          if (scrolling === 0) {
+            goToOffsetY(panels[i].offsetTop);
+          }
+        },
+        invalidateOnRefresh: true,
+      });
+    }
+
+    console.log("panel i= " + i);
+    if (i !== 2) {
+      ScrollTrigger.create({
+        trigger: panel,
+        start: "bottom bottom",
+        onEnterBack: () => {
+          if (scrolling === 0) {
+            goToOffsetY(panels[i].offsetTop);
+          }
+        },
+        invalidateOnRefresh: true,
+      });
+    }
   });
 }
 
 // Scroll to sections
 function goToOffsetY(offsetY, anim) {
   console.log(offsetY);
+
+  gsap.set("body", { overflow: "hidden" });
   gsap.to(window, {
     scrollTo: { y: offsetY, autoKill: false },
-    duration: 1,
+    duration: 1.5,
     ease: Power3.easeOut,
+    onComplete: () => gsap.set("body", { overflow: "auto" }),
   });
 
   if (anim) {
@@ -282,10 +451,10 @@ let intervalEquipe;
 ScrollTrigger.create({
   trigger: ".projet-section",
   onEnterBack: () => {
-    intervalProjet = setInterval(slideProjet, 15000);
+    intervalProjet = setInterval(slideProjet, 20000);
   },
   onEnter: () => {
-    intervalProjet = setInterval(slideProjet, 15000);
+    intervalProjet = setInterval(slideProjet, 20000);
   },
   onLeave: () => {
     clearInterval(intervalProjet);
@@ -301,10 +470,10 @@ ScrollTrigger.create({
 ScrollTrigger.create({
   trigger: ".equipe-section",
   onEnterBack: () => {
-    intervalEquipe = setInterval(slideEquipe, 15000);
+    intervalEquipe = setInterval(slideEquipe, 20000);
   },
   onEnter: () => {
-    intervalEquipe = setInterval(slideEquipe, 15000);
+    intervalEquipe = setInterval(slideEquipe, 20000);
   },
   onLeave: () => {
     clearInterval(intervalEquipe);
@@ -433,7 +602,7 @@ const consentOK = document.getElementById("consent-btn");
 consentOK.addEventListener("click", function (event) {
   event.preventDefault();
   cookiesConsent = true;
-  gsap.to(".cookies-consent", { height: 0, duration: 0.5 });
+  gsap.to(".cookies-consent", { bottom: -75, duration: 0.5 });
 });
 
 function menuMobileOpen() {
