@@ -157,19 +157,21 @@
               >Professionnel
             </a> -->
           </article>
-          <video id="video" class="video-bg" muted playsinline autoplay loop preload="auto" poster="../assets/video/video_poster.jpg">
+          
+          <video id="video" class="video-bg" muted playsinline autoplay loop poster="../assets/video/video_poster.jpg">
             <source
               src="../assets/video/Montage_lantiquaille_5-reduced-1280.mp4"
               type="video/mp4"
             />
             <source
               src="../assets/video/Montage_lantiquaille_5-reduced-1280_1.webm"
-              type="video/webm"
+              type="video/webm" onerror="fallback(parentNode)"
             />
             <source
               src="../assets/video/Montage_lantiquaille_5-reduced-1280.ogv"
               type="video/ogv"
             />
+            <img src="../assets/video/video_poster.jpg" />
           </video>
         </div>
         
@@ -851,9 +853,30 @@
     </div>
 
     <script>
-      let bgvideo = document.getElementById("video");
-      bgvideo.muted = true;
-      bgvideo.play();
+      $('body').on('click touchstart', function () {
+
+        let bgvideo = document.getElementById("video");
+        if (videoElement.playing) {
+            // video is already playing so do nothing
+        }
+        else {
+            // video is not playing
+            console.log("video is not playing");
+            bgvideo.controls = false;
+            bgvideo.muted = true;
+            bgvideo.playsinline = true;
+            bgvideo.autoplay = true;
+            // so play video now
+            bgvideo.play();
+        }
+      });
+
+      function fallback(video)
+        {
+          var img = video.querySelector('img');
+          if (img)
+            video.parentNode.replaceChild(img, video);
+        }
     </script>
     
     <script src="../index.js"></script>

@@ -100,10 +100,11 @@
               >Professionnel
             </a> -->
           </article>
-          <video id="video" class="video-bg" muted="" playsinline="" autoplay="" loop="" preload="auto" poster="/video_poster.79cd53cf.jpg">
+          <video id="video" class="video-bg" muted="" playsinline="" autoplay="" loop="" poster="/video_poster.79cd53cf.jpg">
             <source src="/Montage_lantiquaille_5-reduced-1280.5fd87b08.mp4" type="video/mp4">
-            <source src="/Montage_lantiquaille_5-reduced-1280_1.9d01dc21.webm" type="video/webm">
+            <source src="/Montage_lantiquaille_5-reduced-1280_1.9d01dc21.webm" type="video/webm" onerror="fallback(parentNode)">
             <source src="/Montage_lantiquaille_5-reduced-1280.c14e9e62.ogv" type="video/ogv">
+            <img src="/video_poster.79cd53cf.jpg">
           </video>
         </div>
       </section>
@@ -655,9 +656,26 @@
       </div>
     
 
-    <script>var bgvideo = document.getElementById("video");
-bgvideo.muted = true;
-bgvideo.play();</script>
+    <script>$('body').on('click touchstart', function () {
+  var bgvideo = document.getElementById("video");
+
+  if (videoElement.playing) {// video is already playing so do nothing
+  } else {
+    // video is not playing
+    console.log("video is not playing");
+    bgvideo.controls = false;
+    bgvideo.muted = true;
+    bgvideo.playsinline = true;
+    bgvideo.autoplay = true; // so play video now
+
+    bgvideo.play();
+  }
+});
+
+function fallback(video) {
+  var img = video.querySelector('img');
+  if (img) video.parentNode.replaceChild(img, video);
+}</script>
     
     <script src="/Les Laboratoires de l'Antiquaille V2.e31bb0bc.js"></script>
 
