@@ -243,7 +243,25 @@ btn.addEventListener("click", function () {
   });
 })(jQuery);
 
-var $mcj = jQuery.noConflict(true);</script>
+var $mcj = jQuery.noConflict(true); // select the target node
+
+var target = document.getElementById('mce-success-response'); // create an observer instance
+
+var observer = new MutationObserver(function (mutations) {
+  mutations.forEach(function (mutation) {
+    if (target.innerHTML === "Merci pour votre inscription!") {
+      target.innerHTML = "Thank you for subscribing!";
+    }
+  });
+}); // configuration of the observer:
+
+var config = {
+  attributes: true,
+  childList: true,
+  characterData: true
+}; // pass in the target node, as well as the observer options
+
+observer.observe(target, config);</script>
 
 
   </body>

@@ -260,11 +260,11 @@
             <div class="number">3</div>
             <div class="produit-article">
               <h2 class="produit-article-title" data-aos="fade-up" data-aos-offset="200" data-aos-delay="" data-aos-duration="1000">
-                An unique Organic and Vegan<br>cream which respects the planet<br>as a whole
+                A unique anti-ageing<br>Organic and Vegan cream<br>which respects the planet
               </h2>
               <p class="produit-article-text" data-aos="fade-up" data-aos-offset="100" data-aos-delay="250" data-aos-duration="1000">
               During the development of this organic product, no animal testing nor any ingredient of animal origin will be used. 
-              Its production will aim to have as neutral an environmental impact as possible. The packaging and over-packaging used will be made of high-quality materials, but all of them will be recyclable.
+              Its production will aim to have as neutral an environmental impact as possible. The packaging and over-packaging used will be made of high-quality recyclable materials.
               </p>
             </div>
           </div>
@@ -337,8 +337,8 @@
                   <article class="equipe-article-paragraphe spacing">
                     <p class="">
                       "Les Laboratoires de L'Antiquaille" is a 
-                      <span class="bold">collaborative project</span>. Although led by a specialist in the development and marketing of top-of-the-range cosmetic products, 
-                      <span class="bold">it will involve the both scientific community and consumers </span>
+                      <span class="bold">collaborative project</span>. Led by a specialist in the development and marketing of top-of-the-range cosmetic products, 
+                      <span class="bold">this project will involve the both scientific community and consumers </span>
                       in the design and development of the brand's future products.
                     </p>
                       <p class="">
@@ -528,7 +528,7 @@
     <div class="cookies-consent">
       <div class="box">
           <p>
-            By browsing this site, you agree to the use of cookies, to carry out anonymous statistical analysis. <a hreflang="en" href="/en\legal-notice.html" class="mentions-link">Read more</a>
+            By browsing this site, you agree to the use of cookies to carry out anonymous statistical analysis. <a hreflang="en" href="/en\legal-notice.html" class="mentions-link">Read more</a>
             <a href="" class="btn btn-cookies-consent" id="consent-btn">OK</a>  
           </p>
         
@@ -748,7 +748,25 @@ btn.addEventListener("click", function () {
   });
 })(jQuery);
 
-var $mcj = jQuery.noConflict(true);</script>
+var $mcj = jQuery.noConflict(true); // select the target node
+
+var target = document.getElementById('mce-success-response'); // create an observer instance
+
+var observer = new MutationObserver(function (mutations) {
+  mutations.forEach(function (mutation) {
+    if (target.innerHTML === "Merci pour votre inscription!") {
+      target.innerHTML = "Thank you for subscribing!";
+    }
+  });
+}); // configuration of the observer:
+
+var config = {
+  attributes: true,
+  childList: true,
+  characterData: true
+}; // pass in the target node, as well as the observer options
+
+observer.observe(target, config);</script>
     <!--End mc_embed_signup-->
     
 
