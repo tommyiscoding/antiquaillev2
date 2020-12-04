@@ -10497,7 +10497,7 @@ for (var i = 0; i < links.length; i++) {
       console.log("header scrolled");
 
       _gsap.gsap.set("body", {
-        overflow: "hidden"
+        overflowY: "hidden"
       });
 
       scrolling = 1;
@@ -10514,7 +10514,7 @@ for (var i = 0; i < links.length; i++) {
       ctrl.scrollTo(linkId);
 
       _gsap.gsap.set("body", {
-        overflow: "auto"
+        overflowY: "auto"
       });
     } else {
       headerScroll = true;
@@ -10525,7 +10525,7 @@ for (var i = 0; i < links.length; i++) {
       var timeline2 = _gsap.gsap.timeline();
 
       _gsap.gsap.set("body", {
-        overflow: "hidden"
+        overflowY: "hidden"
       });
 
       timeline2.to(".menu-logo-img", {
@@ -10557,7 +10557,7 @@ for (var i = 0; i < links.length; i++) {
       });
 
       _gsap.gsap.set("body", {
-        overflow: "auto"
+        overflowY: "auto"
       });
       /*
       gsap.to(".menu-logo-img", { width: 100 });
@@ -10626,7 +10626,7 @@ arrowLink.addEventListener("click", function (e) {
   e.preventDefault();
 
   _gsap.gsap.set("body", {
-    overflow: "hidden"
+    overflowY: "hidden"
   });
   /* const tl = gsap.timeline();
     tl.set(document.body, { overflow: "hidden" })
@@ -10674,7 +10674,7 @@ arrowLink.addEventListener("click", function (e) {
     duration: 0.3,
     onComplete: function onComplete() {
       return _gsap.gsap.set("body", {
-        overflow: "auto"
+        overflowY: "auto"
       });
     }
   });
@@ -10725,7 +10725,7 @@ _ScrollTrigger.ScrollTrigger.matchMedia({
       console.log("arrow scroll est false mais");
 
       _gsap.gsap.set("body", {
-        overflow: "hidden"
+        overflowY: "hidden"
       });
 
       timeline.to(".menu-logo-img", {
@@ -10770,7 +10770,7 @@ _ScrollTrigger.ScrollTrigger.matchMedia({
               duration: 0.3,
               onComplete: function onComplete() {
                 _gsap.gsap.set("body", {
-                  overflow: "auto"
+                  overflowY: "auto"
                 });
 
                 scrollingOff();
@@ -10894,7 +10894,7 @@ function goToOffsetY(offsetY, anim) {
   console.log(offsetY);
 
   _gsap.gsap.set("body", {
-    overflow: "hidden"
+    overflowY: "hidden"
   });
 
   _gsap.gsap.to(window, {
@@ -10906,7 +10906,7 @@ function goToOffsetY(offsetY, anim) {
     ease: _gsap.Power3.easeOut,
     onComplete: function onComplete() {
       return _gsap.gsap.set("body", {
-        overflow: "auto"
+        overflowY: "auto"
       });
     }
   });
@@ -11171,7 +11171,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "17562" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "5528" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

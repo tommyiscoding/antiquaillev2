@@ -40,7 +40,7 @@ for (let i = 0; i < links.length; i++) {
     if (document.querySelector("#logo-nav-contract").style.display == "block") {
       console.log("header scrolled");
 
-      gsap.set("body", { overflow: "hidden" });
+      gsap.set("body", { overflowY: "hidden" });
       scrolling = 1;
       event.preventDefault();
       ctrl.scrollTo(function (newpos) {
@@ -52,7 +52,7 @@ for (let i = 0; i < links.length; i++) {
       });
 
       ctrl.scrollTo(linkId);
-      gsap.set("body", { overflow: "auto" });
+      gsap.set("body", { overflowY: "auto" });
     } else {
       headerScroll = true;
       console.log("header unscrolled");
@@ -61,7 +61,7 @@ for (let i = 0; i < links.length; i++) {
 
       let timeline2 = gsap.timeline();
 
-      gsap.set("body", { overflow: "hidden" });
+      gsap.set("body", { overflowY: "hidden" });
 
       timeline2
         .to(".menu-logo-img", { width: 100 })
@@ -90,7 +90,7 @@ for (let i = 0; i < links.length; i++) {
           },
         });
 
-      gsap.set("body", { overflow: "auto" });
+      gsap.set("body", { overflowY: "auto" });
       /*
       gsap.to(".menu-logo-img", { width: 100 });
       gsap.set("#logo-nav", {
@@ -161,7 +161,7 @@ arrowLink.addEventListener("click", function (e) {
   arrowScroll = true;
   e.preventDefault();
 
-  gsap.set("body", { overflow: "hidden" });
+  gsap.set("body", { overflowY: "hidden" });
 
   /* const tl = gsap.timeline();
 
@@ -194,7 +194,7 @@ arrowLink.addEventListener("click", function (e) {
   gsap.to(".header", {
     height: 75,
     duration: 0.3,
-    onComplete: () => gsap.set("body", { overflow: "auto" }),
+    onComplete: () => gsap.set("body", { overflowY: "auto" }),
   });
 
   /* let video = document.querySelector("video");
@@ -242,7 +242,7 @@ ScrollTrigger.matchMedia({
     if (arrowScroll == false && headerScroll == false) {
       console.log("arrow scroll est false mais");
 
-      gsap.set("body", { overflow: "hidden" });
+      gsap.set("body", { overflowY: "hidden" });
       timeline
         .to(".menu-logo-img", { width: 100 })
         .set("#logo-nav", {
@@ -280,7 +280,7 @@ ScrollTrigger.matchMedia({
                 height: 75,
                 duration: 0.3,
                 onComplete: () => {
-                  gsap.set("body", { overflow: "auto" });
+                  gsap.set("body", { overflowY: "auto" });
                   scrollingOff();
                 },
               });
@@ -404,12 +404,12 @@ function initScrollTrig() {
 function goToOffsetY(offsetY, anim) {
   console.log(offsetY);
 
-  gsap.set("body", { overflow: "hidden" });
+  gsap.set("body", { overflowY: "hidden" });
   gsap.to(window, {
     scrollTo: { y: offsetY, autoKill: false },
     duration: 1.5,
     ease: Power3.easeOut,
-    onComplete: () => gsap.set("body", { overflow: "auto" }),
+    onComplete: () => gsap.set("body", { overflowY: "auto" }),
   });
 
   if (anim) {

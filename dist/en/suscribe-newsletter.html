@@ -71,8 +71,8 @@
 
           <div class="mc-field-group input-group">            
             <div id="genderArea">
-              <input type="radio" class="radio" value="Madame" name="MMERGE8" id="mce-MMERGE8-0" required=""><label for="mce-MMERGE8-0">Mrs.</label>
-              <input type="radio" class="radio" value="Monsieur" name="MMERGE8" id="mce-MMERGE8-1"><label for="mce-MMERGE8-1">Mr. *</label>
+              <input type="radio" class="radio" value="Madame" name="MMERGE8" id="mce-MMERGE8-0" required=""><label for="mce-MMERGE8-0">Mrs</label>
+              <input type="radio" class="radio" value="Monsieur" name="MMERGE8" id="mce-MMERGE8-1"><label for="mce-MMERGE8-1">Mr *</label>
             </div>
           </div>
 
@@ -99,13 +99,14 @@
 
           <input type="hidden" value="EN" name="MMERGE9" class="" id="mce-MMERGE9">
 
+          <input type="hidden" value="" name="MMERGE3" class="" id="mce-MMERGE3">
 
           <p class="indicates-req">
             <span class="asterisk">*</span> Information required
           </p>
 
           <div class="checkbox-container">
-            <input type="checkbox" id="checkbox" class="checkbox">
+            <input type="checkbox" id="checkbox" class="checkbox" name="gdpr[14794]">
             <label for="checkbox" class="label">
               YES, I would like to receive regular information about the progress of the "Les Laboratoires de L'Antiquaille" project in compliance with the current European General Data Protection Regulation (GDRP).
             </label>
@@ -191,7 +192,24 @@ btn.addEventListener("click", function () {
   } else {
     return false;
   }
-});</script>
+});
+
+if (document.querySelectorAll('input[name="MMERGE8"]')) {
+  document.querySelectorAll('input[name="MMERGE8"]').forEach(function (elem) {
+    elem.addEventListener("change", function (event) {
+      var item = event.target.value;
+      console.log(item);
+
+      if (item == "Monsieur") {
+        document.getElementById("mce-MMERGE3").value = "Mr";
+      } else {
+        document.getElementById("mce-MMERGE3").value = "Mrs";
+      }
+
+      console.log(document.getElementById("mce-MMERGE3").value);
+    });
+  });
+}</script>
   
 <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
 <script>(function ($) {
@@ -217,6 +235,8 @@ btn.addEventListener("click", function () {
   ftypes[8] = 'radio';
   fnames[9] = 'MMERGE9';
   ftypes[9] = 'text';
+  fnames[10] = 'MMERGE3';
+  ftypes[10] = 'text';
   /*
   * Translated default messages for the $ validation plugin.
   * Locale: FR

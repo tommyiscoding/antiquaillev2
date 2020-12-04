@@ -652,21 +652,21 @@
                 >
                 <div class="social">
                   
-                  <a href="" target="_blank" rel="noopener noreferrer" class="social__link">
+                  <a href="https://www.facebook.com/Les-Laboratoires-de-LAntiquaille-102315851741806" target="_blank" rel="noopener noreferrer" class="social__link">
                     <img
                       src="../assets/images/social_medias/facebook.svg"
                       alt="facebook"
                       class="social__image"
                     />
                   </a>
-                  <a href="" target="_blank" rel="noopener noreferrer" class="social__link">
+                  <a href="https://www.linkedin.com/company/les-laboratoires-de-l-antiquaille" target="_blank" rel="noopener noreferrer" class="social__link">
                     <img
                       src="../assets/images/social_medias/linkedin.svg"
                       alt="linkedin"
                       class="social__image"
                     />
                   </a>
-                  <a href="" target="_blank" rel="noopener noreferrer" class="social__link">
+                  <a href="https://www.instagram.com/labdelantiquaille/" target="_blank" rel="noopener noreferrer" class="social__link">
                     <img
                       src="../assets/images/social_medias/instagram.svg"
                       alt="instagram"
@@ -803,12 +803,15 @@
 
               <input type="hidden" value="FR" name="MMERGE9" class="" id="mce-MMERGE9">
 
+              
+             <input type="hidden" value="" name="MMERGE3" class="" id="mce-MMERGE3">
+
               <p class="indicates-req">
                 <span class="asterisk">*</span> Information requise
               </p>
 
               <div class="checkbox-container">
-                <input type="checkbox" id="checkbox" class="checkbox"/>
+                <input type="checkbox" id="checkbox" class="checkbox" id="gdpr_14794" name="gdpr[14794]"/>
                 <label for="checkbox" class="label">
                   OUI je souhaite recevoir des informations régulières sur l’évolution du projet « Les Laboratoires de L’Antiquaille » dans le respect de la législation en vigueur en matière de protection des données (RGPD)
                 </label>
@@ -853,7 +856,8 @@
     </div>
 
     <script>
-      $('body').on('click touchstart', function () {
+      document.querySelector("body").addEventListener("click touchstart", function () {
+      //$('body').on('click touchstart', function () {
 
         let bgvideo = document.getElementById("video");
         if (videoElement.playing) {
@@ -902,6 +906,22 @@
           return false;
         }
        });
+
+       if (document.querySelectorAll('input[name="MMERGE8"]')) {
+        document.querySelectorAll('input[name="MMERGE8"]').forEach((elem) => {
+          elem.addEventListener("change", function(event) {
+            var item = event.target.value;
+            console.log(item);
+            if(item == "Monsieur") {
+              document.getElementById("mce-MMERGE3").value = "Monsieur";
+            }
+            else {
+              document.getElementById("mce-MMERGE3").value = "Madame";
+            }
+            console.log(document.getElementById("mce-MMERGE3").value);
+          });
+        });
+      }
        
     </script>
       
@@ -930,6 +950,8 @@
       ftypes[8]='radio';
       fnames[9]='MMERGE9';
       ftypes[9]='text'; 
+      fnames[10]='MMERGE3';
+      ftypes[10]='text'; 
       /*
       * Translated default messages for the $ validation plugin.
       * Locale: FR

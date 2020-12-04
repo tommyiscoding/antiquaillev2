@@ -110,6 +110,7 @@
           </div>
 
           <input type="hidden" value="FR" name="MMERGE9" class="" id="mce-MMERGE9">
+          <input type="hidden" value="" name="MMERGE3" class="" id="mce-MMERGE3">
 
 
           <p class="indicates-req">
@@ -117,7 +118,7 @@
           </p>
 
           <div class="checkbox-container">
-            <input type="checkbox" id="checkbox" class="checkbox"/>
+            <input type="checkbox" id="checkbox" class="checkbox" id="gdpr_14794" name="gdpr[14794]"/>
             <label for="checkbox" class="label">
               OUI je souhaite recevoir des informations régulières sur l’évolution du projet « Les Laboratoires de L’Antiquaille » dans le respect de la législation en vigueur en matière de protection des données (RGPD)
             </label>
@@ -212,6 +213,22 @@
       return false;
     }
    });
+
+   if (document.querySelectorAll('input[name="MMERGE8"]')) {
+      document.querySelectorAll('input[name="MMERGE8"]').forEach((elem) => {
+        elem.addEventListener("change", function(event) {
+          var item = event.target.value;
+          console.log(item);
+          if(item == "Monsieur") {
+            document.getElementById("mce-MMERGE3").value = "Monsieur";
+          }
+          else {
+            document.getElementById("mce-MMERGE3").value = "Madame";
+          }
+          console.log(document.getElementById("mce-MMERGE3").value);
+        });
+      });
+    }
    
 </script>
   
@@ -240,6 +257,8 @@
   ftypes[8]='radio';
   fnames[9]='MMERGE9';
   ftypes[9]='text'; 
+  fnames[10]='MMERGE3';
+  ftypes[10]='text'; 
   /*
   * Translated default messages for the $ validation plugin.
   * Locale: FR
