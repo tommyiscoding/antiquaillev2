@@ -1004,7 +1004,7 @@ h1 {
 
     @media screen and (min-width: 1201px) {
       article {
-        width: 80%;
+        width: 85%;
         min-width: 400px;
         padding-left: 100px;
         // font-size: clamp(0.6rem, 1vw, 0.8rem);
@@ -1012,6 +1012,9 @@ h1 {
 
       .projet-title {
         padding-left: 100px;
+        
+        // à tester
+        padding-top: 50px;
       }
 
       p {
@@ -1023,15 +1026,15 @@ h1 {
 
     @media screen and (min-width: 1025px) and (max-width: 1200px) {
       article {
-        width: 85%;
+        width: 90%;
         min-width: 400px;
-        padding-left: 75px;
+        padding-left: 50px;
         // font-size: clamp(0.6rem, 1vw, 0.8rem);
       }
 
       .projet-title {
         color: #80705a;
-        padding-left: 75px;
+        padding-left: 50px;
         font-family: "Gotham Book", sans-serif;
       }
 
@@ -1113,7 +1116,7 @@ h1 {
 
     @media screen and (min-width: 1201px) {
       article {
-        width: 80%;
+        width: 85%;
         min-width: 400px;
         padding-left: 100px;
         // font-size: clamp(0.6rem, 1vw, 0.8rem);
@@ -1121,6 +1124,9 @@ h1 {
 
       .equipe-title {
         padding-left: 100px;
+
+        // à tester
+        padding-top: 50px;
       }
 
       p {
@@ -1132,20 +1138,20 @@ h1 {
 
     @media screen and (min-width: 1025px) and (max-width: 1200px) {
       article {
-        width: 85%;
+        width: 90%;
         min-width: 400px;
-        padding-left: 75px;
+        padding-left: 50px;
         // font-size: clamp(0.6rem, 1vw, 0.8rem);
       }
 
       .equipe-title {
         color: #80705a;
-        padding-left: 75px;
+        padding-left: 50px;
         font-family: "Gotham Book", sans-serif;
       }
 
       p {
-        line-height: 2em;
+        line-height: 1.8em;
         //line-height: clamp(1.5rem, 1vw, 2rem);
         font-size: clamp(0.8rem, 1vw, 1rem);
       }
@@ -1222,7 +1228,7 @@ h1 {
 
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
   .pagination {
-    padding: 0 calc(max(10%, 75px));
+    padding: 0 calc(max(10%, 50px));
   }
 }
 

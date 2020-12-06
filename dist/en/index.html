@@ -565,7 +565,7 @@
         
         background-color: #fff;
         font-size: 12px;
-        color: #80705a;
+            color: #00721c;
       }
 
       #mce-success-response {
@@ -592,8 +592,8 @@
               
               <div class="mc-field-group input-group">            
                 <div id="genderArea">
-                  <input type="radio" class="radio" value="Madame" name="MMERGE8" id="mce-MMERGE8-0" required=""><label for="mce-MMERGE8-0">Mrs</label>
-                  <input type="radio" class="radio" value="Monsieur" name="MMERGE8" id="mce-MMERGE8-1"><label for="mce-MMERGE8-1">Mr *</label>
+                  <input type="radio" class="radio" value="F" name="MMERGE8" id="mce-MMERGE8-0" required=""><label for="mce-MMERGE8-0">Mrs</label>
+                  <input type="radio" class="radio" value="M" name="MMERGE8" id="mce-MMERGE8-1"><label for="mce-MMERGE8-1">Mr *</label>
                 </div>
               </div>
     
@@ -720,7 +720,7 @@ if (document.querySelectorAll('input[name="MMERGE8"]')) {
       var item = event.target.value;
       console.log(item);
 
-      if (item == "Monsieur") {
+      if (item == "M") {
         document.getElementById("mce-MMERGE3").value = "Mr";
       } else {
         document.getElementById("mce-MMERGE3").value = "Mrs";

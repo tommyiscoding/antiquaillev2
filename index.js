@@ -27,7 +27,6 @@ let target = "";
 
 function scrollingOff() {
   scrolling = 0;
-  console.log("scrolling OFF");
 }
 
 const links = document.querySelectorAll(".menu-link");
@@ -38,8 +37,6 @@ for (let i = 0; i < links.length; i++) {
     const linkId = event.target.getAttribute("href");
     target = linkId;
     if (document.querySelector("#logo-nav-contract").style.display == "block") {
-      console.log("header scrolled");
-
       gsap.set("body", { overflowY: "hidden" });
       scrolling = 1;
       event.preventDefault();
@@ -55,7 +52,6 @@ for (let i = 0; i < links.length; i++) {
       gsap.set("body", { overflowY: "auto" });
     } else {
       headerScroll = true;
-      console.log("header unscrolled");
       scrolling = 1;
       event.preventDefault();
 
@@ -240,8 +236,6 @@ ScrollTrigger.matchMedia({
     });
 
     if (arrowScroll == false && headerScroll == false) {
-      console.log("arrow scroll est false mais");
-
       gsap.set("body", { overflowY: "hidden" });
       timeline
         .to(".menu-logo-img", { width: 100 })
@@ -255,11 +249,8 @@ ScrollTrigger.matchMedia({
         .to("#logo-nav-contract", { opacity: 1 })
         .to("#logo-nav-contract", { marginTop: 25 })
         .add(function () {
-          console.log("give me arrow " + (arrowScroll == false));
           if (arrowScroll) {
-            console.log("do noting");
           } else {
-            console.log("timeline");
             let ctrl = new ScrollMagic.Controller({});
             scrolling = 1;
             /*
@@ -270,8 +261,6 @@ ScrollTrigger.matchMedia({
                 onComplete: scrollingOff,
               });
             });*/
-
-            console.log("target : " + target);
 
             if (target == "" || target == "#home") {
               ctrl.scrollTo(0, 0);
@@ -316,9 +305,6 @@ ScrollTrigger.matchMedia({
         }); */
 
       timeline.then(function () {
-        console.log("timeline then");
-        console.log("arrow scroll " + arrowScroll);
-        console.log("header scroll " + headerScroll);
         if (!arrowScroll) {
           initScrollTrig();
           scrollingOff();
@@ -345,11 +331,6 @@ function cookiesConsentDisplay() {
 }
 
 function initScrollTrig() {
-  console.log("passe ici");
-
-  console.log("produit top " + document.getElementById("produit").offsetTop);
-  console.log("produit top " + document.getElementById("equipe").offsetTop);
-
   let arrayOffsetTop = [];
   let panels = document.querySelectorAll(".panel");
 
@@ -360,9 +341,6 @@ function initScrollTrig() {
         start: "top center",
 
         onEnter: () => {
-          console.log("scrolling : " + scrolling);
-          console.log("panel : " + panels[i].offsetTop);
-
           if (scrolling === 0) {
             goToOffsetY(panels[i].offsetTop);
           }
@@ -373,9 +351,6 @@ function initScrollTrig() {
       ScrollTrigger.create({
         trigger: panel,
         onEnter: () => {
-          console.log("scrolling : " + scrolling);
-          console.log("panel : " + panels[i].offsetTop);
-
           if (scrolling === 0) {
             goToOffsetY(panels[i].offsetTop);
           }
@@ -384,7 +359,6 @@ function initScrollTrig() {
       });
     }
 
-    console.log("panel i= " + i);
     if (i !== 2) {
       ScrollTrigger.create({
         trigger: panel,
@@ -402,8 +376,6 @@ function initScrollTrig() {
 
 // Scroll to sections
 function goToOffsetY(offsetY, anim) {
-  console.log(offsetY);
-
   gsap.set("body", { overflowY: "hidden" });
   gsap.to(window, {
     scrollTo: { y: offsetY, autoKill: false },
@@ -418,7 +390,6 @@ function goToOffsetY(offsetY, anim) {
 }
 
 function goToSection(i, anim) {
-  console.log(i);
   gsap.to(window, {
     scrollTo: { y: i * innerHeight, autoKill: false },
     duration: 1,
@@ -551,14 +522,11 @@ document
     document.querySelector(".bg-modal").style.display = "flex";
 
     document.addEventListener("click", function (e) {
-      console.log("click");
-      console.log(e.target.id);
       // If user clicks inside the element, do nothing
       if (
         e.target.closest(".modal-content") ||
         e.target.id == "open-modal-button"
       ) {
-        console.log("detewt");
         return;
       }
 

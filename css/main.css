@@ -978,12 +978,13 @@ h1 {
 
 @media screen and (min-width: 1201px) {
   .projet-content .projet-article article {
-    width: 80%;
+    width: 85%;
     min-width: 400px;
     padding-left: 100px;
   }
   .projet-content .projet-article .projet-title {
     padding-left: 100px;
+    padding-top: 50px;
   }
   .projet-content .projet-article p {
     line-height: 2em;
@@ -993,13 +994,13 @@ h1 {
 
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
   .projet-content .projet-article article {
-    width: 85%;
+    width: 90%;
     min-width: 400px;
-    padding-left: 75px;
+    padding-left: 50px;
   }
   .projet-content .projet-article .projet-title {
     color: #80705a;
-    padding-left: 75px;
+    padding-left: 50px;
     font-family: "Gotham Book", sans-serif;
   }
   .projet-content .projet-article p {
@@ -1065,12 +1066,13 @@ h1 {
 
 @media screen and (min-width: 1201px) {
   .equipe-content .equipe-article article {
-    width: 80%;
+    width: 85%;
     min-width: 400px;
     padding-left: 100px;
   }
   .equipe-content .equipe-article .equipe-title {
     padding-left: 100px;
+    padding-top: 50px;
   }
   .equipe-content .equipe-article p {
     line-height: 2em;
@@ -1080,17 +1082,17 @@ h1 {
 
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
   .equipe-content .equipe-article article {
-    width: 85%;
+    width: 90%;
     min-width: 400px;
-    padding-left: 75px;
+    padding-left: 50px;
   }
   .equipe-content .equipe-article .equipe-title {
     color: #80705a;
-    padding-left: 75px;
+    padding-left: 50px;
     font-family: "Gotham Book", sans-serif;
   }
   .equipe-content .equipe-article p {
-    line-height: 2em;
+    line-height: 1.8em;
     font-size: clamp(0.8rem, 1vw, 1rem);
   }
 }
@@ -1156,7 +1158,7 @@ h1 {
 
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
   .pagination {
-    padding: 0 calc(max(10%, 75px));
+    padding: 0 calc(max(10%, 50px));
   }
 }
 
