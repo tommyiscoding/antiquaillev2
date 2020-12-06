@@ -1222,19 +1222,19 @@ h1 {
 
 @media screen and (min-width: 1201px) {
   .pagination {
-    padding: 0 calc(max(10%, 100px));
+    padding: 0 100px;
   }
 }
 
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
   .pagination {
-    padding: 0 calc(max(10%, 50px));
+    padding: 0 50px;
   }
 }
 
 @media screen and (max-width: 1024px) {
   .pagination {
-    padding: 0 calc(max(10%, 50px));
+    padding: 0 50px;
   }
 }
 

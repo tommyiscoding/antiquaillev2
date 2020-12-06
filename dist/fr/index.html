@@ -746,7 +746,6 @@
   if (videoElement.playing) {// video is already playing so do nothing
   } else {
     // video is not playing
-    console.log("video is not playing");
     bgvideo.controls = false;
     bgvideo.muted = true;
     bgvideo.playsinline = true;
@@ -784,15 +783,12 @@ if (document.querySelectorAll('input[name="MMERGE8"]')) {
   document.querySelectorAll('input[name="MMERGE8"]').forEach(function (elem) {
     elem.addEventListener("change", function (event) {
       var item = event.target.value;
-      console.log(item);
 
       if (item == "M") {
         document.getElementById("mce-MMERGE3").value = "Monsieur";
       } else {
         document.getElementById("mce-MMERGE3").value = "Madame";
       }
-
-      console.log(document.getElementById("mce-MMERGE3").value);
     });
   });
 }</script>

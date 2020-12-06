@@ -10482,7 +10482,6 @@ var target = "";
 
 function scrollingOff() {
   scrolling = 0;
-  console.log("scrolling OFF");
 }
 
 var links = document.querySelectorAll(".menu-link");
@@ -10494,8 +10493,6 @@ for (var i = 0; i < links.length; i++) {
     target = linkId;
 
     if (document.querySelector("#logo-nav-contract").style.display == "block") {
-      console.log("header scrolled");
-
       _gsap.gsap.set("body", {
         overflowY: "hidden"
       });
@@ -10518,7 +10515,6 @@ for (var i = 0; i < links.length; i++) {
       });
     } else {
       headerScroll = true;
-      console.log("header unscrolled");
       scrolling = 1;
       event.preventDefault();
 
@@ -10722,8 +10718,6 @@ _ScrollTrigger.ScrollTrigger.matchMedia({
     });
 
     if (arrowScroll == false && headerScroll == false) {
-      console.log("arrow scroll est false mais");
-
       _gsap.gsap.set("body", {
         overflowY: "hidden"
       });
@@ -10741,13 +10735,7 @@ _ScrollTrigger.ScrollTrigger.matchMedia({
       }).to("#logo-nav-contract", {
         marginTop: 25
       }).add(function () {
-        console.log("give me arrow " + (arrowScroll == false));
-
-        if (arrowScroll) {
-          console.log("do noting");
-        } else {
-          console.log("timeline");
-
+        if (arrowScroll) {} else {
           var _ctrl = new _scrollmagic.default.Controller({});
 
           scrolling = 1;
@@ -10759,8 +10747,6 @@ _ScrollTrigger.ScrollTrigger.matchMedia({
               onComplete: scrollingOff,
             });
           });*/
-
-          console.log("target : " + target);
 
           if (target == "" || target == "#home") {
             _ctrl.scrollTo(0, 0);
@@ -10806,10 +10792,6 @@ _ScrollTrigger.ScrollTrigger.matchMedia({
         }); */
 
       timeline.then(function () {
-        console.log("timeline then");
-        console.log("arrow scroll " + arrowScroll);
-        console.log("header scroll " + headerScroll);
-
         if (!arrowScroll) {
           initScrollTrig();
           scrollingOff();
@@ -10836,9 +10818,6 @@ function cookiesConsentDisplay() {
 }
 
 function initScrollTrig() {
-  console.log("passe ici");
-  console.log("produit top " + document.getElementById("produit").offsetTop);
-  console.log("produit top " + document.getElementById("equipe").offsetTop);
   var arrayOffsetTop = [];
   var panels = document.querySelectorAll(".panel");
 
@@ -10848,9 +10827,6 @@ function initScrollTrig() {
         trigger: panel,
         start: "top center",
         onEnter: function onEnter() {
-          console.log("scrolling : " + scrolling);
-          console.log("panel : " + panels[i].offsetTop);
-
           if (scrolling === 0) {
             goToOffsetY(panels[i].offsetTop);
           }
@@ -10861,9 +10837,6 @@ function initScrollTrig() {
       _ScrollTrigger.ScrollTrigger.create({
         trigger: panel,
         onEnter: function onEnter() {
-          console.log("scrolling : " + scrolling);
-          console.log("panel : " + panels[i].offsetTop);
-
           if (scrolling === 0) {
             goToOffsetY(panels[i].offsetTop);
           }
@@ -10871,8 +10844,6 @@ function initScrollTrig() {
         invalidateOnRefresh: true
       });
     }
-
-    console.log("panel i= " + i);
 
     if (i !== 2) {
       _ScrollTrigger.ScrollTrigger.create({
@@ -10891,8 +10862,6 @@ function initScrollTrig() {
 
 
 function goToOffsetY(offsetY, anim) {
-  console.log(offsetY);
-
   _gsap.gsap.set("body", {
     overflowY: "hidden"
   });
@@ -10917,8 +10886,6 @@ function goToOffsetY(offsetY, anim) {
 }
 
 function goToSection(i, anim) {
-  console.log(i);
-
   _gsap.gsap.to(window, {
     scrollTo: {
       y: i * innerHeight,
@@ -11087,11 +11054,8 @@ document.getElementById("open-modal-button").addEventListener("click", function 
   document.querySelector("body").style.overflowY = "hidden";
   document.querySelector(".bg-modal").style.display = "flex";
   document.addEventListener("click", function (e) {
-    console.log("click");
-    console.log(e.target.id); // If user clicks inside the element, do nothing
-
+    // If user clicks inside the element, do nothing
     if (e.target.closest(".modal-content") || e.target.id == "open-modal-button") {
-      console.log("detewt");
       return;
     } // If user clicks outside the element, hide it!
 
@@ -11171,7 +11135,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "5528" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "8035" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
