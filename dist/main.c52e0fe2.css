@@ -11,7 +11,7 @@
 }
 
 :root {
-  --main-filter-color: #5e513f;
+  --main-filter-color: #857d74;
 }
 
 /* Main */
@@ -83,8 +83,16 @@ p {
   font-family: "Gotham Bold";
 }
 
-.spacing > * + * {
-  margin-top: var(--spacer, 2rem);
+@media screen and (min-width: 769px) {
+  .spacing > * + * {
+    margin-top: var(--spacer, 2em);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .spacing > * + * {
+    margin-top: var(--spacer, 1em);
+  }
 }
 
 .btn {
@@ -784,7 +792,107 @@ h1 {
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 768px) {
+  .container-projet {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .container-equipe {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .container-projet {
+    height: 100vh;
+    width: 200%;
+    max-width: 200vw;
+  }
+  .container-equipe {
+    height: 100vh;
+    width: 200%;
+    max-width: 200vw;
+  }
+  .projet-slide {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+  }
+  .origine-slide {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+  }
+  .equipe-slide {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .florent-slide {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .container-projet {
+    height: 100vh;
+    width: 200%;
+  }
+  .container-equipe {
+    height: 100vh;
+    width: 200%;
+  }
+  .projet-image,
+  .origine-image {
+    height: 40vh;
+    max-height: 40vh;
+    width: 100%;
+    overflow: hidden;
+  }
+  .equipe-image,
+  .florent-image {
+    height: 40vh;
+    max-height: 40vh;
+    width: 100%;
+    overflow: hidden;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  .image {
+    height: 40vh;
+    width: 100%;
+  }
+  .projet-content {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 40vh;
+  }
+  .equipe-content {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 40vh;
+  }
+  .projet-article, .equipe-article {
+    margin-top: 50px;
+  }
+  .image-antiquaille {
+    margin-top: 100px;
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+  .article {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
   .container-projet {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -854,7 +962,7 @@ h1 {
     overflow: hidden;
   }
   .image {
-    height: 33vh;
+    height: 100%;
     width: 100%;
   }
   .projet-content {
@@ -870,16 +978,12 @@ h1 {
     top: 33vh;
   }
   .projet-article, .equipe-article {
-    margin-top: 50px;
+    margin-top: 25px;
   }
   .image-antiquaille {
     margin-top: 70px;
-  }
-  .image-papier {
-    margin-top: -220px;
-  }
-  .image-science {
-    margin-top: -120px;
+    -webkit-transform: scale(1.8);
+            transform: scale(1.8);
   }
   .article {
     margin-top: 20px;
@@ -923,8 +1027,6 @@ h1 {
 
 .equipe-slide .image,
 .florent-slide .image {
-  height: 100vh;
-  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   z-index: 0;
@@ -1025,7 +1127,7 @@ h1 {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
   .projet-content .projet-article article {
     width: 90%;
     padding-left: 50px;
@@ -1037,6 +1139,22 @@ h1 {
   }
   .projet-content .projet-article p {
     line-height: 1.6em;
+    font-size: clamp(0.7em, 1vw, 1em);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .projet-content .projet-article article {
+    width: 100%;
+    padding: 0 25px;
+  }
+  .projet-content .projet-article .projet-title {
+    color: #80705a;
+    padding-left: 25px;
+    font-family: "Gotham Book", sans-serif;
+  }
+  .projet-content .projet-article p {
+    line-height: 1.5em;
     font-size: clamp(0.7em, 1vw, 1em);
   }
 }
@@ -1113,7 +1231,7 @@ h1 {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
   .equipe-content article {
     width: 90%;
     padding-left: 50px;
@@ -1126,6 +1244,22 @@ h1 {
   .equipe-content p {
     line-height: 1.6em;
     font-size: clamp(0.65em, 1vw, 1em);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .equipe-content article {
+    width: 100%;
+    padding: 0 25px;
+  }
+  .equipe-content .equipe-title {
+    color: #80705a;
+    padding-left: 25px;
+    font-family: "Gotham Book", sans-serif;
+  }
+  .equipe-content p {
+    line-height: 1.5em;
+    font-size: clamp(0.7em, 1vw, 1em);
   }
 }
 
@@ -1260,8 +1394,6 @@ h1 {
 }
 
 .a-propos {
-  height: 20%;
-  min-height: 200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1276,6 +1408,10 @@ h1 {
 }
 
 @media screen and (min-width: 769px) {
+  .a-propos {
+    height: 20%;
+    min-height: 200px;
+  }
   .a-propos-both {
     height: 100%;
     padding-top: 150px;
@@ -1284,9 +1420,13 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
+  .a-propos {
+    height: 20%;
+  }
   .a-propos-both {
     height: 100%;
-    padding-top: 0;
+    padding-top: 110px;
+    padding-bottom: 20px;
   }
 }
 
@@ -1434,7 +1574,7 @@ h1 {
     padding: 0 calc(max(10%, 20px)) 0 calc(max(10%, 50px));
   }
   .produit-article p {
-    line-height: 1.8em;
+    line-height: 1.6em;
   }
 }
 
