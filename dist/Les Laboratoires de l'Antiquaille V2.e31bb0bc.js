@@ -10983,6 +10983,7 @@ _ScrollTrigger.ScrollTrigger.create({
 
 _ScrollTrigger.ScrollTrigger.create({
   trigger: ".numbers-section",
+  start: "top center",
   onEnter: function onEnter() {
     _gsap.TweenLite.to(followCount, 1.5, {
       val: FollowNewVal,

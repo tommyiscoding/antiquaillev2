@@ -467,6 +467,7 @@ ScrollTrigger.create({
 /* Counters */
 ScrollTrigger.create({
   trigger: ".numbers-section",
+  start: "top center",
   onEnter: () => {
     TweenLite.to(followCount, 1.5, {
       val: FollowNewVal,
