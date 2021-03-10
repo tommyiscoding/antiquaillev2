@@ -10449,7 +10449,7 @@ var define;
 
   return ScrollMagic;
 });
-},{}],"../index.js":[function(require,module,exports) {
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _gsap = require("gsap");
@@ -10482,8 +10482,21 @@ var target = "";
 
 function scrollingOff() {
   scrolling = 0;
-}
+} // Initialize counters
 
+
+var followCount = {
+  val: 0
+},
+    FollowNewVal = 4481;
+var countryCount = {
+  val: 0
+},
+    CountryNewVal = 36;
+var participateCount = {
+  val: 0
+},
+    ParticipeNewVal = 160;
 var links = document.querySelectorAll(".menu-link");
 var ctrl = new _scrollmagic.default.Controller({});
 
@@ -10965,6 +10978,45 @@ _ScrollTrigger.ScrollTrigger.create({
     });
   }
 });
+/* Counters */
+
+
+_ScrollTrigger.ScrollTrigger.create({
+  trigger: ".numbers-section",
+  onEnter: function onEnter() {
+    _gsap.TweenLite.to(followCount, 1.5, {
+      val: FollowNewVal,
+      roundProps: "val",
+      onUpdate: function onUpdate() {
+        document.getElementById("follow-count").innerHTML = followCount.val;
+      }
+    });
+
+    _gsap.TweenLite.to(countryCount, 1.5, {
+      val: CountryNewVal,
+      roundProps: "val",
+      onUpdate: function onUpdate() {
+        document.getElementById("country-count").innerHTML = countryCount.val;
+      }
+    });
+
+    _gsap.TweenLite.to(participateCount, 1.5, {
+      val: ParticipeNewVal,
+      roundProps: "val",
+      onUpdate: function onUpdate() {
+        document.getElementById("participe-count").innerHTML = participateCount.val;
+      }
+    });
+  },
+  onLeaveBack: function onLeaveBack() {
+    followCount.val = 0;
+    countryCount.val = 0;
+    participateCount.val = 0;
+    document.getElementById("follow-count").innerHTML = followCount.val;
+    document.getElementById("country-count").innerHTML = countryCount.val;
+    document.getElementById("participe-count").innerHTML = participateCount.val;
+  }
+});
 /* Slider projet */
 
 
@@ -11135,7 +11187,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "27689" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "4679" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -11311,5 +11363,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","../index.js"], null)
+},{}]},{},["C:/Users/thoma/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/Les%20Laboratoires%20de%20l%27Antiquaille%20V2.e31bb0bc.js.map

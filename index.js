@@ -1,4 +1,4 @@
-import { gsap, Power3, TweenMax } from "gsap";
+import { gsap, Power3, TweenMax, TweenLite } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollMagic from "scrollmagic";
@@ -28,6 +28,14 @@ let target = "";
 function scrollingOff() {
   scrolling = 0;
 }
+
+// Initialize counters
+var followCount = { val: 0 },
+  FollowNewVal = 4481;
+var countryCount = { val: 0 },
+  CountryNewVal = 36;
+var participateCount = { val: 0 },
+  ParticipeNewVal = 160;
 
 const links = document.querySelectorAll(".menu-link");
 let ctrl = new ScrollMagic.Controller({});
@@ -453,6 +461,45 @@ ScrollTrigger.create({
   onLeaveBack: () => {
     clearInterval(intervalEquipe);
     gsap.to(".container-equipe", { marginLeft: 0 });
+  },
+});
+
+/* Counters */
+ScrollTrigger.create({
+  trigger: ".numbers-section",
+  onEnter: () => {
+    TweenLite.to(followCount, 1.5, {
+      val: FollowNewVal,
+      roundProps: "val",
+      onUpdate: function () {
+        document.getElementById("follow-count").innerHTML = followCount.val;
+      },
+    });
+
+    TweenLite.to(countryCount, 1.5, {
+      val: CountryNewVal,
+      roundProps: "val",
+      onUpdate: function () {
+        document.getElementById("country-count").innerHTML = countryCount.val;
+      },
+    });
+
+    TweenLite.to(participateCount, 1.5, {
+      val: ParticipeNewVal,
+      roundProps: "val",
+      onUpdate: function () {
+        document.getElementById("participe-count").innerHTML =
+          participateCount.val;
+      },
+    });
+  },
+  onLeaveBack: () => {
+    followCount.val = 0;
+    countryCount.val = 0;
+    participateCount.val = 0;
+    document.getElementById("follow-count").innerHTML = followCount.val;
+    document.getElementById("country-count").innerHTML = countryCount.val;
+    document.getElementById("participe-count").innerHTML = participateCount.val;
   },
 });
 
