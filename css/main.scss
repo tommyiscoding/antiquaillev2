@@ -2136,6 +2136,8 @@ h1 {
       flex-basis: 30%;
       //min-width: 12em;
     }
+
+    
   }
 
 
@@ -2158,10 +2160,15 @@ h1 {
   }
 }
 
+.french-tech {
+  width: 80%;
+}
 
 
 .featured {
   //background: #eee;
+
+
 
   &__item {
     position: relative;

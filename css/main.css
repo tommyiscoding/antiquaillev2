@@ -2027,6 +2027,10 @@ h1 {
   }
 }
 
+.french-tech {
+  width: 80%;
+}
+
 .featured__item {
   position: relative;
   -webkit-transform: scale(0.7);
