@@ -8,11 +8,9 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-185947565-1"></script>
     <script>window.dataLayer = window.dataLayer || [];
-
 function gtag() {
   dataLayer.push(arguments);
 }
-
 gtag('js', new Date());
 gtag('config', 'UA-185947565-1');</script>
     <meta charset="utf-8">
@@ -198,24 +196,22 @@ cb.addEventListener("change", function () {
   }
 });
 btn.addEventListener("click", function () {
-  if (this.checked) {// do nothing
+  if (this.checked) {
+    // do nothing
   } else {
     return false;
   }
 });
-
 if (document.querySelectorAll('input[name="MMERGE8"]')) {
   document.querySelectorAll('input[name="MMERGE8"]').forEach(function (elem) {
     elem.addEventListener("change", function (event) {
       var item = event.target.value;
       console.log(item);
-
       if (item == "M") {
         document.getElementById("mce-MMERGE3").value = "Mr";
       } else {
         document.getElementById("mce-MMERGE3").value = "Mrs";
       }
-
       console.log(document.getElementById("mce-MMERGE3").value);
     });
   });
@@ -251,7 +247,6 @@ if (document.querySelectorAll('input[name="MMERGE8"]')) {
   * Translated default messages for the $ validation plugin.
   * Locale: FR
   */
-
   $.extend($.validator.messages, {
     required: "This information is required.",
     remote: "Please fill this field to continue.",
@@ -272,25 +267,28 @@ if (document.querySelectorAll('input[name="MMERGE8"]')) {
     min: $.validator.format("Veuillez entrer une valeur supérieure ou égale à {0}.")
   });
 })(jQuery);
+var $mcj = jQuery.noConflict(true);
 
-var $mcj = jQuery.noConflict(true); // select the target node
+// select the target node
+var target = document.getElementById('mce-success-response');
 
-var target = document.getElementById('mce-success-response'); // create an observer instance
-
+// create an observer instance
 var observer = new MutationObserver(function (mutations) {
   mutations.forEach(function (mutation) {
     if (target.innerHTML === "Merci pour votre inscription!") {
       target.innerHTML = "Thank you for subscribing!";
     }
   });
-}); // configuration of the observer:
+});
 
+// configuration of the observer:
 var config = {
   attributes: true,
   childList: true,
   characterData: true
-}; // pass in the target node, as well as the observer options
+};
 
+// pass in the target node, as well as the observer options
 observer.observe(target, config);</script>
 
 

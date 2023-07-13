@@ -19,5 +19,8 @@
     "jquery": "^3.5.1",
     "request": "^2.88.2",
     "scrollmagic": "^2.0.7"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
   }
 }
